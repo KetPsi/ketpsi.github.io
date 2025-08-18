@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    
+        
+        <url>
+            <loc>http://localhost:42915/</loc>
+            <lastmod>2025-08-19T01:38:13+06:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:42915/notes/</loc>
+            <lastmod>2025-08-19T01:38:13+06:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:42915/mathssuggestions/</loc>
+            <lastmod>2025-08-19T01:35:06+06:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:42915/about/</loc>
+            <lastmod>2025-08-19T01:03:15+06:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:42915/categories/</loc>
+        </url>
+        
+    
+        
+        <url>
+            <loc>http://localhost:42915/tags/</loc>
+        </url>
+        
+    
+</urlset>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mahmudul Hasan Turjoy</title>
+    <link>http://localhost:42915/</link>
+    <description>Recent content on Mahmudul Hasan Turjoy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 19 Aug 2025 01:38:13 +0600</lastBuildDate>
+    <atom:link href="http://localhost:42915/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Notes</title>
+      <link>http://localhost:42915/notes/</link>
+      <pubDate>Tue, 19 Aug 2025 01:38:13 +0600</pubDate>
+      <guid>http://localhost:42915/notes/</guid>
+      <description>Here&amp;rsquo;s the notes I took in the honours maths courses at BRAC University:&#xA;Fall 2024 MAT314: Abstract Algebra Spring 2025 MAT422: Theory of Numbers (incomplete) </description>
+    </item>
+    <item>
+      <title>Maths Suggestions</title>
+      <link>http://localhost:42915/mathssuggestions/</link>
+      <pubDate>Tue, 19 Aug 2025 01:35:06 +0600</pubDate>
+      <guid>http://localhost:42915/mathssuggestions/</guid>
+      <description>Here&amp;rsquo;s the list.</description>
+    </item>
+    <item>
+      <title>About</title>
+      <link>http://localhost:42915/about/</link>
+      <pubDate>Tue, 19 Aug 2025 01:03:15 +0600</pubDate>
+      <guid>http://localhost:42915/about/</guid>
+      <description>My name is Mahmudul Hasan Turjoy, I am a maths major at BRAC University. I have interest in maths.&#xA;Right now, my fave mathematicians are: Galois, Gauss, Cauchy, Fourier.</description>
+    </item>
+  </channel>
+</rss>
