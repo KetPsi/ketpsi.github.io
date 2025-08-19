@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mahmudul Hasan Turjoy</title>
-    <link>/</link>
+    <link>//localhost:1313/</link>
     <description>Recent content on Mahmudul Hasan Turjoy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 19 Aug 2025 02:13:16 +0600</lastBuildDate>
-    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Resources</title>
-      <link>/resources/</link>
+      <link>//localhost:1313/resources/</link>
       <pubDate>Tue, 19 Aug 2025 02:13:16 +0600</pubDate>
-      <guid>/resources/</guid>
-      <description>Here’s a collection of resources that I consider some of the best in each subject. These are not Bourbaki-style, highly abstract texts; instead, they aim to motivate concepts through examples and intuition while maintaining rigor.&#xA;Mathematics Logic and Proofs Book of Proof — Richard Hammack PDF Single Variable Calculus Calculus — Michael Spivak Multivariable Calculus Analysis on Manifolds — James Munkres Analysis Understanding Analysis — Stephen Abbott Linear Algebra Linear Algebra Done Right — Sheldon Axler Complex Analysis Complex Analysis — Elias M.</description>
+      <guid>//localhost:1313/resources/</guid>
+      <description>Here’s a collection of resources that I consider some of the best in each subject. These are not Bourbaki-style, highly abstract texts; instead, they aim to motivate concepts through examples and intuition while maintaining rigor.&#xA;Mathematics Logic and Proofs Book of Proof — Richard Hammack (PDF) Single Variable Calculus Calculus — Michael Spivak Multivariable Calculus Analysis on Manifolds — James Munkres Analysis Understanding Analysis — Stephen Abbott Linear Algebra Linear Algebra Done Right — Sheldon Axler Complex Analysis Complex Analysis — Elias M.</description>
     </item>
     <item>
       <title>Notes</title>
-      <link>/notes/</link>
+      <link>//localhost:1313/notes/</link>
       <pubDate>Tue, 19 Aug 2025 01:38:13 +0600</pubDate>
-      <guid>/notes/</guid>
-      <description>Here&amp;rsquo;s the notes I took in the honours maths courses at BRAC University:&#xA;Fall 2024 MAT314: Abstract Algebra Spring 2025 MAT422: Theory of Numbers (incomplete) </description>
+      <guid>//localhost:1313/notes/</guid>
+      <description>Here&amp;rsquo;s the notes I took in the honours maths courses at BRAC University:&#xA;Fall 2024 MAT314: Abstract Algebra (pdf) Spring 2025 MAT422: Theory of Numbers (incomplete) (pdf) </description>
     </item>
     <item>
       <title>About</title>
-      <link>/about/</link>
+      <link>//localhost:1313/about/</link>
       <pubDate>Tue, 19 Aug 2025 01:03:15 +0600</pubDate>
-      <guid>/about/</guid>
-      <description>My name is Mahmudul Hasan Turjoy, I am a maths major at BRAC University. I have interest in maths.&#xA;Right now, my fave mathematicians are: Galois, Gauss, Cauchy, Fourier.</description>
+      <guid>//localhost:1313/about/</guid>
+      <description>My name is Mahmudul Hasan Turjoy, I am a maths major at BRAC University. I have interest in maths. Currently, I am studying complex analysis, differential equations, numerical analysis, algebraic topology and algebraic-flavoured elementary number theory.&#xA;Right now, my fave mathematicians are: Galois, Gauss, Cauchy, Fourier.&#xA;Contact Me I’d love to connect with mentors, join a reading group, or just chat with people who enjoy learning and exploring pure maths. Please feel free to contact me.</description>
     </item>
   </channel>
 </rss>
