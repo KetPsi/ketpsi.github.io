@@ -1,5 +1,5 @@
 ---
-title: Lie groups and lie algebras announcement
+title: Lie groups and Lie algebras announcement
 author: Mahmudul Hasan Turjoy
 date: 2026-08-10 00:34:00 +0800
 categories: [Undergraduate Maths, Lie Groups & Lie Algebras]
