@@ -6,6 +6,6 @@ categories: [Undergraduate Maths, Lie Groups & Lie Algebras]
 tags: [lie groups, lie algebras]
 ---
 
-## Lie Group and Lie Algebras Announcement
+# Lie Group and Lie Algebras Announcement
 
 I am going to start studying Lie groups and Lie algebras. I will upload my notes here.
