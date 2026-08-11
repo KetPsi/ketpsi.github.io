@@ -17,7 +17,7 @@ $$
 
 for each $c \in C$ and $d \in D$, that is ''natural'', i.e., for morphisms $c_1 \to c_2$ in $C$ and $d_1 \to d_2$ in $D$, the following diagrams commute:
 <div style="display: flex; justify-content: center;">
-<iframe class="quiver-embed" src="https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhybXtIb219X0QoRmMsIGRfMSkiXSxbMSwwLCJcXG1hdGhybXtIb219X0QoRmMsIGRfMSkiXSxbMCwxLCJcXG1hdGhybXtIb219X0QoRmMsIGRfMikiXSxbMSwxLCJcXG1hdGhybXtIb219X0QoRmMsIGRfMikiXSxbMCwyXSxbMSwzXSxbMCwxLCJcXHBoaV97YyxkXzF9IiwxXSxbMiwzLCJcXHBoaV97YyxkXzJ9IiwxXV0=&embed" width="560" height="304" style="border-radius: 8px; border: none;"></iframe>
+<iframe class="quiver-embed" src="https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhybXtIb219X0QoRmMsIGRfMSkiXSxbMSwwLCJcXG1hdGhybXtIb219X0QoRmMsIGRfMSkiXSxbMCwxLCJcXG1hdGhybXtIb219X0QoRmMsIGRfMikiXSxbMSwxLCJcXG1hdGhybXtIb219X0QoRmMsIGRfMikiXSxbMCwyXSxbMSwzXSxbMCwxLCJcXHBoaV97YyxkXzF9Il0sWzIsMywiXFxwaGlfe2MsZF8yfSIsMl1d&embed" width="560" height="304" style="border-radius: 8px; border: none;"></iframe>
 </div>
 <div style="display: flex; justify-content: center;">
 <iframe class="quiver-embed" src="https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhybXtIb219X0QoRmNfMSwgZCkiXSxbMSwwLCJcXG1hdGhybXtIb219X0MoY18xLEdkKSJdLFswLDEsIlxcbWF0aHJte0hvbX1fRChGY18yLCBkKSJdLFsxLDEsIlxcbWF0aHJte0hvbX1fQyhjXzIsR2QpIl0sWzAsMSwiXFxwaGlfe2NfMSxkfSJdLFsyLDMsIlxccGhpX3tjXzIsZH0iXSxbMywxXSxbMiwwXV0=&embed" width="558" height="304" style="border-radius: 8px; border: none;"></iframe>
