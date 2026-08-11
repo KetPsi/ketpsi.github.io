@@ -2,7 +2,7 @@
 title: Adjoint functors 
 author: Mahmudul Hasan Turjoy
 date: 2026-08-11 01:30:00 +0600
-categories: [Undergraduate Maths, Category Theory]
+categories: [Undergraduate Maths, Categories for the idle mathematicians]
 tags: [category theory, adjoint functors]
 math: true
 ---
