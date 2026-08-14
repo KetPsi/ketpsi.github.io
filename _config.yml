@@ -14,12 +14,14 @@ timezone:
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Mahmudul Hasan Turjoy # the main title
+title: Mahmudul Hasan Turjoy
 
-tagline: My personal website where I post maths mostly # it will display as the subtitle
+tagline: Mathematics student | Geometry, Category Theory & Lie Theory # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  I'm Mahmudul Hasan Turjoy. Welcome to my personal blog where I post maths mostly. I am a mathematics student at Brac University.
+  I'm Mahmudul Hasan Turjoy. Welcome to my personal blog where I post maths mostly.
+  I am a mathematics student at Brac University.
+  I will post notes on differential geometry, category theory, Lie groups, Lie algebras, and related topics.
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
