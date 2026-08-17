@@ -1,0 +1,75 @@
+---
+---
+
+@use 'abstracts/variables' with (
+  $theme: '{{ site.theme_mode }}'
+);
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* append your custom style below */
+/* =========================================================
+Mathematical Environments
+========================================================= */
+
+/* Common styling */
+blockquote.theorem,
+blockquote.lemma,
+blockquote.proposition,
+blockquote.corollary,
+blockquote.definition,
+blockquote.remark {
+color: var(--text-color);
+
+padding: 1rem 1.2rem;
+margin: 1.25rem 0;
+
+border-left-width: 4px;
+border-left-style: solid;
+border-radius: 0.4rem;
+}
+
+/* Make paragraph text normal instead of Chirpy's grey blockquote text */
+blockquote.theorem p,
+blockquote.lemma p,
+blockquote.proposition p,
+blockquote.corollary p,
+blockquote.definition p,
+blockquote.remark p {
+color: inherit;
+}
+
+/* Theorem */
+blockquote.theorem {
+border-left-color: #3b82f6;
+}
+
+/* Lemma */
+blockquote.lemma {
+border-left-color: #8b5cf6;
+}
+
+/* Proposition */
+blockquote.proposition {
+border-left-color: #0ea5e9;
+}
+
+/* Corollary */
+blockquote.corollary {
+border-left-color: #06b6d4;
+}
+
+/* Definition */
+blockquote.definition {
+border-left-color: #22c55e;
+}
+
+/* Remark */
+blockquote.remark {
+border-left-color: #f59e0b;
+}

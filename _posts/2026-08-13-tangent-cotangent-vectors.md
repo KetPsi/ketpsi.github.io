@@ -36,6 +36,7 @@ $$
 >$$
 >f|_{\mathcal  W} = g|_{\mathcal W}.
 >$$
+{: .definition}
 
 **Abuse of notation.** We will denote an element $[(f, \mathcal U)]$ of $C^\infty_p(M)$ by its representative function $f$.
 
@@ -50,10 +51,12 @@ $$
 >$$
 >X_p(fg) = X_p(f) g(p) + X_p(g) f(p).
 >$$
+{: .definition}
 
 The set of all tangent vectors at $p \in M$ forms an $\mathbb{R}$-vector space, which is called the **tangent space** at the point $p$, and denoted by $T_pM$.
 
 > **Lemma 1.** Let $X_p \in T_pM$ a tangent vector. Then for a constant function $c \in C^\infty_p(M)$, $X_p(c) = 0$.
+{: .lemma}
 
 *Proof.* Since $X_p$ is a linear function, 
 
@@ -86,6 +89,7 @@ where $1 \le i \le n$, are tangent vectors at $p$, by addition and product rule 
 >$$
 >g(x) = f(p) + \sum_{i=1}^n \phi^i \frac{\partial}{\partial x^i} (f \circ \phi^{-1})\bigg|_0.
 >$$
+{: .lemma}
 
 *Proof.* Recall Taylor's theorem with remainder: Let $f$ be a $C^\infty$ function on an open subset $\mathcal U$ of $R^n$ that is star-shaped with respect to a point $p \in \mathcal U$. Then
 
@@ -112,6 +116,7 @@ $$
 proving the equivalence.
 
 > **Theorem.** $T_pM$ is an $n$-dimensional $\mathbb{R}$-vector space.
+{: .theorem}
 
 *Proof.* We claim that the set $\\{\partial_i\\}_{i=1}^{n}$ ($\partial_i$ are defined as in the example above) forms a basis for $T_pM$.
 
@@ -172,6 +177,7 @@ $$\tag*{$\blacksquare$}$$
 ## Cotangent vectors
 
 >**Definition (Cotangent vector).** The dual space $T_pM^\ast$ of the tangent space $T_pM$ is called the **cotangent space**, and its elements are called **cotangent vectors**.
+{: .definition}
 
 >**Definition (Differential).** Let $\varphi: M \to N$ be a smooth map. Then for each $p \in M$, the **differential** of $\varphi$ is the linear map 
 >
@@ -180,6 +186,7 @@ $$\tag*{$\blacksquare$}$$
 >$$
 >
 >for all $X_p \in T_pM$ and all  $f \in C^\infty(N)$.
+{: .definition}
 
 Now, in the special case where $f: M \to \mathbb{R}$ is a smooth function, we have $T_{f(p)}N \cong \mathbb{R}$ (as vector spaces via the isomorphism $X_p \mapsto X_p(\mathrm{id}_\mathbb{R}$). Then we have a linear map
 
@@ -206,4 +213,3 @@ Therefore, for any cotangent vector $w \in T_pM^*$, we have
 $$
 w = \sum_{i=1}^n w(\partial_i) dx^i.
 $$
-
