@@ -1,13 +1,13 @@
 ---
 title: "Day 1 of solving PhD qualifying question"
 categories: [Undergraduate Maths, PhD Qual Streak]
-tags: [analysis, cauchy sequence, ]
+tags: [analysis, cauchy sequence, convergent sequence]
 math: true
 ---
 
-# Day 1 of solving PhD qualifying question: IU Bloomington Tier 1 Analysis Exam Q1
+# Day 1 of solving PhD qualifying question: IU Bloomington Tier 1 Analysis Exam (January 2026) Q1
 
-**Question 1.** A sequence $(x_n)_{n=0}^\infty$ of real numbers satisfies the inequalities
+**Question.** A sequence $(x_n)_{n=0}^\infty$ of real numbers satisfies the inequalities
 
 $$
 2 \lvert x_{n+1} - x_n \rvert \le \lvert x_n - x_{n-1} \rvert
