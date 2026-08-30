@@ -6,7 +6,7 @@ date: 2026-08-30 13:07:00 +0600
 math: true
 ---
 
-# Day 2 of solving PhD qualifying question: IU Bloomington Tier 1 Analysis Exam (August 2025) Q7
+# Day 2 of solving PhD qualifying question: IU Bloomington Tier 1 Algebra Exam (August 2025) Q7
 
 **Question.** Consider a polynomial $f = 2x^13 - 14x^8 + 42x^6 + 70x^5 - 28x^2 + 490x - 56$.
 
