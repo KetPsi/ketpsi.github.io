@@ -1,11 +1,11 @@
 ---
-title: "Day 1 of solving PhD qualifying question"
+title: "Day 1 of solving PhD qualifying exam problem(s)"
 categories: [Undergraduate Maths, PhD Qual Streak]
 tags: [analysis, cauchy sequence, convergent sequence]
 math: true
 ---
 
-# Day 1 of solving PhD qualifying question: IU Bloomington Tier 1 Analysis Exam (January 2026) Q1
+# Day 1 of solving PhD qualifying exam problem(s): IU Bloomington Tier 1 Analysis Exam (January 2026) Q1
 
 **Question.** A sequence $(x_n)_{n=0}^\infty$ of real numbers satisfies the inequalities
 
