@@ -5,7 +5,7 @@ tags: [algebra, abstract algebra, polynomial ring, automorphism]
 math: true
 ---
 
-# Day 1 of solving PhD qualifying exam problem(s): Harvard University Qualifying Exams II (Fall 2012) Q5
+# Day 3 of solving PhD qualifying exam problem(s): Harvard University Qualifying Exams II (Fall 2012) Q5
 
 **Question.** Consider the principle ideal 
 
