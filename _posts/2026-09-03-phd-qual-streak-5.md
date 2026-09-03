@@ -2,7 +2,7 @@
 title: "Day 5 of solving PhD qualifying exam problem(s)"
 date: 2026-09-03 20:00:00 +0600
 categories: [Undergraduate Maths, PhD Qual Streak]
-tags: [algebra, abstract algebra, polynomial ring, automorphism]
+tags: [algebra, linear algebra, determinant]
 math: true
 ---
 # Day 5 of solving PhD qualifying exam problem(s): UCLA Qualifying Basic Exam (Fall 2020) Q1
