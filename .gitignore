@@ -30,3 +30,18 @@ assets/js/dist
 *~
 .DS_Store
 Thumbs.db
+
+# LaTeX files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.pre
+*.run.xml
+*.toc
+*.synctex.gz
+
