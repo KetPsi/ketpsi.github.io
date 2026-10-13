@@ -10,4 +10,4 @@ permalink: /notes/
 Here's some of the notes I took as an undergraduate mathematics student at BRAC University.
 
 - **Fall 2026**
-CSE402: Optimization
+CSE402: Optimization ([pdf](/CSE402-Rasib-Turjoy/CSE402_Op.pdf) )
