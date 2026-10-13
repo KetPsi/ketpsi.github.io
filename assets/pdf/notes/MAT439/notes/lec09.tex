@@ -1,0 +1,390 @@
+\chapter{Lecture 09}
+\hfill {\footnotesize \textit{Date: 16/03/2026}}
+\section{Exact Sequences---continued}
+\begin{remark}\label{LongExactToShort}
+    Whenever we have an exact sequence: \(\cdots \rightarrow M_{i-1} \xrightarrow{f_i} M_i \xrightarrow{f_{i+1}}M_{i+1} \rightarrow \cdots\), we can capture the information of this exact sequence by means of a sequence of short exact sequences:
+
+    Let \(N_i = \Img f_i; N_{i+1} = \Img f_{i+1}\) for all \(i \in \mathbb{Z}\). Then the exactness at \(M_i\) is captured by the short exact sequence:
+     % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXG1hdGhiYnswfSJdLFsxLDAsIk5faSJdLFsyLDAsIk1faSJdLFszLDAsIk5fe2krMX0iXSxbNCwwLCJcXG1hdGhiYnswfSJdLFswLDFdLFsxLDIsIlxcaW90YSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsMywiZl97aSsxfSJdLFszLDRdXQ==
+\[\begin{tikzcd}
+	{\mathbf{0}} & {N_i} & {M_i} & {N_{i+1}} & {\mathbf{0}}
+	\arrow[from=1-1, to=1-2]
+	\arrow["\iota", hook, from=1-2, to=1-3]
+	\arrow["{f_{i+1}}", from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+\end{remark}
+\begin{proposition}\label{Prop:rexactHom}
+    Let \(M' \xrightarrow{u} M \xrightarrow{v} M'' \rightarrow \mathbf{0}\) be a sequence of \(R\)-modules and \(R\)-module homomorphisms. Then this sequence is exact if and only if the following sequence is exact for all \(R\)-module \(N\):
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHRleHR7SG9tfShNJywgTikiXSxbMSwwLCJcXHRleHR7SG9tfShNLCBOKSJdLFsyLDAsIlxcdGV4dHtIb219KE0nJywgTikiXSxbMywwLCJcXG1hdGhiZnswfSJdLFszLDJdLFsyLDEsIlxcYmFye3Z9IiwyXSxbMSwwLCJcXGJhcnt1fSIsMl1d
+\[\begin{tikzcd}
+	{\text{Hom}(M', N)} & {\text{Hom}(M, N)} & {\text{Hom}(M'', N)} & {\mathbf{0}}
+	\arrow["{\bar{u}}"', from=1-2, to=1-1]
+	\arrow["{\bar{v}}"', from=1-3, to=1-2]
+	\arrow[from=1-4, to=1-3]
+\end{tikzcd}\]
+where \(\bar{u}\) and \(\bar{v}\) are given by \(\bar{u}(f) = f\circ u\) and \(\bar{v}(g) = g\circ v\).
+\end{proposition}
+\begin{remark}
+
+\end{remark}
+\todo{A categorical remark will be written here}
+\begin{proof}
+    (\(\implies\)) Assume that \( M' \xrightarrow{u} M \xrightarrow{v} M'' \to \mathbf{0} \) is exact. That means: (\( 1 \))  \( v \) is surjective, and (\( 2 \)) \( \Img u  = \ker v \), so  \( v \circ u = 0 \).
+
+    We first check exactness at  \( \operatorname{Hom}(M, N) \):
+    \[
+        \underbrace{\Img \overline{v} \subseteq \ker \overline{u}}_{\emph{Step 1}}, \quad \underbrace{\ker \overline{u} \subseteq \Img \overline{v}}_{\emph{Step 2}}.
+    \]
+    \begin{enumerate}[label=\emph{Step \arabic*}. , leftmargin=*]
+        \item That is equivalent to showing \( \overline{u} \circ \overline{v} = 0 \). Indeed, if we let \( g \in \operatorname{Hom}(M'', N) \), then 
+         \[
+            (\overline{u} \circ \overline{v})(g) = \overline{u}(\overline{v}(g)) = \overline{u}(g \circ v) = (g \circ v) \circ u = g \circ (v \circ u) = g \circ 0 = 0.
+        \]
+        So, \( \Img \overline{v} \subseteq \ker \overline{u} \).
+        \item Let \( f \in \ker \overline{u} \), then \( \overline{u} (f) = 0 \), which implies \( f \circ u = 0 \), and that implies  \( \Img u \subseteq \ker f \). Hence, \( \ker v \subseteq \ker f \).
+
+        Now define \( f'': M'' \to N \) such that 
+            \[
+                f''(m'') = f''(v(m)) = f(m), \text{ where } m \in M \text{ such that } v(m) = m''
+            \]
+
+        The map \( f'' \) is well-defined, that is, if \( m_1, m_2 \) both map to \( m'' \) under  \( v \), then  \( f(m_1) = f(m_2) \); because if \( v(m_1) = v(m_2) \), then \( v(m_1 - m_2)  = 0 \). Hence, \( m_1 - m_2 \in \ker v \subseteq \ker f \), which implies \( f(m_1 - m_2) = 0 \), equivalently, \( f(m_1) = f(m_2) \).
+        So we have \( \overline{v}(f'') = f \). Because for all \( m \in M \),
+         \[
+             (\overline{v}(f''))(m) = (f'' \circ v)(m) = f''(v(m)) = f(m).
+        \]
+        Since for an arbitrary \( f \in \ker \overline{u}\), we have found and \( f'' \in \operatorname{Hom}(M'', N) \) such that  \( \overline{v}(f'') = f \), therefore, \( f \in \Img \overline{v} \), proving \( \ker \overline{u} \subseteq \Img \overline{v}\).
+    \end{enumerate}
+    We now have to check exactness at \( \operatorname{Hom}(M'', N) \), which is equivalent to proving  \( \overline{v} \) is injective, equivalently, \( \ker \overline{v} = 0 \).
+
+    Let \( g \in \operatorname{Hom}(M'', N) \), and that  \( \overline{v}(g) = 0 \). We have to prove that \( g = 0 \).
+
+    For all \( m'' \in M'' \), there exists \( m \in M \) such that  \( v(m) = m'' \), and therefore
+     \[
+        g(m'') = g(v(m)) = (g \circ v)(m) = 0.
+    \]
+    Hence, \( g = 0 \).
+    
+    (\( \Longleftarrow \)) Now suppose the sequence \( \operatorname{Hom}(M', N) \xleftarrow{\overline{u}} \operatorname{Hom}(M, N) \xleftarrow{\overline{v}} \operatorname{Hom}(M'', N) \leftarrow 0 \) is exact for all \( R \)-module  \( N \). We have to prove that \( M' \xrightarrow{u} M \xrightarrow{v} M'' \rightarrow 0\) is exact. 
+    We first check exactness at \( M \):
+    \[
+        \underbrace{\Img u \subseteq \ker v}_{\emph{Step 1}}, \quad \underbrace{\ker v \subseteq \Img u}_{\emph{Step 2}}.
+    \]
+    \begin{enumerate}[label=\emph{Step \arabic*}. , leftmargin=*]
+        \item We want to show that \( v \circ u =0 \). Let  \( m' \in M'\). Then
+         \[
+             (v \circ u)(m') = \mathds{1}_{M''}((v\circ u)(m')) = ((\mathds{1}_{M''}\circ(v \circ u))(m')) = ((\overline{u} \circ \overline{v})(\mathds{1}_{M''}))(m') = 0.
+        \]
+        Therefore, \( v \circ u = 0 \implies \Img u \subseteq \ker v\).
+    \item We want to show that \( \ker v \subseteq \Img u \). Let \( m \in \ker v \). Then  \( v(m) = 0 \).
+
+        % https://q.uiver.app/#q=WzAsNSxbMCwwLCJNJyJdLFsxLDAsIk0iXSxbMiwwLCJNJyciXSxbMywwLCIwIl0sWzEsMSwiXFxvcGVyYXRvcm5hbWV7Q29rZXJ9IHVcXFxcTS9cXG9wZXJhdG9ybmFtZXtJbX11Il0sWzAsMSwidSJdLFsxLDIsInYiXSxbMiwzXSxbMSw0LCJcXHBpIiwyXSxbMCw0LCJcXG92ZXJsaW5le3V9KFxccGkpIFxcXFw9IFxccGlcXGNpcmMgdSIsMl0sWzIsNCwiXFxleGlzdHMgZiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	{M'} & M & {M''} & 0 \\
+	& \begin{array}{c} \operatorname{Coker} u\\=M/\operatorname{Im}u \end{array}
+	\arrow["u", from=1-1, to=1-2]
+	\arrow["\begin{array}{c} \overline{u}(\pi) \\= \pi\circ u \end{array}"', from=1-1, to=2-2]
+	\arrow["v", from=1-2, to=1-3]
+	\arrow["\pi"', from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow["{\exists f}", dashed, from=1-3, to=2-2]
+\end{tikzcd}\]
+
+        Take  \( N = \Coker u = M / \Img u\), and let  \( \pi: M \to N \) be the canonical projection map. So \( \pi \in \Hom(M,N) \), and \(\overline{u}(\pi) = \pi \circ u = 0 \) since for all \( m \in M \),  \( u(m) \in \Img u \), therefore,  \( \pi(u(m)) \in 0 \in M / \Img u \). 
+
+        By exactness of \( \Hom(M, N) \),  \( \pi \in \Img \overline{v} \), so there is an element \( f \in \Hom(M'', N) \) such that  \( \overline{v}(f) = \pi \), implying \( f \circ v = \pi \).
+
+        Now, if \( m \in \ker v \), then
+        \[
+            \pi(m) = (f\circ v)(m) = f(v(m)) = f(0) = 0 + (\Img u).
+        \]
+        That means that \( \ker v \subseteq \ker \pi = \Img u\).
+    \end{enumerate}
+    We now have to check exactness at \( M \), which is equivalent to showing  \( v: M \to M'' \) is surjective. 
+    \todo{Prove the surjectivity here.}
+\end{proof}
+\begin{proposition}
+    Let \( 0 \to N' \xrightarrow{u} N \xrightarrow{v} N''\) be a sequence of  \( R \)-modules and  \( R \)-module homomorphism. This sequence is exact if and only if the following sequence is exact for all for any  \( R \)-module  M:
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCIwIl0sWzEsMCwiXFxvcGVyYXRvcm5hbWV7SG9tfShNLCBOJykiXSxbMiwwLCJcXG9wZXJhdG9ybmFtZXtIb219KE0sIE4pIl0sWzMsMCwiXFxvcGVyYXRvcm5hbWV7SG9tfShNLCBOJycpIl0sWzAsMV0sWzEsMiwiXFxvdmVybGluZXt1fSJdLFsyLDMsIlxcb3ZlcmxpbmV7dn0iXV0=
+\[\begin{tikzcd}
+	0 & {\operatorname{Hom}(M, N')} & {\operatorname{Hom}(M, N)} & {\operatorname{Hom}(M, N'')}
+	\arrow[from=1-1, to=1-2]
+	\arrow["{\overline{u}}", from=1-2, to=1-3]
+	\arrow["{\overline{v}}", from=1-3, to=1-4]
+\end{tikzcd}\]
+where \( \overline{u}(f) = u \circ f \) and \( \overline{v}(g) = v \circ g \).
+\end{proposition}
+\begin{proof}
+    Similar to \autoref{Prop:rexactHom}.
+\end{proof}
+\begin{proposition}[Snake]
+    Let 
+    % https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIk0nIl0sWzIsMCwiTSJdLFszLDAsIk0nJyJdLFs0LDAsIjAiXSxbMCwxLCIwIl0sWzEsMSwiTiciXSxbMiwxLCJOIl0sWzMsMSwiTicnIl0sWzQsMSwiMCJdLFswLDFdLFsxLDIsInUiXSxbMiwzLCJ2Il0sWzMsNF0sWzUsNl0sWzYsNywidSciXSxbNyw4LCJ2JyJdLFs4LDldLFsxLDYsImYnIiwyXSxbMiw3LCJmIiwyXSxbMyw4LCJmJyciXV0=
+\[\begin{tikzcd}
+	0 & {M'} & M & {M''} & 0 \\
+	0 & {N'} & N & {N''} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow["u", from=1-2, to=1-3]
+	\arrow["{f'}"', from=1-2, to=2-2]
+	\arrow["v", from=1-3, to=1-4]
+	\arrow["f"', from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow["{f''}", from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow["{u'}", from=2-2, to=2-3]
+	\arrow["{v'}", from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}\]
+    be a commutative diagram of \( R \)-modules and  \( R \)-module homomorphisms, with the rows exact. Then there exists an exact sequence 
+     \begin{align*}
+         0 \to \Ker f' \xrightarrow{\overline{u}} \ker f \xrightarrow{\overline{v}} \ker f'' \xrightarrow{d} \Coker f' \xrightarrow{\overline{u'}} \Coker f \xrightarrow{\overline{v'}} \Coker f'' \to 0,
+    \end{align*}
+    in which \( \overline{u} \), \( \overline{v} \) are restrictions of \( u \),  \( v \) onto \( \ker f' \) and  \( \ker f \) respectively, and  \( \overline{u'} \), \( \overline{v'} \) are induced by \( u' \),  \( v' \), respectively. 
+\end{proposition}
+\begin{proof}
+    In this proof, we will often substitute one composition of maps with another by using the commutativity of the diagram. So if a step feels like a jump, check whether it comes from applying that commutativity.
+
+    Define \( \overline{u'}: \Coker f' \to \Coker f \) via
+    \[
+        n' + f'(M') \mapsto u'(n') + f(M).
+    \]
+    The map is well-defined. Indeed, if \( n' + f'(M') = \overline{n'} + f'(M') \), equivalently, \( n' - \overline{n'} \in f'(m')\) for some \( m' \in M' \), then
+    \[ 
+        u'(n' - \overline{n'}) = u'(f'(m)) = (u' \circ f')(m') = (f \circ u)(m) = f(u(m)),
+    \]
+    which implies \( u'(n') - u'(\overline{n'}) \in f(M) \) (since \( u(m) \in M \)), equivalently, \( u'(n') + f(M) = u'(\overline{n'}) + f(M)\).
+
+    Similarly, one can define \( \overline{v'}: \Coker f \to \Coker f'' \) by
+    \[
+        n + f(M) \mapsto v'(n) + f''(M'').
+    \]
+    Now define \( d: \ker f'' \to \Coker f' \) as follows:
+
+    Take \( m'' \in \ker f'' \). Exactness at \( M'' \) implies  \( v \) is surjective; so there exists  \( m \in M \) such that  \( v(m) = m'' \). So,  \( f''(v(m)) = f(m'') = 0 \). Using commutativity,  \( v' ( f(m)) = 0 \), so  \( f(m) \in \ker v' = \Img u'\). Since, \( u' \) is injective by exactness at  \( N' \), there exists unique  \( n' \in N' \), such that  \( u'(n') = f(m) \). Define
+    \[
+        d(m'') = n' + f'(M').
+    \]
+    The map is well-defined. Only vagueness in this definition is the fact that \( v' \) is surjective. So there might be \( \overline{m} \in M \) such that \( v(m) = v(\overline{m}) = m'' \). But then
+    \[
+        v(m - \overline{m}) = 0 \implies m - \overline{m} \in \ker v = \Img u.
+    \]
+    Therefore, there exists unique \( m' \in M'\) such that  \( u(m') = m - \overline{m} \). So \( f(u(m')) = u'(f'(m')) = f(m) - f(\overline{m}) \). Just like \( f(m) \),  \( f(\overline{m}) \) also has unique \( \overline{n'} \in N' \) such that \( u'(\overline{n'}) = f(\overline{m}) \). So \( u'(f(m')) = u'(n') - u'(\overline{n'}) \). So \( u'(\overline{n'} - n' + f'(m')) = 0 \), which implies \( \overline{n'} - n' + f'(m') = 0 \) since \( u' \) is injective. So  \( \overline{n'} - n' \in f'(M') \), which implies \( \overline{n'} + \Img f' = n' + \Img f' \). So \( d \) is well-defined.
+
+    Now, that we have proved all the maps are well-defined, we are going to prove exactness at each module:
+
+    \begin{enumerate}
+        \item \emph{Exactness at} \( \ker f' \):  \( \overline{u} \) is just the restriction of \( u \) onto  the submodule \( \ker f' \). Since \( u \) is injective, so \( \overline{u} \) is injective as well, proving exactness at \( \ker f' \).
+        \item  \emph{Exactness at} \( \ker f \): We have to prove 
+         \[
+            \Img \overline{u} = \ker \overline{v}.
+        \]
+        Let \( x \in \Img \overline{u} \). Then \( x = \overline{u}(m') \), for some \( m' \in \ker f' \). Notice
+        \[
+            f(\overline{u}(m')) = f(u(m')) = u'(f'(m')) = u'(0) = 0.  
+        \]
+        So \( \overline{u}(m') \in \ker f \), so 
+        \[
+        (\overline{v} \circ \overline{u})(m) = \overline{v}(\overline{u}(m)) = v(\overline{u}(m)) = v(u(m)) = (v \circ u)(m) = 0.
+        \]
+        Hence, \( \Img \overline{u} \subseteq \ker \overline{v} \).
+        Conversely, take \( y \in \ker \overline{v} \). Then \( \overline{v}(y) = v(y) = 0 \). So there exists \( m' \in M' \) such that  \( u(m') = v(y) = 0 \). Notice
+         \[
+            u'(f'(m')) = f(u(m')) = f(v(y)) = f(0) = 0.
+        \]
+        Since, \( u' \) is injective,  \( f'(m') = 0 \). Hence,  \( m' \in \ker f' \). So  \( \overline{u}(m') =  u(m') = y\), which means \( y \in \Img \overline{u} \).
+        \item 
+    \end{enumerate}
+\todo{I will complete proof of ``Snake'', when I feel less tired.}
+\end{proof}
+\begin{definition}[Additive Function]
+    Let \( \mathcal{C} \) be a class of \( R \)-modules. Let  \( \lambda: \mathcal{C} \to G \) be a function form \( \mathcal{C} \) to an abelian group \( G \). Then \( \lambda \) is called an  \emph{additive function} on \( \mathcal{C} \) if for all short exact sequences
+    \[
+        0 \to M' \xrightarrow{u} M \xrightarrow{v} M'' \to 0,
+    \]
+    where \( M', M, M'' \in \mathcal{C} \), we have
+    \[
+        \lambda(M') - \lambda(M) + \lambda(M'') = 0.
+    \] 
+\end{definition}
+\begin{example}
+    Let \(\mathrm{Vect}^{\mathrm{fin}}_\mathbb{K}\) be the category of all finite dimensional \( \mathbb{K}\)-vector spaces.
+Consider a short exact sequence
+\[
+0 \to M'
+\xrightarrow{\,u\,}
+M
+\xrightarrow{\,v\,}
+M''
+\to 0
+\]
+in \(\mathrm{Vect}^{\mathrm{fin}}_\mathbb{K}\). We have 
+\[
+    M = \Img u \oplus N = \ker v \oplus N,\tag{1}
+\] 
+for some subspace \( N \) of \( M \).
+
+Using exactness at \( M' \), i.e., \( u \) is injective, i.e.,  \( \ker u = 0 \) and the first isomorphism theorem, we have
+\[
+    M' \cong M' / \ker u \cong \Img u.\tag{2}
+\]
+
+And using exactness at \( M'' \), i.e.,  \( \Img v = M'' \), and the first isomorphism theorem, we have
+\[
+    M / \ker v \cong M''.\tag{3}
+\]
+Using \( (1) \) and  \( (3) \), we have
+ \[
+     \frac{M}{\ker v} \cong \frac{\ker v \oplus N}{\ker v} \cong M'' \implies N \cong M''.\tag{4}
+\]
+Using \( (1) \) and  \( (5) \), we have 
+ \[
+    M \cong M' \oplus N.\tag{5}
+\] 
+Replacing \( (4) \) in  \( (5) \), we have 
+ \[
+    M \cong M' \oplus M''.
+\]
+Therefore, \( \operatorname{dim}_{\mathbb{K}}(M) = \operatorname{dim}_{\mathbb{K}}(M') + \operatorname{dim}_{\mathbb{K}}(M'') \). Or,
+ \[
+    \operatorname{dim}_{\mathbb{K}}(M') - \operatorname{dim}_{\mathbb{K}}(M) + \operatorname{dim}_{\mathbb{K}}(M'') = 0.
+\]
+Hence, \( \operatorname{dim}_{\mathbb{K}}:  \mathrm{Vect}^{\mathrm{fin}}_\mathbb{K} \to \mathbb{Z}\) is an additive function.
+\end{example}
+\begin{proposition}
+    Let \( R \)-Mod be the category of \( R \)-modules. Suppose
+    \[
+        0 \xrightarrow{v_0} M_0 \xrightarrow{v_1} M_1 \xrightarrow{v_2} \ldots \xrightarrow{v_n} M_n \xrightarrow{v_{n+1}} 0
+    \] 
+    is an exact sequence such that \( M_i, \Img v_i \in R \)-Mod for all \( i \). Then for any additive function \( \lambda \) on  \( R\)-Mod, we have 
+    \[
+        \sum_{i = 0}^n (-1)^i \lambda(M_i) = 0.
+    \] 
+\end{proposition}
+\begin{proof}
+    Using \autoref{LongExactToShort}, we have the following sequence of short exact sequences 
+    \begin{gather*}
+        0 \to \Img v_0 \hookrightarrow M_0 \xrightarrow{v_1} \Img v_1 \to 0\\
+        0 \to \Img v_1 \hookrightarrow M_1 \xrightarrow{v_2} \Img v_2 \to 0\\
+        \vdots\\
+        0 \to \Img v_n \hookrightarrow M_n \xrightarrow{v_{n+1}} \Img v_{n+1} \to 0\\
+    \end{gather*}
+    Using additivity of \( \lambda \), we have
+    \begin{gather*}
+        \lambda(\Img v_0) - \lambda(M_0) + \lambda(\Img v_1) = 0\tag{0}\\
+        \lambda(\Img v_1) - \lambda(M_1) + \lambda(\Img v_2)= 0\tag{1}\\
+        \vdots\\
+        \lambda(\Img v_n) - \lambda(M_n) + \lambda(\Img v_{n+1}) = 0\tag{n}\\
+    \end{gather*}
+    Taking sum of the equations, we get
+    \[
+        \sum_{\text{i}=0}^n (-1)^\text{i} \mathrm{Eq} (\text{i}) = -\lambda(\Img v_0) + (-1)^\text{n+1} \lambda(\Img v_{n+1}) + \sum_{\text{i} = 0}^n (-1)^\text{i} \lambda(M_{\text{i+1}}) = 0\tag{n+1}
+    \]
+    But using the trivial short exact sequence \( 0 \to 0 \to 0 \to 0 \to 0 \), we have 
+     \[
+        \lambda(0) - \lambda(0) + \lambda(0) = \lambda(0) = 0.
+    \]
+    Hence, 
+    \[
+        -\lambda(\Img v_0) = -\lambda(0) = 0 \quad \text{ and } \quad (-1)^\text{n+1} \lambda(\Img v_{n+1}) = (-1)^\text{n+1} \lambda(0) = 0.
+    \]
+    Substituting this to \( \text{Eq (n+1)} \), we have the desired result.
+\end{proof}
+\section{Tensor Product of Modules}
+\begin{definition}[R-bilinear Maps]
+    Let \( M \) and  \( N \) be two  \( R \)-modules.  \( M \times N \) is also an  \( R \)-module. A map  \( f: M \times N \to P \), where  \( P \) is also an  \( R \)-module is called  \( R \)-\textit{bilinear} if
+    \begin{enumerate}
+        \item For all \( m \in M \), the mapping \( n \mapsto f(m, n) \) of  \( N \) into  \( P \) is an  \( R \)-module homomorphism, and 
+        \item For all  \( n \in N \), the mapping  \( m \mapsto f(m, n) \) of  \( M \) into  \( P \) is an  \( R \)-module homomorphism.
+    \end{enumerate}
+\end{definition}
+\begin{example}
+    \begin{enumerate}
+        \item The dot product \( \mathbf{v} \cdot \mathbf{w} \) on  \( \mathbb{R} \)-vector space \( \mathbb{R}^n \) is an \( \mathbb{R} \)-bilinear function \( \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R} \).
+        \item Matrix multiplicaiton \( M_{m,n}(\mathbb{R}) \times M_{n, p}(\mathbb{R}) \to M_{m, p}(\mathbb{R})\) is \( \mathbb{R} \)-bilinear.
+        \item For an \( R \)-module  \( M \), scalar multiplication  \( R \times M \to M \) is  \( R \)-bilinear.
+    \end{enumerate}
+\end{example}
+\begin{remark}
+    \( R \)-bilinear maps on  \( M \times N \) should not be confused with  \( R \)-linear maps on  \( M \oplus N \), if \( M \oplus N \) makes sense at all. Unlike  \( R \)-linear maps,  \( R \)-bilinear maps are \textit{missing} some features:
+\begin{enumerate}
+    \item There is no ``kernel'' of an \( R \)-bilinear map since \( M \times N \) is just set, there is no module structure on it.
+    \item As well as, the image of a  \( R \)-bilinear map  \( M \times N \) may not form a submodule.
+\end{enumerate}
+\end{remark}
+\begin{lemma}
+    Let \( M, N, P, Q \) be  \( R \)-modules. If \( B: M \times N \to P \) is  \( R \)-bilinear and \( L: P \to Q \) is  \( R \)-linear, i.e., \( R \)-module homomorphism, then  \( L \circ B \) is  \( R \)-bilinear.
+\end{lemma}
+\todo{Some parts of the lecture to be written here.}
+\begin{proposition}[Universal Property]
+    Suppose \( M, N\) are  \(R\)-modules. Then there exists a pair  \( (T, g) \) where  \( T \) is an  \( R \)-module  and \( g: M \times N \to T\) is an \( R \)-bilinear map such that for any \( R \)-module  \( P \) and any \( R \)-bilinear map  \( f: M \times N \to P\), there exists a unique \( R \)-module homomorphism \( \widetilde{f}: T \to P \), such that \( f = \widetilde{f} \circ g \) (in other words, every \( R \)-bilinear map on  \( M \times N \) ``factors'' through \( T \)).
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIFxcdGltZXMgTiJdLFsxLDAsIlAiXSxbMSwxLCJUIl0sWzAsMiwiZyIsMl0sWzAsMSwiZiJdLFsyLDEsIlxcZXhpc3RzIVxcd2lkZXRpbGRle2Z9IiwyXV0=
+\[\begin{tikzcd}
+	{M \times N} & P \\
+	& T
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["g"', from=1-1, to=2-2]
+	\arrow["{\exists!\widetilde{f}}"', from=2-2, to=1-2]
+\end{tikzcd}\]
+Furthermore, if \( (T', g') \) is another pair satisfying the same property, then there exists a unique isomorphism  \( j: T \to T' \).
+\end{proposition}
+This unique (upto isomorphism) \( R \)-module \( T \) is called the \textit{tensor product} of  \( M \) and  \( N \), and denoted by \( M \otimes N \).
+\begin{proof}[Proof of uniqueness]
+    Suppose \( (T, g) \) and  \( (T', g') \) are two such pairs satisfying this (universal) property.
+
+    For \( (T, g) \), choose  \( P = T' \) and  \( g': M \times N \to T' \). Then there exists a unique \( j: T \to T' \) such that
+    \[
+        j \circ g = g'.\tag{i}
+    \] 
+For  \( (T', g') \) choose  \( P = T \) and \( g: M \times N \to T \). Then there exists a unique \( j': T' \to T \) such that
+   \[
+       j' \circ g' = g.\tag{ii}
+   \]
+   % https://q.uiver.app/#q=WzAsNixbMCwwLCJNIFxcdGltZXMgTiJdLFsxLDAsIlQnIl0sWzEsMSwiVCJdLFszLDAsIk0gXFx0aW1lcyBOIl0sWzQsMCwiVCJdLFs0LDEsIlQnIl0sWzAsMiwiZyIsMl0sWzAsMSwiZyciXSxbMiwxLCJcXGV4aXN0cyFqIiwyXSxbMyw0LCJnIl0sWzMsNSwiZyciLDJdLFs1LDQsIlxcZXhpc3RzIWonIiwyXV0=
+\[\begin{tikzcd}
+	{M \times N} & {T'} && {M \times N} & T \\
+	& T &&& {T'}
+	\arrow["{g'}", from=1-1, to=1-2]
+	\arrow["g"', from=1-1, to=2-2]
+	\arrow["g", from=1-4, to=1-5]
+	\arrow["{g'}"', from=1-4, to=2-5]
+	\arrow["{\exists!j}"', from=2-2, to=1-2]
+	\arrow["{\exists!j'}"', from=2-5, to=1-5]
+\end{tikzcd}\]
+Using (i) and (ii), we get 
+\[
+    j' \circ (j \circ g) = g \implies (j' \circ j) \circ g = g.\tag{iii}
+\]
+\[
+    j \circ (j' \circ g') = g' \implies (j \circ j') \circ g' = g'.\tag{iv}
+\] 
+Now we want to show that 
+\[
+    j' \circ j = \mathds{1}_T, \qquad j \circ j' = \mathds{1}_{T'}.
+\] 
+
+
+Using the universal property we also have the following commutative diagram:
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIFxcdGltZXMgTiJdLFsxLDAsIlQiXSxbMSwxLCJUIl0sWzAsMSwiXFxtYXRoZHN7MX0iXSxbMCwyLCJnIiwyXSxbMiwxLCJcXGV4aXN0cyFcXHRpbGRle2d9IiwyXV0=
+\[\begin{tikzcd}
+	{M \times N} & T \\
+	& T
+    \arrow["{g}", from=1-1, to=1-2]
+	\arrow["g"', from=1-1, to=2-2]
+	\arrow["{\exists!\tilde{g}}"', from=2-2, to=1-2]
+\end{tikzcd}\]
+But \( \mathds{1}_T \) and \( j' \circ j \) both satisfies equation of the form \[
+x \circ g = g,
+\] 
+where \( x \) is an  \( R \)-module homomorphism from  \( T \to T \). But since \( \widetilde{g} \) is unique satisfying this equation, we can conclude that
+\[
+\widetilde{g} = (j' \circ j) = \mathds{1}_T.
+\]
+Similarly one can show that 
+\[
+    j \circ j' = \mathds{1}_{T'}.
+\] 
+Since \( j \) has an inverse,  \( j \) is an  \( R \)-module isomorphism \( T \to T' \), which is unique. 
+\end{proof}
+Proof of existence will be proven in the next lecture.
+

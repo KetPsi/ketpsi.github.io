@@ -1,0 +1,211 @@
+\chapter{Lecture 11}
+
+\hfill {\footnotesize \textit{Date: 20/04/2026}}
+
+\section{Localisation}
+We discussed the notion of localisation in \autoref{Lec04}. This part of this lecture is continuation of that.
+
+\begin{theorem}[Universal Property of Rings of Fractions]
+    Let \( R \) be a ring, \( S \subseteq R \) be a multiplicatively closed subset, and \( \iota \) be the embedding of  \( R \) in \( S^{-1}R \). Then for all ring homomorphism \( f: R \to R' \) with the property that  \( f(x) \) is a unit in  \( R' \) for all  \( x \in S \), there exists a unique ring homomorphism  \( g : S^{-1}R \to R' \) such that the following diagram commutes:
+        % https://q.uiver.app/#q=WzAsNCxbMCwxLCJBIl0sWzEsMCwiQiJdLFsxLDIsIlNeey0xfUEiXSxbMCwyXSxbMCwxLCJmIl0sWzAsMiwiXFxpb3RhIiwyXSxbMiwxLCJcXGV4aXN0cyFnIiwyXV0=
+\[\begin{tikzcd}
+	& R' \\
+	R \\
+	{} & {S^{-1}R}
+	\arrow["f", from=2-1, to=1-2]
+	\arrow["\iota"', from=2-1, to=3-2]
+	\arrow["{\exists!g}"', from=3-2, to=1-2]
+\end{tikzcd}\]
+    \end{theorem}
+    \begin{proof}
+        In this proof, we will frequently use the fact that for all \( x \in S \),  \( f(x) \) is a unit in  \( R' \), and denote its inverse with \( f(x)^{-1} \).
+
+        \emph{Uniqueness.} If such a \( g \) exists, then
+        \[
+            g(a / s) = g(a / 1) g(1 / s) = g( \iota(a) ) g(s / 1)^{-1} = g( \iota(a)) g(\iota(s))^{-1} = f(a)f(s)^{-1}.
+        \] 
+        Hence, \( g \) is uniquely determined by  \( f \).
+
+        \emph{Existence.} Now define \( g: S^{-1}R \to B \) by setting  \( g(a / s) = f(a) f(s)^{-1}\). The map is well-defined: let \( a / s = b / t \), which is equivalent to \( u(at - bs) = 0 \) for some  \( u \in S \). We want to show that  \( g(a / s) = g(b / t) \). 
+        \begin{align*}
+            &f(u(at - bs)) = 0\\
+            \implies &f(u) (f(at - bs)) = 0\\
+            \implies &f(at - bs) = f(u)^{-1} \cdot 0\\
+            \implies &f(a) f(t) - f(b)f(s) = 0\\
+            \implies &f(a) f(t) = f(b) f(s)\\
+            \implies &f(a) f(s)^{-1}= f(b)f(t)^{-1}\\
+            \therefore~&g(a / s) = g(b / t).
+        \end{align*}
+        Also, \( g \) is a ring homomorphism because
+        \begin{align*}
+            &1.~g(1 / 1) = f(1) f(1)^{-1} = 1 \cdot 1^{-1} = 1,\\
+            &2.~g(a / s + b / t) = g(at + bs / st) =  f(at + bs)f(st)^{-1}= (f(a)f(t) + f(b)f(s)) f(s)^{-1} f(t)^{-1}\\
+            &= f(a)f(s)^{-1} + f(b)f(t)^{-1} = g(a / s) + g(b / t),\\
+            &3.~g(a / s \cdot b / t) = g(ab / st) =  f(ab) f(st)^{-1}= f(a) f(b)f(s)^{-1} f(t)^{-1} \\
+            &=  ( f(a)f(s)^{-1}) \cdot (f(b)f(t)^{-1}) = g(a / s) \cdot g(b / t)
+        .\end{align*}
+        The digram commutes because for all \( a \in A \)
+         \[
+             g(\iota(a)) = g(a / 1) = f(a)f(1)^{-1}  = f(a),
+        \]
+        completing the proof.
+    \end{proof}
+    \begin{definition}[Module of Fractions]
+        Let \(R\) be a ring, \(M\) be an \(R\)-module, and \(S\) be a multiplicatively closed subset of \(R\). Define an equivalence relation \(\sim\) on \(M \times S\) by:
+        \[
+            (m,s) \sim (n,t) \iff (tm-sn)u=0 \text{ for some } u \in S.
+        \]
+        Here \(m,n \in M\) and \(s,t \in S\).
+
+        Let \(m/s\) denote the equivalence class of \((m,s)\), and let \(S^{-1}M\) denote the set of equivalence classes under the relation \(\sim\). We put an abelian group structure on \(S^{-1}M\) by defining addition of these ``fractions'' \(m/s\) in the same way as in elementary algebra, that is,
+        \[
+        m/s+n/t := (tm+sn)/st.
+        \]
+
+        Moreover, \(S^{-1}M\) becomes a module over the ring of fractions \(S^{-1}R\) by defining scalar multiplication as
+        \[
+        (a/s)\cdot(m/t):=am/st,
+        \]
+        where \(a \in R\), \(m \in M\), and \(s,t \in S\).
+
+        The \(S^{-1}R\)-module \(S^{-1}M\) is called the \emph{module of fractions} of \(M\) with respect to \(S\).
+    \end{definition}
+    When \( S = R \smallsetminus \mathfrak{p} \) (\( \mathfrak{p} \) prime), we denote \( S^{-1}R \) by \( M_\mathfrak{p} \).
+
+Let \(R\text{-}\mathrm{Mod}\) denote the category of \(R\)-modules, and let
+\(S^{-1}R\text{-}\mathrm{Mod}\) denote the category of \(S^{-1}R\)-modules.
+Let \(S \subseteq R\) be a multiplicatively closed subset. Then localization
+defines a functor
+\[
+    S^{-1}(-) : R\text{-}\mathrm{Mod} \longrightarrow S^{-1}R\text{-}\mathrm{Mod}.
+\]
+\begin{remark}
+    The assignment
+    \[
+        M \longmapsto S^{-1}M
+    \]
+    on objects, and
+    \[
+        \bigl(f:M\to N\bigr) \mapsto\bigl(S^{-1}f:S^{-1}M\to S^{-1}N\bigr)
+    \]
+    on morphisms, where \( (S^{-1}f)\left(\frac{m}{s}\right) = \frac{f(m)}{s} \) defines a functor \( S^{-1}(-):R\text{-}\mathrm{Mod} \to S^{-1}R\text{-}\mathrm{Mod} \).
+\end{remark}
+In fact, \( S^{-1}(-) \) is an \emph{exact functor}. 
+\begin{proposition}
+    Given \( N', N, N'' \in R\text{-Mod}\). If the sequence
+     \[
+         N' \xrightarrow{f} N \xrightarrow{g} N'' 
+    \]
+    is exact, then so is
+    \[
+        S^{-1}N' \xrightarrow{S^{-1}f} S^{-1}N \xrightarrow{S^{-1}g} S^{-1}N''.
+    \] 
+\end{proposition}
+\begin{proof}
+    We have to prove \( \Img S^{-1}f = \ker S^{-1}g \).
+
+    Let \( n / s \in \ker S^{-1}g \), i.e., \( S^{-1}g(n / s) = 0 / 1 \). So  \( g(n) / s = 0 / 1\), which is equivalent to \( ug(n) = g(un) = 0 \) for some \( u \in S \). Using exactness at  \( N \), there exists  \( n' \in N' \) such that
+    \begin{align*}
+      &f(n') = un\\
+      \implies &f(n') - un = 0\\
+      \implies &[s f(n') - usn] \cdot 1 = 0\\
+      \implies &f(n') / (us) = n / s\\
+      \implies &S^{-1}f(n' / (us)) = n / s
+    .\end{align*}
+    Therefore, \( n / s \in \Img S^{-1}f \), proving \( \Img S^{-1}f \supseteq \ker S^{-1}g \).
+
+    The opposite direction can be proven similarly.
+\end{proof}
+\section{Local Properties}
+\begin{definition}[Local Property]
+    A property \( P \) of a ring  \( R \) (or of an \( R \)-module  \( M \)) is called a  \emph{local property} if the following is true:
+
+    \( R \) (or \( M \)) has \( P \) iff  \( A_{\mathfrak{p}} \) (or \( M_{\mathfrak{p}} \)) has \( P \), for each prime ideal  \( \mathfrak{p} \) of \( R \).
+
+    \begin{definition}[Flat \( R \)-module]
+        Let \( N \) be an  \( R \)-module. If ``tensoring'' with  \( N \) transforms all exact sequences into exact sequences, then \( N \) is said to be a \emph{flat} \( R \)-module.
+    \end{definition}
+    Flatness is a local property:
+    \begin{proposition}
+        For any \( R \)-module  \( M \), the following statements are equivalent:
+        \begin{enumerate}[label=\roman*)]
+            \item \( M \) is a flat  \( R \)-module,
+            \item  \( M_{\mathfrak{p}} \) is a flat \( A_{\mathfrak{p}} \)-module for each prime ideal \( \mathfrak{p} \),
+            \item \( M_{\mathfrak{m}} \) is a flat \( A_{\mathfrak{m}} \)-module for each maximal ideal \( \mathfrak{m} \).
+        \end{enumerate}
+    \end{proposition}
+    \begin{proof}
+        \begin{enumerate}[label=\roman*)]
+          \item 
+        \end{enumerate}
+    \end{proof}
+\end{definition}
+\section{Primary Decomposition}
+Commutative rings \( \mathbb{Z} \) and \( \mathbb{K}[x_1, \ldots, x_n] \) are unique factorisation domains, i.e., every element can be decomposed uniquely into irreducible parts (upto reordering and multiplication by units). This is not true for arbitrary rings, even if they are integral domain. A classic example is \( \mathbb{Z}[\sqrt{-5}] \), in which \( 6 = 2 \cdot 3 = (1 + \sqrt{-5}) (1 - \sqrt{-5}) \) has two essentially distinct factorisation. However, there  is a generalised form of ``unique factorisation'' of ideals (not of elements) in a wide class of rings (the \emph{Noetherian rings}).
+
+A prime ideal in a ring \( A \) is in some sense a generalisation of prime number. The corresponding generalisation of a power of prime number is primary ideal. \cite[p.~50~(edited)]{AtiyahMacdonald}
+
+\begin{definition}[Primary Ideal]
+    A proper ideal \( \mathfrak{q} \) in a ring \( R \) is  \emph{primary} if \( \mathfrak{q} \neq R \) and  \( xy \in \mathfrak{q}\) implies \( x \in \mathfrak{q} \) or \( y^n \in \mathfrak{q}\), for some \( n > 0 \). 
+\end{definition}
+Following basic facts are immediate from the definition:
+\begin{proposition}
+\begin{enumerate}
+    \item Every prime ideal is primary.
+    \item Contraction of a primary ideal is primary.
+\end{enumerate}
+\end{proposition}
+\begin{proposition}
+    An ideal \( \mathfrak{q} \)  in a ring \( R \) is  \emph{primary} if and only if \( R / \mathfrak{q} \neq 0 \) and every zero-divisor in \( R / \mathfrak{q} \) is nilpotent.
+\end{proposition}
+\begin{proof}
+    (\( \implies \)). Let \( \mathfrak{q} \) be primary, then \( \mathfrak{q} \neq R \). Hence,  \( R / \mathfrak{q} \neq 0 \). 
+
+    Let \( b \) be a zero-divisor modulo \( \mathfrak{q} \). We want to show that \( b \) is nilpotent in  \( R / \mathfrak{q} \), i.e., \( b^n \in \mathfrak{q} \) for some \( n > 0 \). Since \( b \) is a zero-divisor modulo  \( \mathfrak{q} \), there exists \( a \in R \) with  \( a \neq 0 \pmod{\mathfrak{q}} \) (which is equivalent to \( a \not\in \mathfrak{q} \)) such that 
+    \[
+        ab = 0 \pmod{\mathfrak{q}}.
+    \]
+     This is equivalent to saying \( ab \in \mathfrak{q} \). Since \( a \not\in \mathfrak{q} \), we must have \( b^n \in \mathfrak{q} \) for some \( n > 0 \), proving the forward direction.
+
+    (\( \Longleftarrow \)). We want to show that ideal \( \mathfrak{q} \) of \( R \) is primary. Since \( R / \mathfrak{q} \neq 0\), we have \( R \neq \mathfrak{q} \). Let \( ab \in \mathfrak{q} \). We have to show that \( a \in \mathfrak{q} \) or \( b^n \in \mathfrak{q} \) for some \( n > 0 \). \( ab = 0 \pmod{\mathfrak{q}} \). So we have \( a = 0 \pmod{q}\) or \( b \) a non-zero zero divisor modulo  \( \mathfrak{q} \). If \( a = 0 \pmod{\mathfrak{q}} \), then \( a \in \mathfrak{q} \), and we are done. Otherwise, \( b \) is a non-zero zero divisor modulo  \( \mathfrak{q} \), which implies \( b \) is nilpotent by hypothesis, i.e.,  \( b^n = 0 \pmod{\mathfrak{q}} \) for some \( n > 0 \). So \( b^n \in \mathfrak{q} \), completing the proof.
+\end{proof}
+\begin{proposition}
+     If \( \mathfrak{q} \) is primary ideal, then the radical \( r(\mathfrak{q}) \) of \( \mathfrak{q} \) is always a prime ideal. Moreover, \( r(\mathfrak{q}) \) is the smallest prime ideal containing \( \mathfrak{q} \).
+\end{proposition}
+\begin{proof}
+    Let \( xy \in r(\mathfrak{q}) \). Then, \( x^n y^n \in \mathfrak{q} \) for some \( n > 0 \). Using ``primarity'' of  \( \mathfrak{q} \), we have \( x^n \in \mathfrak{q} \) or \( x^{nm} \in \mathfrak{q}\) for some \( m > 0 \). Therefore, \( x \in r(\mathfrak{q}) \) or \( y \in r(\mathfrak{q}) \), proving \( r(\mathfrak{q}) \) is prime.
+
+    Using \autoref{prop:radIdealInteofPrimes}, 
+    \[
+        r(\mathfrak{q}) = \bigcap_{\substack{\mathfrak{p} \text{ prime}\\ \mathfrak{q} \subseteq \mathfrak{p}}} \mathfrak{p}.
+    \]
+    Since \( r(\mathfrak{q}) \) is prime, \( r(\mathfrak{q}) \) is smallest ideal that contains  \( \mathfrak{q} \).
+\end{proof}
+If \( \mathfrak{q} \) is primary, and \( r(\mathfrak{q}) = \mathfrak{p}\). Then we say ``\( \mathfrak{q} \) is \( \mathfrak{p} \)-primary.''
+\begin{example}\label{ex:PrimaryInZ}
+    The primary ideals in \( \mathbb{Z} \) are \( (0) \) and  \( (p^n) \), where  \( p \) is prime. To support this claim, we have to check \( (0) \) and \( (p^n) \) are primary ideals, as well as, any ideal different from this form is not primary.
+
+    It is immediate that \( (0) \) is a primary ideal. If  \( ab \in (p^n) \), then we have  \( a \in (p^n) \) or  \( b \in (p^k) \) for some \( 0 < k < n \), which implies  \( a \in (p^n) \) or  \( b^m \in (p^n) \) for some \( m > 0 \). Therefore, \( (p^n) \) is primary ideal.
+
+    Suppose we have an ideal \( \mathfrak{a} \) different from this form, say  \( \mathfrak{a} = (p_1^{\alpha_1} \cdots p_n^{\alpha_n}) \), where \( p_1, \ldots, p_n \) are distinct primes, and \( n > 1 \). Let \( a = p_1^{\alpha_1}\) and \( b = p_2^{\alpha_2} \cdots p_n^{\alpha_n} \). Then \( ab \in \mathfrak{a}\), but \( a \not\in \mathfrak{a} \) and \( b^n \not\in \mathfrak{a} \) for any \( n > 0 \). Hence,  \( \mathfrak{a} \) not primary.
+\end{example}
+So it is natural to think, all the primary ideals are powers of prime ideals. But in the following example, the contrary will be demonstrated.
+\begin{example}
+    Let \( R = \mathbb{K}[x,y] \),  \( \mathfrak{q} = (x, y^2) \). Then \( \mathbb{K}[x, y] / (x, y^2) \cong \mathbb{K}[y] / (y^2) \). So elements of  \( \mathbb{K}[x,y] / (x, y^2) \) are of the form:  \( a_0 + a_1y \). Therefore, zero-divisors of this quotient are multiplies of \( y \). Hence, they are nilpotent. Therefore, \( \mathfrak{q} \) is primary ideal.
+
+    Moreover, \( \mathfrak{q} \) is not power of any prime ideal. Because radical of \( \mathfrak{q} \) is: \( r(\mathfrak{q}) = (x, y)\), and so if \( \mathfrak{q} = \mathfrak{p}^k \) for some prime \( \mathfrak{p} \) and \( k > 0 \), then 
+     \[
+    r(\mathfrak{q}) = r(\mathfrak{p}^k) = \mathfrak{p}.
+    \]
+    But we have 
+    \[
+        r(\mathfrak{q})^2 \subset \mathfrak{q} \subset r(\mathfrak{q}) \text{ (strict inclusion)},
+    \]
+    which is a contradiction.
+\end{example}
+Conversely, a prime power \( \mathfrak{p}^n \) is not necessarily primary, although its radical is the prime ideal \( \mathfrak{p} \). 
+\begin{example}\label{ex:counterPrimary1}
+    Let \( R = \mathbb{K}[x, y, z] / (xy - z^2) \), and let \( \overline{x}, \overline{y}, \overline{z} \) denote the images of \( x, y, z \) in  \( R \), respectively. Then  \( \mathfrak{p} = (\overline{x}, \overline{z}) \) is a prime since 
+    \[ R / \mathfrak{p} = \frac{\frac{\mathbb{K}[x, y, z]}{(xy - z^2)}}{(\overline{x}, \overline{z})} = \frac{\frac{\mathbb{K}[x, y, z]}{(xy - z^2)}}{\frac{(x, z)}{(xy - z^2)}} \cong \frac{\mathbb{K}[x, y, z]}{(x, z)} \cong \mathbb{K}[y]\] 
+is an integral domain. We have \( \overline{x}\overline{y} = \overline{z}^2 \in \mathfrak{p}^2\), but \( \overline{x} \not\in \mathfrak{p}^2 \) and \( \overline{y} \not\in r(\mathfrak{p}^2) = \mathfrak{p} \). Hence, \( \mathfrak{p}^2 \) is not primary. 
+\end{example}

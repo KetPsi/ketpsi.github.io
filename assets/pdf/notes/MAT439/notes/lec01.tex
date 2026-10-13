@@ -1,0 +1,234 @@
+\chapter{Lecture 01}
+
+\hfill {\footnotesize \textit{Date: 02/02/2026}}
+
+This lecture provides a brief review of some of the materials covered in MAT311: Abstract Algebra, with motivations and detailed explanations in definitions and proofs omitted. 
+\section{Group Theory}
+\begin{definition}[Binary Operation]
+Let $S$ be a nonempty set. A \emph{binary operation} on $S$ is a map
+\[
+* : S \times S \longrightarrow S.
+\]
+We denote \(*(x, y)\) by  \(x * y\).
+\end{definition}
+\begin{definition}
+Let $f : A \longrightarrow B$ be a map and let $C \subseteq A$.  
+The \emph{restriction of $f$ to $C$} is the map
+\[
+f|_C : C \to B
+\]
+defined by
+\[
+f|_C(x) = f(x) \quad \text{for all } x \in C.
+\]
+\end{definition}
+\begin{definition}[Group]
+    A \emph{group} is an ordered pair \((G,\ast)\), where \(G\) is a set and
+\(*\) is a binary operation such that:
+
+\begin{itemize}
+  \item \textbf{Associativity:} For all \(g,h,k \in G\),
+  \((g \ast h) \ast k = g \ast (h \ast k)\).
+
+  \item \textbf{Identity element:} There exists an element \(e \in G\) such that
+  for all \(g \in G\),
+  \(e \ast g = g = g \ast e\).
+
+  \item \textbf{Inverse element:} For each \(g \in G\), there exists an element
+  \(h \in G\) such that
+  \(g \ast h = e = h \ast g\). 
+\end{itemize}
+\end{definition}
+If \((G, \ast)\) is a group, then we simply say \(G\) is a group, when what \(\ast\) is, is clear from the context. \(G\) is called \textit{abelian}\footnote{Some people capitalize the letter ``A'' in honor of mathematician Niels Henrik Abel, who contributed enormously in the subject.} if \(g \ast h = h \ast g\), for all \(g, h \in G\).
+\begin{proposition}
+    Let \((G, \ast)\) be a group. Then
+    \begin{itemize}
+        \item Identity element \(e\) is unique.
+        \item Inverse \(h\) of an element \(g \in G\) is unique. So we denote \(h =: g^{-1}\).
+    \end{itemize}
+After proving these results, we can use definite article ``the'' before identity element and inverse of a group element.
+\end{proposition}
+\begin{proof}
+    \begin{itemize}
+        \item Suppose there are two identity elements \(e_1, e_2\). Then \[e_1 = e_1 \ast e_2 = e_2.\]
+        \item Let \(g \in G\) and suppose \(h, k\) are two inverses of \(g\). Then \[h = h \ast e = h \ast (g \ast k) = (h \ast g) \ast k = e \ast k = k.\]
+    \end{itemize}
+    \end{proof}
+\begin{definition}[Subgroup]
+    Let \(S\) be a subset of a group \((G, \ast)\), and \(\ast|_{S \times S}: S \times S \longrightarrow G\) be the restriction of the map \(\ast\). \(S\) is called a \emph{subgroup} of \(G\) and denoted by \(S \leq G\) if
+    \begin{itemize}
+        \item \(e \in S\), 
+        \item For all \(s \in S, s^{-1} \in S\),
+        \item \(\text{Im}(\ast|_{S \times S}) \subseteq S\).
+    \end{itemize}
+    In other words, if \((S, \ast|_{S \times S})\) is a group by itself.
+\end{definition}
+One of the philosophies in mathematics in general is: to understand an object, you should study functions from that object. Following definition is important in that sense.
+\begin{definition}[Group Homomorphism]
+    A map between groups \(f: (G, \ast) \longrightarrow (H, \#)\) is called a \emph{group homomorphism} if \[f(g \ast h) = f(g) \# f(h) \quad \forall g, h \in G.\]
+    The set \[\text{ker} f := f^{-1}(\{e\}),\] is called the \emph{kernel} of \(f\).
+\end{definition}
+\begin{proposition}
+    \(\text{ker} f \leq G\).
+\end{proposition}
+\begin{proof}
+    We verify three conditions of a subring:
+    \begin{enumerate}
+    \item\begin{align*}
+                & f(e_G) = f(e_G \ast e_G) = f(e_G) \# f(e_G)\\
+        \implies & f(e_G) \# (f(e_G))^{-1} = (f(e_G) \# f(e_G)) \# (f(e_G))^{-1}\\
+        \implies & f(e_G) \# (f(e_G))^{-1} = f(e_G) \# (f(e_G) \# (f(e_G))^{-1})\\
+        \implies & e_H = f(e_G)\\
+        \therefore \ & e_G \in \text{ker} f.
+    \end{align*}
+\item Let \(s \in \text{ker} f\), then \(f(s) = e_H\). Then
+    \begin{align*}
+        &f(s*s^{-1}) = f(e_G) = e_H\\
+        \implies &f(s) \# f(s^{-1}) = e_H\\
+        \implies &e_H \# f(s^{-1}) = e_H\\
+        \implies &f(s^{-1}) = e_H\\
+        \therefore \ &s^{-1} \in \text{ker} f.
+    \end{align*}
+\item Let \(K = \text{ker}f\) and \(s \in \text{Im}(\ast|_{K\times K})\). Then there exists \((r, t) \in K \times K\) such that \(r \ast t = s\). We have to prove \(s \in K\). \[f(s) = f(r \ast t) = f(r) \# f(t) = e_H \# e_H = e_H.\]
+    Therefore, \(\text{Im}(\ast|_{K\times K}) \subseteq K\).
+    \end{enumerate}
+\end{proof}
+\begin{proposition}
+    For all \(g \in G\), \(g \text{ker} f = \text{kef} f g\). 
+\end{proposition}
+Generalising kernel using this key property, we define the following:
+\begin{definition}[Normal Subgroup]
+    A subgroup \(N\) of a group \(G\) is called \textit{normal} if \(gN = Ng\) for all \(g \in G\).  We denote it by \(N \trianglelefteq G\).
+\end{definition}
+\begin{definition}[Coset]
+    Let \(H \leq (G, \ast)\). Then for an element \(g \in G\), the set \[gH := \{g \ast h : h \in H\},\] is called a \textit{left coset} of \(G\). Similarly, \[Hg := \{h \ast g : h \in H\},\] is called a \textit{right coset}.
+\end{definition}
+\begin{definition}[Quotient Group]
+    Let \(N \trianglelefteq G\). Then \[G/N := \{gN : g \in G\},\] is a group with group operation \(\cdot\) given by \[(gN)\cdot(hN) = (gh)N.\] We call it a \textit{quotient group}.
+\end{definition}
+The map \(\pi: G \longrightarrow G/N\) given via \(g \mapsto gN\) is a group homomorphism. It is called \textit{quotient map}. Kernel of this map is \(N\). Hence,
+\begin{theorem}
+    Any normal subgroup \(N\) of a group \(G\) can be written as the kernel of some group homomorphism.
+\end{theorem}
+\begin{theorem}[1st Isomorphism Theorem]
+    Let \(f: G \longrightarrow H\) be a group homomorphism. Then \(G/\text{ker}f\) is isomorphic to \(\text{Im} f\) by the isomorphism given via \(g \text{ker}f \mapsto f(g).\)
+\end{theorem}
+\section{Ring Theory}
+\begin{definition}[Ring]
+    A \textit{ring} is a datum \((R, +, \cdot)\), where \(R\) is a set and \(+, \cdot\) are binary operations such that:
+    \begin{itemize}
+        \item \((R, +)\) is an abelian group (so \(R\) has an identity element\footnote{We call it additive identity in the context of rings.} denoted by \(0\).
+        \item \((g \cdot h) \cdot j = g \cdot (h \cdot j), \forall g, h, j \in R\).
+        \item \(g \cdot (h + j) = g \cdot h + g \cdot j \text{ and } (h + j) \cdot g = h \cdot g + j \cdot g, \forall g, h, j \in R\).
+    \end{itemize}
+\end{definition}
+If there exists an element \(1 \in R\) such that for all \(x \in R, x \cdot 1 = x = 1 \cdot x\), then \(1\) is called \textit{multiplicative identity} and \(R\) is called a \textit{ring with identity}. In this course, we are primarily interested in commutative\footnote{As the name of the course suggests XD} rings with identity. So, from now on, every ring in these notes is a commutative ring with identity unless stated otherwise. 
+\begin{proposition}
+    If additive and multiplicative identities of a ring \(R\) are equal, then \(R\) is the trivial ring, i.e., \(R = \{0\}\).
+\end{proposition}
+\begin{proof}
+%    \begin{align*}
+%        &x \cdot 0 = x\\
+%        \implies &x \cdot (0 + 0) = x\\
+%        \implies &x \cdot 0 + x \cdot 0 = x\\
+%       \implies &x \cdot 0 + x = x\\
+ %       \implies &(x \cdot 0 + x) + (-x) = x + (-x)\\
+ %       \implies &x \cdot 0 + (x + (-x)) = x + (-x)\\
+ %       \implies &x \cdot 0 + 0 = 0\\
+ %       \implies &x \cdot 0 = x\\
+ %       \implies &x = 0\\
+ %       \therefore \ &R = \{0\}.
+ %   \end{align*}
+Let \(x \in R\), then \[x = x \cdot 1 = x \cdot 0 = 0 \implies R = \{0\}.\]
+\end{proof}
+\begin{definition}[Ring Homomorphism]
+    Suppose \((R_1, +_1, \ast_1)\) and \((R_2, +_2, \ast_2)\) are two rings. Then a map \(f : (R_1, +_1, \ast_1) \longrightarrow (R_2, +_2, \ast_2)\) is called a \textit{ring homomorphism} if 
+    \begin{itemize}
+        \item \(f(a +_1 b) = f(a) +_2 f(b)\),
+        \item \(f(a \ast_1 b) = f(a) \ast_2 f(b)\),
+        \item \(f(1_{R_1}) = 1_{R_2}\).
+    \end{itemize}
+\end{definition}
+\begin{exercise}
+    To show that the third condition of the ring homomorphism is independent of the other twos, find an example of a map between two rings that satisfies first two conditions, but not the third one.
+\end{exercise}
+\begin{answer}[Instructor]
+    An example that satisfies the conditions \(f(a+b) = f(a)+f(b)\) and \(f(ab) = f(a)f(b)\) but not \(f(1) = 1\) is the map \(f : (\mathbb{Z}, +, *) \to (\mathbb{Z}, +, *), f(n) = 0\) for all \(n\), i.e. the zero map. \(f(a+b) = 0 = 0+0 = f(a) + f(b), f(ab) = 0 = 0 \times 0 = f(a) f(b)\), but \(f(1) = 0 \neq 1\). 
+\end{answer}
+\begin{definition}[Subring]
+    Suppose \(S \subseteq R\) where \((R, +, \cdot)\) is a ring. If \((S, +|_{S \times S}, \ast|_{S \times S})\) is a ring by itself, then \(S\) is called a subring of \(R\).
+\end{definition}
+\begin{definition}[Ideal]
+    An \textit{ideal} \(I\) of a ring \(R\) is a subset of \(R\) and satisfies:
+    \begin{itemize}
+        \item \(I\) is a subgroup of \((R, +)\),
+        \item Let \(IR := \{i \cdot r : i \in I \text{ and } r \in R\}\). Then \(IR \subset I\).
+    \end{itemize}
+\end{definition}
+\begin{example}[Principle Ideal]
+    Suppose \(a \in R\). Then \((a) := \{a \cdot r : r \in R\}\) is an ideal, also called as \textit{principle ideal} or ideal generated by \(a\).\footnote{It seemed like every non-trivial ideal should be of this form. But Ernest Kummer first discovered ideals that were not generated by a single element, which exploded the subject.}
+\end{example}
+\begin{example}
+\(R=\mathbb{Z}\) has an infinite number of ideals, explicitly
+\[
+I=(n)=n\mathbb{Z}, \quad \forall\, n\ge 0.
+\]
+In fact, every ideal of \(\mathbb{Z}\) is of this form\footnote{It is very rare that when you have a ring, you can list all of its ideals.}. For all \(n\in\mathbb{Z}\), \((n)\) is an ideal of \(\mathbb{Z}\).
+We now prove the converse.
+
+Let \(P\) be an ideal of \(\mathbb{Z}\).
+If \(P=\{0\}\), then \(P=(0)\).
+
+Assume \(P\neq \{0\}\). Since \(P\leq \mathbb{Z}\), there exists a positive integer in \(P\).
+Let
+\[
+n=\min\{\,k\in P \mid k>0\,\}.
+\]
+
+We claim that \(P=(n)\).
+Since \(n\in P\) and \(P\) is an ideal, for any \(z\in\mathbb{Z}\),
+\[
+zn\in P,
+\]
+hence \((n)\subseteq P\).
+
+Conversely, let \(p\in P\). By the Euclid's Division lemma, there exist \(q,r\in\mathbb{Z}\) such that
+\[
+p=qn+r, \quad 0\le r<n.
+\]
+Since \(p\in P\) and \(qn\in P\), and \(P\) is an ideal, we have
+\[
+r=p-qn\in P.
+\]
+By the minimality of \(n\), it follows that \(r=0\). Hence
+\[
+p=qn\in (n),
+\]
+and therefore \(P\subseteq (n)\).
+
+Thus,
+\[
+P=(n).
+\]
+
+    % Here \((n) \supset (n')\) if and only if \(n \mid n'\). And \(R/(n)\) is just \( \mathbb Z/n \mathbb Z\).
+\end{example}
+
+ %But we will give another example where we know all the ideals.
+\begin{example}[Polynomial Ring]
+    Let $R$ be a ring, $x$ be an indeterminate and define $R[x]$ be the set of all formal sums of the form
+    \begin{align*}
+        \sum a_ix^i = a_nx^n + a_{n-1}x^{n-1} + \cdots + a_1x + a_0, \quad \text{where } \{i: a_i \neq 0\} \text{ is finite}.
+    \end{align*}
+    Given two polynomials $f = \sum a_ix^i$ and $g = \sum b_ix^i$ in $R[x]$, the sum of $f$ and $g$ is defined as
+        \[f + g = \sum (a_i + b_i)x^i,\]
+    and the product of $f$ and $g$ as
+    \[f \cdot g = \sum c_ix^i, \quad \text{where } c_i = \sum_{j,k: j + k = i} a_j b_k.
+\]
+    With this rule of addition and multiplication, $(R[x], +, \cdot)$ becomes a ring, called \textit{polynomial ring}.\footnote{In the definition above, each $a_i \in R$ is called the coefficients of the polynomial; $a_i$ is the coefficient of $x^i$ and the zero element given as the polynomial with zero coefficients.}
+    We can further define polynomial ring \(R[x][y]\) over \(R[x]\) and it turns out that \(R[x][y] \cong R[x, y]\)\footnote{Polynomial ring of several indeterminates is not defined here though.}. Some of the ideals of the ring \(R[x, y]\) are: 
+    \begin{itemize}
+        \item \[\langle x \rangle = \{x f(x, y) : f(x, y) \in R[x, y]\} = \{\text{All the polynomials with degree of }x\textit{ at least }1\}.\]
+        \item \(\langle x, y \rangle = \{x f(x, y) + y g(x, y) : f, g \in R[x, y]\} = \{\text{All the polynomials with degree of no constant term}\}\).
+    \end{itemize}
+\end{example}

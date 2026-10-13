@@ -1,0 +1,248 @@
+\chapter{Lecture 04}\label{Lec04}
+\hfill {\footnotesize \textit{Date: 23/02/26}}
+\section{Rings of Fractions}
+The procedure by which one constructs the rational field \(\mathbb{Q}\) from the ring of integers \(\mathbb{Z}\) (and embeds \(\mathbb{Z}\) in \(\mathbb{Q}\)) extends easily to any integral domain \(R\) and produces the \emph{field of fractions} of \(R\).
+\begin{definition}[Field of Fractions]
+ Let \( R \) be an integral domain. Define an equivalence relation \(\sim\) on \(R \times R \smallsetminus \{0\}\) by:
+\[
+(a, b) \sim (c, d) \iff ad - bc = 0.
+\] 
+Let \(a/b\) denote the set of equivalence class of \((a,b)\). We put a field structure on \(R \times R \smallsetminus \{0\}/\sim\) --- the set of equivalence classes under the relation \(\sim\), by defining addition and multiplication of these ``fractions'' \(a/b\) in the same way as in \(\mathbb{Q}\), that is,  
+\[
+a/b + c/d := (ad + bc)/bd.
+\]  
+\[
+a/b \cdot c/d := ac/bd.
+\] 
+The ``field'' \((R \times R \smallsetminus \{0\}/\sim, +, \cdot)\) is called the \emph{field of fractions} of \(R\).
+\end{definition}
+
+Now we have to check that (1) \(\sim\) is an equivalence relation, (2) the operations defined above are well-defined, and (1) field of fractions of  \(R\) is indeed a field:
+\begin{enumerate}[label=\arabic*)]
+    \item \textbf{Reflexive:} \(a/b \sim a/b\) as  \(ab - ab = 0\).
+
+        \textbf{Symmetric:} \((a,b) \sim (c,d) \Longrightarrow ad - bc = 0 \Longrightarrow -(ad - bc) = cb - da = 0 \Longrightarrow (c,d) \sim (a,b)\).
+
+        \textbf{Transitive:}\((a,b) \sim (c, d)\) and  \((c,d) \sim (e,f)\)
+
+        \(\Longrightarrow ad - bc = 0\) and \(cf - ed = 0\) 
+
+        \(\Longrightarrow (ad - bc)f = 0\) and \(b(cf - ed) = 0\) 
+
+        \(\Longrightarrow adf - bcf = 0\) and \(bcf - bed = 0\)
+
+         \(\Longrightarrow adf - bed = 0\) 
+
+         \(\Longrightarrow (af - be) d = 0\)
+
+         Since \(R\) is an integral domain and \(d \in R \smallsetminus \{0\}\),  so \(d\) is not a zero-divisor. So \(af - be = 0\), implying  \((a,b) \sim (e,f)\).
+    \item Tedious. 
+    \item Tedious. 
+\end{enumerate}
+This generalisation only works if \(R\) is an integral domain, because the verification that  \(\sim\) is transitive involves canceling, i.e., the fact that  \(R\) has no non-zero zero divisor. However, there is a way around:
+
+A \emph{multiplicatively closed subset} of a ring \(R\) is a subset  \(S\) of  \(R\) such that  \(1 \in S\) and  \(S\) is closed under multiplication: in other words,  \(S\) is a sub-monoid of the multiplicative monoid of  \(R\). One obvious way to construct such a set is taking an element \( f \in R \). Then  the set \( \{1, f, f^2, f^3, \ldots\} \) is a multiplicatively closed subset of \( R \).
+
+\begin{definition}[Ring of Fractions]
+ Let \( R \) be any ring, and \(S\) be a multiplicatively closed subset of it. Define an equivalence relation \(\sim\) on \(R \times S\) by:
+\[
+    (a, s) \sim (b, t) \iff (at - bs)u = 0 \text{ for some } u \in S.
+\] 
+Let \(a/s\) denote the set of equivalence class of \((a,s)\), and let \(S^{-1}R\) denote the set of equivalence classes under the relation \(\sim\). We put a ring structure on \(S^{-1}R\) by defining addition and multiplication of these ``fractions'' \(a/s\) in the same way as in elementary algebra, that is,  
+\[
+a/s + b/t := (at + bs)/st.
+\]  
+\[
+a/s \cdot b/t := ab/st.
+\] 
+The ``ring'' \((S^{-1}R, +, \cdot)\) is called the \emph{ring of fractions} of \(R\) with respect to \(S\).
+\end{definition}
+We now verify (1) \(\sim\) is an equivalence relation, (2) operations  \(+\) and  \(\cdot\) are well-defined, and (3)  \(S^{-1}R\) is a (commutative) ring (with identity):
+\begin{enumerate}[label=\arabic*)]
+    \item Proof of reflexivity and symmetry of \(\sim\) follows as before. We now show it is transitive:
+        \((a, s) \sim (b, t)\) and  \((b, t) \sim (c, u)\)
+
+        \(\Longrightarrow (at - bs)u = 0\) and \((bu - ct)w = 0\) for some \(u,w \in S\) 
+
+        \(\Longrightarrow (at - bs)v = 0\) and \((bu - ct)w = 0\) for some \(v,w \in S\) 
+
+\(\Longrightarrow atv - bsv = 0\) and \(buw - ctw = 0\) for some \(v,w \in S\) 
+
+\(\Longrightarrow atvuw - bsvuw = 0\) and \(buwvs - ctwvs = 0\) for some \(v,w \in S\)
+
+\(\Longrightarrow atvuw - ctwvs = 0\) for some \(v, w \in S\)
+
+ \(\Longrightarrow (au - cs) tvw\), where \(tvw \in S\), as  \(S\) is multiplicatively closed.
+
+Hence, \((a, s) \sim (c,u)\). Therefore,  \(\sim\) is indeed an equivalence relation.
+    \item Tedious.
+    \item Tedious.
+\end{enumerate}
+\begin{remark}
+    Every element \( \frac{s}{t} \in S^{-1}R \), where \( s \in S \) is invertible.
+\end{remark}
+\begin{example}
+    Take \( R = \mathbb{Z} \), and \( S = \{1, 6, 6^2, 6^3, \ldots\} \). Then 
+    \[
+        S^{-1}R = \left\{\frac{a}{6^k} \mid a \in \mathbb{Z} \smallsetminus (S \smallsetminus \{1\}), k \in \mathbb{Z}_{k \ge 0}\right\}.
+    \]
+\end{example}
+Another example:
+\begin{example}
+    Take \( R = \mathbb{K}[x] \). Then
+     \begin{enumerate}
+         \item First take \( S = \mathbb{K} \smallsetminus \{0\}\). Then \( S^{-1}\mathbb{K}[x] \) is the set of all rational functions over  \( \mathbb{K} \). 
+         \item Take  \( S = \{1, x, x^2, x^3, \ldots\} \). Then \( S^{-1}\mathbb{K}[x] = \mathbb{K}[x, x^{1}] \) is the  \emph{Laurent polynomial ring} over \( \mathbb{K} \).
+    \end{enumerate}
+\end{example}
+We now discuss the concept of \emph{localisation} of a ring  \(R\) about a prime ideal  \(\mathfrak{p}\):
+\begin{lemma}
+    Let \(\mathfrak{p}\) be a prime ideal of \(R\). Then  \(R \smallsetminus \mathfrak{p}\) is a multiplicatively closed set.
+
+    In fact, \(R \smallsetminus \mathfrak{p}\) is multiplicatively closed iff \(\mathfrak{p}\) is prime.
+\end{lemma}
+\begin{proof}
+   Since \(\mathfrak{p}\) is prime, \(1 \not\in \mathfrak{p}\). So \(1 \in R \smallsetminus \mathfrak{p}\).
+
+   Let \(x, y \in R \smallsetminus \mathfrak{p}\), i.e., \(x,y \not\in \mathfrak{p}\). If \(xy \not\in R \smallsetminus \mathfrak{p}\), then \(xy \in \mathfrak{p}\), which implies \(x \in \mathfrak{p}\) or \(y \in \mathfrak{p}\), which is a contradiction. Hence, \(xy \not\in  \mathfrak{p}\), i.e., \(xy \in R \smallsetminus \mathfrak{p}\).
+\end{proof}
+\begin{theorem}[Localisation]
+    Let \(\mathfrak{p}\) be a prime ideal of \(R\), and let \(S = R \smallsetminus \mathfrak{p}\). Then \(R_\mathfrak{p} \coloneq S^{-1}R\) is a local ring.
+
+    The process of passing from \(R\) to  \(R_\mathfrak{p}\) is called \emph{localisation}.
+\end{theorem}
+\begin{proof}
+    Let \(\mathfrak{m} \coloneq \{a/s \in R_\mathfrak{p} \mid a \in \mathfrak{p}\}\). We claim \(\mathfrak{m}\) is the only maximal ideal of \(R_\mathfrak{p}\).
+
+We first prove \(\mathfrak{m}\) is an actually an ideal: \(0/s \in R_\mathfrak{p}\) because \(0 \in \mathfrak{p}\). If \(a/s, b/t \in \mathfrak{m}\), then \((at+bs)/st \in \mathfrak{m}\) because \(a, b \in \mathfrak{p}\), so is \(at + bs\). Furthermore, if \(a/s \in \mathfrak{m}\) and \(b/t \in R_\mathfrak{p}\), then \(ab/st \in \mathfrak{m}\) as \(a \in \mathfrak{p}\), so is \(ab\).
+
+Now, 
+\end{proof}
+\todo{To be written}
+\begin{remark}
+    If \(R\) is an integral domain and  \(S = R \smallsetminus \{0\}\), then \(S^{-1}R\) is just the field of fractions of  \(R\).
+\end{remark}
+
+The procedure of localisation of a ring gives tones of examples of local rings since every ring can be localised because every ring has at least one prime ideal (\autoref{corollary:primeidealexistence}).
+\begin{example}
+    Take \( R = \mathbb{Z} \). And a prime ideal \( (p) \) of  \( \mathbb{Z} \). Then \( S = \mathbb{Z} \smallsetminus (p) \) is a multiplicatively closed subset of \( \mathbb{Z} \). 
+    \[
+        \mathbb{Z}_{(p)} = S^{-1}\mathbb{Z} = \left\{\frac{a}{b} \mid a \in \mathbb{Z}, b \in \mathbb{Z}, p \nmid b\right\}.
+    \] 
+\end{example}
+\section{Local Rings -- Again}
+\begin{theorem}
+    A ring \(R\) is local if and only if all the non-units form an ideal. 
+\end{theorem}
+To illustrate usefulness of this theorem, consider \(\mathbb{Z}\). Units of \(\mathbb{Z}\) are: \(-1, 1\). So the set of all non-units is  \(\{\ldots, -3, -2, 0, 2, 3, \ldots\}\), which is not an ideal. So, \(\mathbb{Z}\) is not a local ring!
+\begin{proof}[Proof of theorem]
+    (\( \implies \)) Let \( R \) be a local ring, i.e., it has only one maximal ideal, call it \( \mathfrak{m} \). We have to show that all non-units in  \( R \) form an ideal
+
+    If \( \mathfrak{m} \) contains all the non-units, then we are done. Otherwise, let \( x \in R \) be a non-unit that is not contained in  \( \mathfrak{m} \). Then there exists maximal ideal other than \( \mathfrak{m} \) that contains \( x \), which is contradiction, since  \( R \) has only one maximal ideal. So, all non-units in \( R \) are contained in \( \mathfrak{m} \), thus, all non-units form an ideal, namely, \( \mathfrak{m} \).
+
+    (\( \Longleftarrow \)) Suppose all the non-units in \( R \) form an ideal, call it, \( \mathfrak{m} \). We have to show that \( \mathfrak{m} \) is the only maximal ideal of \( R \).
+
+    First of all, \( \mathfrak{m} \) is maximal, because if \( \mathfrak{a} \) is an ideal other than \( \mathfrak{m} \) that contains  \( \mathfrak{m} \), then it has to contain a unit, so  \(  \mathfrak{a} = R \). So \( \mathfrak{m} \) is maximal. If there is another maximal ideal \( \mathfrak{m'} \) in \( R \), then there exists \( x \in \mathfrak{m'} \smallsetminus \mathfrak{m} \). Then it implies that \( x \) is a unit, so  \( \mathfrak{m'} = R\), which is a contradiction. Hence, \( \mathfrak{m} \) is the only maximal ideal in \( R \).
+\end{proof}
+\begin{theorem}
+    Let \(R\) be a ring and let  \(\mathfrak{m}\) be a maximal ideal --- such that every element of \(1 + \mathfrak{m} = \{1 + m  \mid  m \in \mathfrak{m}\} \) is a unit. Then \(R\) is a local ring. 
+\end{theorem}
+\begin{proof}
+    Since \( \mathfrak{m} \) is a maximal ideal and \( \mathfrak{m} \neq (1) \), we have \( 1 \notin \mathfrak{m} \), and \( \mathfrak{m} \) contains no units.
+
+Suppose \( x \notin \mathfrak{m} \), i.e., \( x \in R \smallsetminus \mathfrak{m} \). Consider the ideal generated by \( x \) and \( \mathfrak{m} \); call it \( \mathfrak{a} \). Then \( \mathfrak{m} \subset \mathfrak{a} \) (strictly included since \( x \in \mathfrak{a} \) but \( x \notin \mathfrak{m} \)). By maximality of \( \mathfrak{m} \), we must have \( \mathfrak{a} = (1) \).
+
+Since \( \mathfrak{a} \) is generated by \( x \) and \( \mathfrak{m} \), a generic element of \( \mathfrak{a} \) is of the form
+\[
+x y + t \quad \text{where } y \in R,\ t \in \mathfrak{m}.
+\]
+Because \( 1 \in \mathfrak{a} \), there exist \( y \in R \) and \( t \in \mathfrak{m} \) such that
+\[
+x y + t = 1.
+\]
+Then
+\[
+x y = 1 - t = 1 + (-t) \in 1 + \mathfrak{m}.
+\]
+By hypothesis, every element of \( 1 + \mathfrak{m} \) is a unit, so \( x y \) is a unit. Hence there exists \( u \in R \) such that \( (x y) u = 1 \), i.e., \( x (y u) = 1 \). Therefore \( x \) is a unit.
+
+Thus every element not in \( \mathfrak{m} \) is a unit, and so \( \mathfrak{m} \) consists of all non-units. Hence \( R \) is a local ring (by the previous theorem).
+\end{proof}
+\section{Nilradicals \& Jacobson Radicals}
+\begin{definition}[Nilradical]
+    The set \(\mathfrak{N}\) of all nilpotent elements in a ring is called the \emph{nilradical} of that ring.
+\end{definition}
+\begin{proposition}
+    The nilradical of a ring is an ideal.
+\end{proposition}
+\begin{proof}
+    Suppose \(R\) is a ring and \(\mathfrak{N} = \{x \in R : x^n=0 \text{ for some } n > 0\}\) is the nilradical. We want to show that \(\mathfrak{N}\) is an ideal, i.e., \(\mathfrak{N}\) satisfies subgroup criterion and \(\mathfrak{N}\) is closed under multiplication by any elements of \(R\):
+
+    \begin{itemize}
+        \item \(0 \in \mathfrak{N}\) clearly. And let \(x, y \in \mathfrak{N}\). Then \(x^k = 0\) and \(y^n = 0\) for some \(k, n > 0\). 
+            \[(x-y)^{k+n+1} = \sum_{i = 0}^{k+n+1}C_i \cdot x^r y^s \quad\text{ where } r+s = k + n + 1.\]
+
+            Now, notice that for any particular term in this expansion, it can not be the case that both \(r < k\) and \(s < n\) are true. So for each term either \(r \ge k\) or \(s \ge n\). So every term in \((x-y)^{k+n+1}\) is actually \(0\). So \((x-y)^{k+n+1} = 0\), implying \(x - y \in \mathfrak{N}\).
+        \item Let \(x \in \mathfrak{N}\) and let \(r \in R\). Then \(x^k = 0\) for some \(k > 0\). So \[(rx)^k = r^kx^k = r^k \cdot 0 = 0 \implies rx \in \mathfrak{N}.\]
+    \end{itemize}
+    Hence, \(\mathfrak{N}\) is an ideal \(R\).
+\end{proof}
+\begin{lemma}
+    Suppose \(R\) is a ring and \(\mathfrak{N}\) be the nilradical of \(R\) which is an ideal. Then \(R/\mathfrak{N}\) only has one nilpotent element, namely \(0 + \mathfrak{N}\).
+\end{lemma}
+\begin{proof}
+    Let \(x + \mathfrak{N}\) be a nilpotent element of \(R/\mathfrak{N}\). Then there exists integer \(k > 0\), such that 
+    \[
+        \left(x + \mathfrak{N}\right)^k = x^k + \mathfrak{N} = 0 + \mathfrak{N}
+    \]
+    Then \(x^k \in \mathfrak{N}\). So there exists integer \(n > 0\), such that  \(x^{kn} = 0\), which implies  \(x \in \mathfrak{N}\). So, \(x + \mathfrak{N} = 0 + \mathfrak{N}\). Since, it is true for any \(x \in R\), that means any nilpotent element of \(R/\mathfrak{N}\) is of the form \(0 + \mathfrak{N}\), which implies \(R/\mathfrak{N}\) has only one nilpotent element, namely, \(0 + \mathfrak{N}\).
+\end{proof}
+\begin{proposition}
+    Nilradical \(\mathfrak{N}\) of a ring \(R\) is the intersection of all prime ideals in \(R\).
+    \[
+        \mathfrak{N} = \bigcap_{\substack{\mathfrak{p} \text{ prime} \\ \text{in } R}} \mathfrak{p}.
+    \] 
+\end{proposition}
+\begin{proof}
+    We prove the two inclusions separately.
+
+    \begin{enumerate}[label=\textit{Step} \arabic*., leftmargin=*]
+
+\item \(\mathfrak{N} \subseteq \bigcap_{\mathfrak{p} \text{ prime}} \mathfrak{p}\):  
+    Let \(f \in \mathfrak{N}\). Then \(f^n = 0\) for some \(n > 0\). Let \(\mathfrak{p}\) be any prime ideal of \(R\). Since \(0 \in \mathfrak{p}\), we have \(f^n = 0 \in \mathfrak{p}\). Because \(\mathfrak{p}\) is prime, \(f \in \mathfrak{p}\) or \(f^{n-1} \in \mathfrak{p}\). Repeating this argument, we eventually conclude \(f \in \mathfrak{p}\). Hence \(f\) belongs to every prime ideal \(\mathfrak{p}\), i.e., \(\bigcap_{\mathfrak{p} \text{ prime}} \mathfrak{p} \).
+
+\item \(\bigcap_{\mathfrak{p} \text{ prime}} \mathfrak{p} \subseteq \mathfrak{N}\):  
+We prove the contrapositive: if \(f \notin \mathfrak{N}\), then there exists a prime ideal \(\mathfrak{p}\) such that \(f \notin \mathfrak{p}\).
+
+Suppose \(f \notin \mathfrak{N}\). Then \(f^n \neq 0\) for all \(n > 0\). Consider the set
+\[
+    \Sigma = \{ \mathfrak{a} \subset  R \text{ ideal} \mid f^n \notin \mathfrak{a} \text{ for all } n > 0 \}.
+\]
+Since \(f^n \neq 0\) for all \(n\), \(f^n \not\in (0)\) for all \(n > 0\). Therefore, \((0) \in \Sigma\), and so \(\Sigma\) is nonempty.
+
+Partially order \(\Sigma\) by set-inclusion. If \((\mathfrak{a}_\alpha)_{\alpha \in \mathcal{A}}\) is a chain in \(\Sigma\), then \(\bigcup_{\alpha \in \mathcal{A}} \mathfrak{a}_\alpha\) is an ideal (one checks easily) and, because \(f^n \notin \mathfrak{a}_\alpha\) for all \(\alpha\) and all \(n\), we have \(f^n \notin \bigcup_{\alpha} \mathfrak{a}_\alpha\) for all \(n\). Hence \(\bigcup_{\alpha} I_\alpha \in \Sigma\) and is an upper bound for the chain.
+
+By Zorn's Lemma, \(\Sigma\) has a maximal element, call it \(\mathfrak{p}\). Since \(\mathfrak{p}\) is a maximal ideal\todo{But it not be maximal in \( R \), rest of the proof needs correction.}, so \(\mathfrak{p}\) is also a prime ideal. So we have found a prime ideal \(\mathfrak{p}\) that does not contain \(f^n\) for all  \(n > 0\), in particular,  \(f \not\in \mathfrak{p}\).
+
+Hence \(f \notin \bigcap_{\mathfrak{p} \text{ prime}} \mathfrak{p}\), completing the proof.
+\end{enumerate}
+\end{proof}
+\begin{definition}[Jacobson Radical]
+    The intersection of all the maximal ideals is called the \textit{Jacobson radical}, denoted by \(\mathfrak{R}\).
+    \[
+        \mathfrak{R} \coloneq \bigcap_{\substack{\mathfrak{m} \text{ maximal} \\ \text{in } R}} \mathfrak{m}.
+    \] 
+\end{definition}
+It is always true that \(\mathfrak{R} \subseteq \mathfrak{N}\). In extreme cases, we have \(\mathfrak{R} = \mathfrak{N}\).
+\begin{theorem}[Characterisation of Jacobson Radical]\label{thm:characterisationOfJacobsonRad}
+    \(x \in \mathfrak{R}\) if and only if \(1 - xy\) is a unit for all  \(y \in R\).
+\end{theorem}
+\begin{proof}
+\((\Longrightarrow)\) We will prove the equivalent contrapositive statement: if \(1 - xy\) is not a unit for some  \(x \in R\), then  \(x \not\in \mathfrak{R}\).
+
+If \(1 - xy\) is not a unit for some \(y \in R\); then there exists a maximal  \(\mathfrak{m}\), that contains \(1 - xy\) (\autoref{corollary:nonunitinmaximalideal}). Since  \(x \in \mathfrak{R}\), so \(x \in \mathfrak{m}\), and \(xy \in \mathfrak{m}\) as well. Then we also have \((1-xy)+xy  = 1\in \mathfrak{m}\), which leads to a contradiction as maximcal ideal cannot contain \(1 \in R\). So forward direction follows.
+
+ \((\Longleftarrow)\) Again we prove equivalent contrapositive statement: if \(x \not\in  \mathfrak{R}\), then \(1-xy\) is not a unit for some  \(y \in R\).
+
+\(x \not\in \mathfrak{\mathfrak{R}}\), so there is a maximal ideal \(\mathfrak{m}\) that does not contain \(x\). Since \(x \not\in \mathfrak{m}\) --- a maximal ideal, the ideal generated by \(\mathfrak{m}\) and \(x\) is \((1)\). That means for some \( y \in R \) and \( t \in \mathfrak{m} \), we must have \(xy + t = 1\), which means  \(t = 1 - xy \in \mathfrak{m}\). Since \(\mathfrak{m} \neq (1)\),  \(1 - xy\) can not be unit for that particular  \(y \in R\), completing the proof. 
+\end{proof}

@@ -1,0 +1,129 @@
+\chapter{Lecture 12}
+
+\hfill {\footnotesize \textit{Date: 22/04/2026}}
+
+\section{Primary Decomposition---continued}
+In \autoref{ex:counterPrimary1}, we have seen an ideal \( \mathfrak{p}^2 \), whose radical \( r(\mathfrak{p}^2) \) prime. But it still fails to be primary. So prime radical does not guarantee ``primarity.'' However, there is the following result: 
+\begin{proposition}\label{primaryIdealCriterion}
+    For a proper ideal \( \mathfrak{a} \subseteq R \), if \( r(\mathfrak{a}) \) is maximal, then \( \mathfrak{a} \) is primary. In particular, the powers of a maximal ideal \( \mathfrak{m} \) are \( \mathfrak{m} \)-primary (\autoref{ex:PrimaryInZ}).
+\end{proposition}
+\begin{proof}
+    Let \( \pi : R \to R / \mathfrak{a} \) be the projection map. Then 
+    \[
+        \pi(r(\mathfrak{a})) = \mathfrak{N}(R / \mathfrak{a}) \text{ (nilradical of } R/ \mathfrak{a}).
+    \]
+    We now want to show that \( \mathfrak{N}(R / \mathfrak{a}) \) is the only prime ideal in \( R / \mathfrak{a} \). \( r(\mathfrak{a}) \) is the only prime ideal containing \( \mathfrak{a} \), because  \(r(\mathfrak{a}) \) is the intersection of all prime ideals that contains \( \mathfrak{a} \), since  \( r(\mathfrak{a}) \) is maximal, there is no other prime ideal that contains it [\( r(\mathfrak{a}) \)]. Using correspondence theorem, \( \mathfrak{N}(R / \mathfrak{a}) \) is the only prime (and so maximal) ideal in \( R / \mathfrak{a} \). 
+
+    Now, \( \mathfrak{a} \) is proper ideal, so \( R / \mathfrak{a} \neq 0 \). All the zero divisors in \( R /\mathfrak{a} \) are non-units by definition. All the non-units lie in \( R / \mathfrak{a} \). Hence, all the non-units are nilpotent, proving \( \mathfrak{a} \) is primary.
+\end{proof}
+We are going to study presentations of an ideal as an intersection of primary ideals. First, a couple of lemmas:
+\begin{lemma}\label{lem:capPPrimary}
+    If \( \mathfrak{q}_i \) (\( 1 \le i \le n \)) are \( \mathfrak{p} \)-primary, then  \( \mathfrak{q} = \bigcap_{i=1}^n \mathfrak{q}_i \) is \( \mathfrak{p} \)-primary.
+\end{lemma}
+\begin{proof}
+ Let us first show that \(r( \mathfrak{q}) = \mathfrak{p}\). Using \autoref{lem:radBigcap}, we have
+    \[
+    r(\mathfrak{q}) = r\left(\bigcap_{i=1}^n \mathfrak{q}_i \right) = \bigcap_{i=1}^n r(\mathfrak{q}_i) = \bigcap_{i=1}^n \mathfrak{p} = \mathfrak{p}.
+    \]
+  Let \(xy \in \mathfrak{q} \). If \( x \in \mathfrak{q} \), we are done. Or else, for some \( i \),  \( xy \in \mathfrak{q}_i \), but \( x \not\in \mathfrak{q}_i \). Using ``primarity'' of \( \mathfrak{q}_i \), we know \( y \in r(\mathfrak{q}_i) \). But \( r(\mathfrak{q}_i) = \mathfrak{p} = r(\mathfrak{q})\). Therefore, \( y \in r(\mathfrak{q}) \), proving ``primarity'' of \( \mathfrak{q} \).
+\end{proof}
+\begin{lemma}\label{lem:primaryLemma2}
+    Let \( \mathfrak{q} \) be a \( \mathfrak{p} \)-primary ideal, \( x \) an element of \( R \). Then
+    \begin{enumerate}[label=\roman*)]
+        \item If \( x \in \mathfrak{q} \), then \( (\mathfrak{q}: (x)) = (1) \);
+        \item If \( x \not\in \mathfrak{q} \), then \( (\mathfrak{q}: (x)) \) is \( \mathfrak{p} \)-primary;
+        \item If \( x \not\in \mathfrak{p} \), then \( (\mathfrak{q}: (x)) = \mathfrak{q} \).
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \begin{enumerate}[label=\roman*)]
+        \item Follows from the fact that \( \mathfrak{q} \) is an ideal.
+        \item If \( y \in (q: (x)) \), then  \( xy \in \mathfrak{q} \), hence (as \( x \not\in \mathfrak{q} \)), we have \( y \in r(\mathfrak{q}) = \mathfrak{p} \). Therefore, 
+            \[
+            \mathfrak{q} \subseteq (\mathfrak{q}:(x)) \subseteq \mathfrak{p}.
+            \]
+            Taking radicals each sides, we have
+            \[
+            r(\mathfrak{q}) \subseteq r((\mathfrak{q}: (x))) \subseteq \mathfrak{p} \implies r((\mathfrak{q}:(x))) = \mathfrak{p}.
+            \]
+            To prove ``primarity,'' let \( yz \in (\mathfrak{q}: x)\) with \( y \not\in r(\mathfrak{q}) \). Then \( xyz \in \mathfrak{q} \), which implies \( xz \in \mathfrak{q} \), hence, \( z \in (\mathfrak{q}: (x))\).
+        \item The direction \( (\mathfrak{q}: (x)) \supseteq \mathfrak{q} \) is always true. Let \( y \in (\mathfrak{q}:(x)) \). Then \( yx \in \mathfrak{q} \). Since \( x \not\in \mathfrak{p} = r(\mathfrak{q})\), there is no \( n > 0 \) such that  \( x^n \in \mathfrak{q}\). Using ``primarity'' of  \( \mathfrak{q} \), we conclude that \( y \in \mathfrak{q} \).  
+    \end{enumerate}
+\end{proof}
+\begin{definition}
+    A \emph{primary decomposition} of an ideal \( \mathfrak{a} \subseteq R \) is an expression of \( \mathfrak{a} \) as a finite intersection of primary ideals, say
+    \[
+        \mathfrak{a} = \bigcap_{i=1}^n  \mathfrak{q}_i.
+    \] 
+\end{definition}
+We say \( \mathfrak{a} \subseteq R \) is \emph{decomposable} if it has a primary decomposition.  
+\begin{example}
+  Take \( R = \mathbb{Z} \), and \( \mathfrak{a} = (12) \). Ideals \( \mathfrak{q}_1 = (3) \) and \( \mathfrak{q}_2 = (4) \) are primary because their radicals are primes, and hence maximal in \( \mathbb{Z} \). And so using \autoref{primaryIdealCriterion}, \( \mathfrak{q}_1, \mathfrak{q}_2 \) are maximal. Therefore
+ \[
+     \mathfrak{a} = \mathfrak{q}_1 \cap \mathfrak{q}_2 = (3) \cap (4)
+ \]
+ is a primary decomposition of \( \mathfrak{a} \).
+\end{example}
+\begin{example}\label{PrimaryDecomexample2}
+  Take \( R = \mathbb{K}[x, y] \), and \( \mathfrak{a} = (x^2, xy) \). Let \( \mathfrak{q}_1 = (x) \) and \( \mathfrak{q}_2 = (x, y)^2 \). \( \mathfrak{q}_1 \) is prime because \( \mathbb{K}[x,y] / (x) \cong \mathbb{K}[y] \) is an integral domain, and hence, it is primary ideal as well. \( (x, y) \) is maximal (and so prime) because \( \mathbb{K}[x, y] \cong \mathbb{K} \) is a field. Since \( r(\mathfrak{q}_2) = r((x,y)^2) = (x,y)\) is maximal, using \autoref{primaryIdealCriterion}, \( \mathfrak{q}_2 \) is primary. Therefore,
+     \[
+         \mathfrak{a} = \mathfrak{q}_1 \cap \mathfrak{q}_2 = (x) \cap (x, y)^2.
+     \]
+     is a primary decomposition of \( \mathfrak{a} \).
+\end{example}
+In general, such a primary decomposition need not exist! But we will see Lasker-Noether theorem in a future lecture that says that every ideal in a ``Noetherian ring'' has a primary decomposition.
+
+\begin{definition}[Minimal Primary Decomposition]
+    The primary decomposition \( \bigcap_{i=1}^n \mathfrak{q}_i \) of an ideal \( \mathfrak{a} \) is called \emph{minimal} (or\emph{ irredundant/reduced/normal}) if
+    \begin{enumerate}
+        \item \( r(\mathfrak{q}_i) \) are all distinct, and 
+        \item \( \mathfrak{q}_i \not\supseteq \bigcap_{j \neq i} \mathfrak{q}_j \) for all \( i: 1 \le i \le n \). 
+    \end{enumerate}
+\end{definition}
+\begin{remark}
+  Every primary decomposition can be reduced to a minimal primary decomposition. Using \autoref{lem:capPPrimary}, we can achieve condition (\( 1 \)), and then omit any superfluous terms to achieve (\( 2 \)).
+\end{remark}
+\begin{theorem}[First Uniqueness Theorem]
+    Suppose \( \mathfrak{a} \subseteq R \) is a decomposable ideal, and let 
+    \[
+    \mathfrak{a} = \bigcap_{i = 1}^n \mathfrak{q}_i
+    \]
+    be a minimal decomposition of \( \mathfrak{a} \). Let \( \mathfrak{p}_i = r(\mathfrak{q}_i) \) for \(i: 1 \le i \le n \). Then, these prime ideals  \( \mathfrak{p}_i \)'s are the very prime ideals that appear in the form of \( r(\mathfrak{a}: (x)) \) for some \( x \in R \).
+\end{theorem}
+\begin{proof}
+  Since \( \mathfrak{q}_i \) is \( \mathfrak{p}_i \)-primary, using \autoref{lem:primaryLemma2}, we have \( r(\mathfrak{q}_i: (x)) = \mathfrak{p}_i\) when \( x \not\in \mathfrak{q}_i \).
+    We have 
+    \[
+    r(\mathfrak{a} : (x)) = r\left(\bigcap_{i=1}^n \mathfrak{q}_i : (x) \right) = r\left(\bigcap_{i=1}^n (\mathfrak{q}_i : (x)) \right) = \bigcap_{i=1}^n r(\mathfrak{q}_i : (x)).
+    \]
+    Now if \( x \in \mathfrak{q}_i \), then using \autoref{lem:primaryLemma2}, \( (\mathfrak{q}_i : (x)) = (1) \). So, in the intersection above, we can omit ideal quotients for those \( \mathfrak{q}_i \)'s. Hence,
+    \[
+      r(\mathfrak{a}: (x)) = \bigcap_{i=1}^n r(\mathfrak{q}_i : (x)) = \bigcap_{\substack{i\in\{1, \ldots, n\}\\x \not\in \mathfrak{q}_i}} r(\mathfrak{q}_i : (x)) = \bigcap_{\substack{i\in\{1, \ldots, n\}\\x \not\in \mathfrak{q}_i}}  \mathfrak{p}_i.
+    \]
+
+    Now, suppose \( r(\mathfrak{a}: (x)) \) is prime, call it \( \mathfrak{p}_x \). We want to show that there exists some \( \mathfrak{p}_j \) such that \( \mathfrak{p}_x = \mathfrak{p}_j \). We have 
+    \[
+    \mathfrak{p}_x = \bigcap_{\substack{i\in\{1, \ldots, n\}\\x \not\in \mathfrak{q}_i}} \mathfrak{p}_i.
+    \]
+    Using (ii) of \autoref{prop:primeavoidance}, there exists \( j \in \{1, \ldots, n\} \) such that \( \mathfrak{p}_x = \mathfrak{p}_j \).
+
+    Conversely, we want to show that, for each \( i \in \{1, \ldots, n\} \), we have \( \mathfrak{p}_i = r(\mathfrak{a}: (x_i)) \) for some \( x_i \in R \).
+
+    From minimality condition, \( \mathfrak{q}_i \not\supseteq \bigcap_{i \neq j} \mathfrak{q}_j \). So there exists \( x_i \not\in \mathfrak{q}_i \) but \( x_i \in \mathfrak{q}_j \) for all \( j \neq i \). Then
+     \[
+       r(\mathfrak{a}: (x_i)) = r\left(\bigcap_{j = 1}^n \mathfrak{q}_j: (x_i)\right) = \bigcap_{j=1}^n r(\mathfrak{q}_j : (x_i)) = \underbrace{\left(\bigcap_{j \neq i} r(\mathfrak{q}_j: (x_i))\right)}_{\text{Left part}} \cap \underbrace{r(\mathfrak{q}_i : (x_i))}_{\text{Right Part}}. 
+    \]
+    In this intersection, left part is equal to \( (1) \) because of (i) of \autoref{lem:primaryLemma2}, and right part is equal to \( \mathfrak{p}_i \) because of (ii) of \autoref{lem:primaryLemma2}. Hence, 
+    \[
+    r(\mathfrak{a}: (x_i)) = \mathfrak{p}_i,
+    \]
+    completing the proof.
+\end{proof}
+\begin{example}
+  Recall \autoref{PrimaryDecomexample2}. We had \( R = \mathbb{K}[x, y] \), \( \mathfrak{a} = (x^2, xy) \), \( \mathfrak{q}_1 = (x) \) and \( \mathfrak{q}_2 = (x, y)^2 \). Here, \( r(\mathfrak{q}_1) = r((x)) = (x) \) and  \( r(\mathfrak{q}_2) = r((x, y)^2) = (x,y) \). So the prime ideals that appear in the form of \( r(\mathfrak{a}: (f)) \) for some \( f \in R \) are:  \( \mathfrak{p}_1 = (x) \) and \( \mathfrak{p}_2 = (x, y) \).
+\end{example}
+\begin{definition}
+  If \( \mathfrak{a} \) is a decomposable ideal, then the prime ideals \( r(\mathfrak{q}_i) = \mathfrak{p}_i\) arising out of a minimal primary decomposition of \( \mathfrak{a} \) are unique. These prime ideals are said to be \emph{prime ideals belonging to/associated with the ideal \( \mathfrak{a} \)}. Minimal prime ideals belonging to \( \mathfrak{a} \) are called \emph{minimal/isolated prime ideals belonging to \( \mathfrak{a} \)}, others are called  \emph{embedded prime ideals belonging to \( \mathfrak{a} \)}. These names come from geometry.
+\end{definition}
+In the above example, \( \mathfrak{p}_1 \) is minimal and \( \mathfrak{p}_2 \) is embedded.
+

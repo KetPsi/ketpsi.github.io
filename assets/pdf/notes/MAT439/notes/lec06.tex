@@ -1,0 +1,179 @@
+\chapter{Lecture 06}
+
+\hfill {\footnotesize \textit{Date: 02/03/26}}
+
+\section{Modules and Module Homomorphisms}
+``One of the things which distinguishes the modern approach to Commutative Algebra is the greater emphasis on modules, rather than just ideals. The extra ``elbow-room'' that this gives makes for greater clarity and simplicity. For instance, an ideal \(\mathfrak{a}\) and its quotient ring \(A/\mathfrak{a}\) are both examples of modules and so, to certain extent, can be treated on an equal footing.''\cite{AtiyahMacdonald}
+
+\begin{definition}[Left \(R\)-module]
+    Let \(R\) be a ring (commutative, as always). A \emph{left}  \(R\)-\emph{module} is an ordered-pair \((M, \mu)\), where \(M\) is an abelian group and \(\mu\) is a left  \(R\)-action, i.e., a mapping of \(R \times M\) into  \(M\) (we denote \(\mu(r,m)\) by \(rm\)) subject to the following axioms:
+    \begin{enumerate}[label=\roman*)]
+        \item \(r(m_1 + m_2) = rm_1 + rm_2\) and \((r_1 + r_2) m = r_1 m + r_2 m\) (distributivity)
+        \item \(1_Rm = m\) (unitarity)
+        \item  \(r_1(r_2m) = (r_1r_2)m\) (associativity)
+    \end{enumerate}
+for all \(r, r_1, r_2 \in R\) and \(m_1, m_2, m \in M\).
+\end{definition}
+As always, we will just say \(M\) is an \(R\)-module if there is no ambiguity about the left  \(R\)-action  \(\mu\). Also the left \(R\)-action is sometimes referred as \emph{scalar multiplication}.
+
+Giving an ableian group \(M\) a left  \(R\)-module structure is the same as defining a unital ring homomorphism from \(R\) to  \(\text{End}(M)\), where \(\text{End}(M)\) is the endomorphism ring of the abelian group \(M\). So there is an equivalent definition of module that goes as follows:
+\begin{definition}[Left \(R\)-module---Alternative]
+    A \emph{left} \(R\)-module is an abelian group  \(M\) together with a ring homomorphism  \(R \longrightarrow \text{End}(M)\). 
+\end{definition}
+
+\begin{example}
+    \begin{enumerate}[label=\arabic*)]
+        \item If \(R\) is a field  \(\mathbb{K}\), then  \(R\)-module is just a \(\mathbb{K}\)-vector space. So \(R\)-modules can be seen as generalisation of \(\mathbb{K}\)-vector spaces.
+        \item A ring  \((R, \ast)\) is closed under ring multiplication, so we can treat the map  \(\ast: R \times R \longrightarrow R\) as a left  \(R\)-action on  \(R\). In this sense, every ring  \(R\) is an  \(R\)-module. 
+        \item Even---let \(\mathfrak{a}\) be an ideal of \((R, \ast)\). Then  \(\mathfrak{a}\) is an additive subgroup of \(R\). And by definition, \(\text{Im}(\ast|_{R \times \mathfrak{a}}) \subseteq \mathfrak{a}\). So we can treat \(\ast: R \times \mathfrak{a} \longrightarrow \mathfrak{a}\) as a left \(R\)-action on  \(\mathfrak{a}\). So every ideal \(\mathfrak{a}\) of a ring \(R\) is an  \(R\)-module.
+    \item Also quotient ring \(R/\mathfrak{a}\), with left  \(R\)-action \(\mu: R \times R/\mathfrak{a} \longrightarrow R/\mathfrak{a}\) such that \(r (x + \mathfrak{a}) = rx + \mathfrak{a}\)  is an \(R\)-module.
+    \item A \(\mathbb{Z}\)-module is nothing but an abelian group.
+ \end{enumerate}
+\end{example}
+We have structure preserving map between modules that are analogous to linear transformations of \(\mathbb{K}\)-vector spaces.
+\begin{definition}[\(R\)-module Homomorphism]
+    A map from \(f: M \longrightarrow N\) between  \(R\)-modules is an  \(R\)-\emph{module homomorphism} if \(f(m_1+ m_2) = f(m_1) + f(m_2)\) and \(f(rm) = r f(m)\) for all  \(m_1,m_2, m \in M\) and \(r \in R\).   
+\end{definition}
+\emph{Kernel} and \emph{image} of an \(R\)-module homomorphism \(f: M \longrightarrow N\) is defined as expected:
+\[
+    \text{ker} \ f := \{m \in M  \mid  f(m) = 0_N\} \text{ and } \text{im} \ f := \{n \in N  \mid f(m) = n \text{ for some } m \in M\} .
+\] 
+The set of all \(R\)-module homomorphisms between two \(R\)-modules  \(M\) and  \(N\) is denoted by  \(\text{Hom}_R(M, N)\).\footnote{\(\text{Hom}_R(M,N)\) is always a set.}  \(\text{Hom}_R(M,N)\) can be given the structure of an  \(R\)-module as follows:
+
+Suppose \(f, g \in \text{Hom}_R(M,N)\). Then  addition is defined pointwise: \((f+ g)(m) := f(m) + g(m)\) and  left \(R\)-action is defined as \((rf)(m) \coloneq r f(m)\), where \(r \in R\) and  \(m \in M\). It is trivial to check that the axioms of an \(R\)-module is satisfied.
+
+\begin{lemma}\label{lemma:compofRmodhom}
+    Composition of two \(R\)-module homomorphisms is again an  \(R\)-module homomorphism.
+\end{lemma}
+\begin{proof}
+    Let $M,N,P$ be $R$-modules. 
+Suppose $f : M \to N$ and $g : N \to P$ are $R$-module homomorphisms. 
+We show that $g \circ f : M \to P$ is an $R$-module homomorphism.
+
+Let $x,y \in M$ and $r \in R$. Then
+\[
+(g \circ f)(x+y)
+= g(f(x+y))
+= g(f(x)+f(y))
+= g(f(x)) + g(f(y))
+= (g \circ f)(x) + (g \circ f)(y),
+\]
+so $g \circ f$ is additive. Also,
+\[
+(g \circ f)(rx)
+= g(f(rx))
+= g(rf(x))
+= r g(f(x))
+= r (g \circ f)(x).
+\]
+Thus $g \circ f$ preserves scalar multiplication. Therefore, 
+$g \circ f$ is an $R$-module homomorphism.
+\end{proof}
+\begin{proposition}
+    Let \(g, f, h\) be  \(R\)-module homomorphisms between modules \(M', M, N, N'\) as follows:
+\[\begin{tikzcd}
+	{M'} & M & N & {N'}
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["{f \circ g}"', bend right, from=1-1, to=1-3]
+	\arrow["f", from=1-2, to=1-3]
+	\arrow["{h \circ f}", bend left, from=1-2, to=1-4]
+	\arrow["h", from=1-3, to=1-4]
+\end{tikzcd}\]
+Then every \(R\)-module homomorphism  \(g: M' \longrightarrow M\) induces an  \(R\)-module homomorphism 
+ \[
+     \tilde{g}: \text{Hom}_R(M, N) \longrightarrow \text{Hom}_R(M', N) \text{ via } f \mapsto f \circ g.
+\] 
+And every \(R\)-module homomorphism  \(h: N' \longrightarrow N\) induces an  \(R\)-module homomorphism 
+ \[
+     \tilde{h}: \text{Hom}_R(M, N) \longrightarrow \text{Hom}_R(M, N') \text{ via } f \mapsto h \circ f.
+\] 
+\end{proposition}
+\begin{proof}
+    Only thing to check here is composition of two \(R\)-module homomorphisms is again an  \(R\), which follows from \autoref{lemma:compofRmodhom}.
+\end{proof}
+\begin{remark}
+    For any module \(M\) there is a natural isomorphism  \(\text{Hom}_R(R, M) \cong M\): any \(R\)-module homomorphism  \(f: R \longrightarrow M\) is uniquely determined by \(f(1)\), which can be any element of  \(M\).
+\end{remark}
+\section{Submodules \& Quotient Modules}
+\begin{definition}[Submodule]
+    Let \((M, \mu_L)\) be an  \(R\)-module, and let \(M'\) be a subgroup of  \(M\) such that  \(\text{im}(\mu_L|_{R \times M'}) \subseteq M'\), i.e., \(\mu_L|_{R \times M'}: R \times M' \longrightarrow M'\) is a left  \(R\)-action on  \(M'\). Then  \((M, \mu_L|{R \times M'})\) is called a  \emph{submodule} of \((M', \mu_L)\). Or simply \(M'\) is a submodule of  \(M\) when there is no ambiguity about the left \(R\)-action.
+\end{definition}
+\begin{definition}[Quotient Module]
+    Let \(M'\) be a submodule of left \(R\)-module \(M\). Then  \(M'\) is normal in  \(M\) as subgroup. The quotient group \(M/M'\) then inherits an \(R\)-module structure from  \(M\), defined by the left  \(R\)-action: \(r(m + M') := rm + M'\). The \(R\)-module  \(M/M'\) is called \emph{quotient module} of  \(M\) by  \(M'\).
+\end{definition}
+We have to check the left \(R\)-action defined as above is well-defined and satisfies the axioms of a left  \(R\)-module:
+
+To check well-definedness, let \(r \in R\), and let \(m, m' \in M\) be two representitives of a same coset in \(M/M'\), i.e., \(m + M' = m' + M'\). We have to prove that 
+\[
+    r(m + M') = r(m' + M'), \text{ i.e., }rm + M' = rm' + M'.
+\] 
+ \(m + M' = m' + M'\) implies \(m - m' \in M'\). Since \(M'\) is a submodule, it is closed under left \(R\)-action. So is \(r(m - m') \in M'\). Using distributivity of left \(R\)-action over addition, we have  \(r(m - m') = rm - rm' \in M'\), implying \(rm + M' = rm' + M'\).
+
+ It is a trivial matter to check \(M/M'\) together with left \(R\)-action defined above indeed satisfies module axioms.
+ \begin{proposition}
+     Let \(f: M \longrightarrow N\) be an  \(R\)-module homomorphism. Then  \(\ker f\) and  \(\operatorname{im} f\) are sobmodules of  \(M, N\) respectively.
+\end{proposition}
+\begin{proof}
+    \(f\) is a group homomorphism between  \(M\) and  \(N\). So from group theory we know, 
+    \[
+        \ker f \le M \quad \text{and} \quad \operatorname{im} f \le N.
+    \] 
+    So we just have to check closure under left  \(R\)-action:
+
+    Let  \(r \in R\) and  \(m \in \ker f\). Then  \(f(rm) = rf(m) = r \cdot 0 = 0\), which imiplies \(rm \in \ker f\).
+
+    And let \(n \in \operatorname{im} f\). Then  \(f(m) = n\) for some \(m \in M\).  \(rf(m) = f(rm) = rn\). Hence,  \(rn \in \operatorname{im} f\) as well.
+\end{proof}
+Since \(\operatorname{im} f\) is a submodule of  \(N\), we define so-called \emph{cokernel} of \(f\) as
+ \[
+     \text{Coker}(f) := N/\operatorname{im} f
+\] which is a quotient module of \(N\).
+
+\section{Operations on Submodules}
+Most of the operations on ideals considered in \hyperref[section:lec05pt1]{Lecture 05 Part 1} and \hyperref[section:lec05pt1]{Lecture 05 Part 2} have their counterparts for modules.
+\begin{definition}[Sum of Submodules]
+    Let \(M\) be an  \(R\)-module and let  \(\{M_\alpha\}_{\alpha \in \mathcal{A}}\) be an arbitrary collection of submodules of \(M\). Their \emph{sum} is defined as follows:
+    \[
+        \sum_{\alpha \in \mathcal{A}} M_\alpha \coloneq \left\{\sum_{\alpha \in \mathcal{A}} x_\alpha, \text{ where } x_\alpha \in M_\alpha \text{ and } x_\alpha = 0 \text{ for all but finitely many } \alpha \in \mathcal{A}\right\}
+    \] 
+    which is a submdule of \(M\).
+\end{definition}
+ \(\sum_{\alpha \in \mathcal{A}} M_\alpha\) is the smallest submodule of \(M\) which contains all the  \(M_\alpha\)'s, as expected.
+\begin{definition}[Intersection of Submodules]
+     Let \(M\) be an  \(R\)-module and let  \(\{M_\alpha\}_{\alpha \in \mathcal{A}}\) be an arbitrary collection of submodules of \(M\). Their \emph{intersection} \(\bigcap_{\alpha \in \mathcal{A}} M_\alpha\) is an submodule of \(M\) as well.
+\end{definition}
+
+We cannot in general define the \emph{product} of two submodules, but we can define the product \(\mathfrak{a}M\), where \(\mathfrak{a}\) is an ideal of \(R\) and \(M\) is an  \(R\)-module as follows:
+\[
+    \mathfrak{a} M \coloneq \left\{\sum_{\alpha \in \mathcal{A}} a_\alpha x_\alpha  \mid a_\alpha \in \mathfrak{a}, x_\alpha \in M \text{ and } a_\alpha m_\alpha = 0 \text{ for all but finitely many } \alpha \in \mathcal{A}\right\}. 
+\] 
+\(\mathfrak{a}M\) is a submodule of \(M\).
+
+If \(N, P\) are submodules of an \(R\)-module \(M\), we define  \((N: P)\) to be the set of all  \(a \in R\) such that  \(aP \subseteq N\). It is an ideal of \(R\). In particular, \((0: M)\) is called the \emph{annihilator} of  \(M\), which is also denoted as  \(\text{Ann}(M)\).
+\begin{definition}[Faithful Module]
+    An \(R\)-module is \emph{faithful} if  \(\text{Ann}(M) = 0\).
+\end{definition}
+%If \(\text{Ann}(M) = \mathfrak{a}\), then \(M\) is faithful as an  \(R/\mathfrak{a}\) module.
+\subsubsection{\cite{AtiyahMacdonald} Exercise 2.2 (solved)}
+Exercise 2.2 from \cite{AtiyahMacdonald}:
+\begin{exercise}[Exercise 2.2]
+    \begin{enumerate}[label=\roman*)]
+        \item \(\text{Ann}(M+N) = \text{Ann}(M) \cap \text{Ann}(N)\).
+        \item \((N:P) = \text{Ann}((N + P)/N)\).
+    \end{enumerate}
+\end{exercise}
+\begin{proof}[Solution]
+    \begin{enumerate}[label=\roman*)]
+        \item \(\text{Ann}(M+N) \subseteq \text{Ann}(M) \cap \text{Ann}(N)\): Let \(r \in \text{Ann}(M+N) \). Then, for all \(m \in M\) and  \(n \in N\), \(r(m+n) = 0\). In particular,  \(r(m+0) = rm = 0\) and  \(r(0+n) = rn = 0\), implying  \(r \in \text{Ann}(M)\) and  \(r \in \text{Ann}(N)\), which further implies \(r \in \text{Ann}(M) \cap \text{Ann}(N)\).
+
+            \(\text{Ann}(M+N) \supseteq \text{Ann}(M) \cap \text{Ann}(N)\): A generic element of \(M + N\) looks like  \( m + n\), where  \(m \in M\) and  \(n \in N\). If \(r \in \text{Ann}(M) \cap \text{Ann}(N)\), \(rm = 0\) and  \(rn = 0\), implying  \(r(m+n) = rm + rn = 0\). Therefore, we have \(r \in \text{Ann}(M+N)\) as well.
+        \item Let \(r \in (N: P)\). Then  \(rP \subseteq N\), i.e., \(rp \in N\) for all  \(p \in P\). An element of \((N+P)/N\) looks like \(n + p + N\), where  \(n \in N\) and  \(p \in P\). Since \(rn \in N\) and  \(rp \in N\), so \(rn + rp \in N\). Hence we have 
+            \[
+            r(n + p + N) = r(n+p)+N = rn + rp + N = 0 + N.
+            \] 
+
+            Hence, \(r \in \text{Ann}((N+P)/N)\).
+
+            Conversely, let \(r \in \text{Ann}((N+P)/N)\). Then \(r(n+p + N) = r(n + p) + N = 0 + N\), which implies, \(r(n+p) = rn + rp \in N\). Since  \(rn \in N\), so  \(rp = rp + rn + (- rn) \in N\), which is true for all \(p \in P\). Therefore, \(r \in (N: P)\).
+    \end{enumerate}
+\end{proof}

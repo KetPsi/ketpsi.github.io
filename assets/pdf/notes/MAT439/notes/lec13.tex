@@ -1,0 +1,125 @@
+\chapter{Lecture 13}
+
+\hfill {\footnotesize \emph{Date: 25.04.2026}}
+\todo{This part of the lecture is yet to be updated!}
+\section{Primary Decomposition---continued}
+\begin{proposition}
+  Let \( \mathfrak{a} \) be a decomposable ideal. Let \( \mathfrak{a} = \bigcap_{i=1}^n \mathfrak{q}_i \) be a minimal primary decomposition with \( r(\mathfrak{q}_i) = \mathfrak{p}_i \). Then
+  \[
+    \bigcup_{i=1}^n \mathfrak{p}_i = \{x \in R \mid (\mathfrak{a}: x) \neq \mathfrak{a}\}.
+  \]
+  If the zero ideal is decomposable then the set \( D \) of zero divisors of  \( R \) is the union of the prime ideal belonging to  \( (0) \).
+\end{proposition}
+
+\begin{proof}
+First observe that \(x+\mathfrak a\) is a zero divisor in \(R/\mathfrak a\) precisely when there exists \(y\notin \mathfrak a\) such that \(xy\in \mathfrak a\). This is equivalent to saying that there exists \(y\notin \mathfrak a\) with \(y\in(\mathfrak a:x)\). Hence
+\[
+    x+\mathfrak a \text{ is a zero divisor in } R/\mathfrak a
+    \iff
+    (\mathfrak a:x)\neq \mathfrak a.
+\]
+
+So it is enough to prove that the elements \(x\in R\) for which \(x+\mathfrak a\) is a zero divisor are exactly the elements of \(\bigcup_i\mathfrak p_i\).
+
+We first prove the result in the special case \(\mathfrak a=(0)\). Suppose
+\[
+    (0)=\bigcap_{i=1}^n \mathfrak q_i
+\]
+is a minimal primary decomposition, where \(r(\mathfrak q_i)=\mathfrak p_i\). Let \(D\) denote the set of zero divisors of \(R\). We claim that
+\[
+    D=\bigcup_{i=1}^n \mathfrak p_i.
+\]
+
+First let \(x\in \mathfrak p_i\) for some \(i\). Since \(\mathfrak p_i=r(\mathfrak q_i)\), there is some \(n > 0\) such that \(x^n\in \mathfrak q_i\).
+
+By minimality, \(\mathfrak q_i\) is not redundant. Hence
+\[
+    \bigcap_{j\neq i}\mathfrak q_j \nsubseteq \mathfrak q_i.
+\]
+Choose \(a_i\in\bigcap_{j\neq i}\mathfrak q_j\) such that \(a_i\notin\mathfrak q_i\).
+
+Since \(x^n\in\mathfrak q_i\), we have \(x^n a_i\in\mathfrak q_i\). Choose the smallest positive integer \(m\) such that \(x^m a_i\in\mathfrak q_i\). Then \(x^{m-1}a_i\notin\mathfrak q_i\), so in particular \(x^{m-1}a_i\neq 0\).
+
+Now \(a_i\in\mathfrak q_j\) for every \(j\neq i\), so \(x^m a_i\in\mathfrak q_j\) for every \(j\neq i\). Also \(x^m a_i\in\mathfrak q_i\). Therefore
+\[
+    x^m a_i\in \bigcap_{j=1}^n \mathfrak q_j=(0).
+\]
+Thus \(x(x^{m-1}a_i)=0\), where \(x^{m-1}a_i\neq 0\). Hence \(x\) is a zero divisor. Therefore \(\bigcup_i\mathfrak p_i\subseteq D\).
+
+Conversely, let \(x\in D\). Then there exists \(0\neq y\in R\) such that \(xy=0\). Since
+\[
+    (0)=\bigcap_{i=1}^n \mathfrak q_i,
+\]
+the condition \(y\neq 0\) implies that \(y\notin\mathfrak q_k\) for at least one \(k\). But \(xy=0\in\mathfrak q_k\). Since \(\mathfrak q_k\) is primary and \(y\notin\mathfrak q_k\), it follows that \(x^m\in\mathfrak q_k\) for some \(m > 0\). Therefore \(x\in r(\mathfrak q_k)=\mathfrak p_k\). Hence \(D\subseteq\bigcup_i\mathfrak p_i\).
+
+Thus, when \(\mathfrak a=(0)\), the set of zero divisors of \(R\) is exactly \(\bigcup_i\mathfrak p_i\).
+
+Now return to the general case. Let
+\[
+    \pi:R\to R/\mathfrak a, r\mapsto r+\mathfrak a
+\]
+be the quotient map. Since \(\mathfrak a=\bigcap_i\mathfrak q_i\), we have
+\[
+    (0)=\bigcap_{i=1}^n \pi(\mathfrak q_i)
+\]
+inside \(R/\mathfrak a\).
+
+We claim that each \(\pi(\mathfrak q_i)\) is primary in \(R/\mathfrak a\). Suppose
+\[
+    (r_1+\mathfrak a)(r_2+\mathfrak a)\in \pi(\mathfrak q_i).
+\]
+Then \(r_1r_2+\mathfrak a\in\pi(\mathfrak q_i)\). So there exists \(q_i\in\mathfrak q_i\) such that \(r_1r_2+\mathfrak a=q_i+\mathfrak a\). Hence \(r_1r_2-q_i\in\mathfrak a\subseteq\mathfrak q_i\). Since \(q_i\in\mathfrak q_i\), we get \(r_1r_2\in\mathfrak q_i\).
+
+Because \(\mathfrak q_i\) is primary, \(r_1\in\mathfrak q_i\), or \(r_2^n\in\mathfrak q_i\) for some \(n > 0\). Therefore
+\[
+  r_1+\mathfrak a\in\pi(\mathfrak q_i) \text{ or }
+    (r_2+\mathfrak a)^N\in\pi(\mathfrak q_i).
+\]
+Thus \(\pi(\mathfrak q_i)\) is primary in \(R/\mathfrak a\).
+
+Moreover,
+\[
+    r(\pi(\mathfrak q_i))
+    =
+    \pi(r(\mathfrak q_i))
+    =
+    \pi(\mathfrak p_i).
+\]
+\todo{To be written...}
+% The decomposition remains minimal in the quotient. Indeed, the radicals \(\pi(\mathfrak p_i)\) are distinct because the \(\mathfrak p_i\)'s are distinct and all contain \(\mathfrak a\). Also, if \(\pi(\mathfrak q_i)\) were redundant, then taking inverse images under \(\pi\) would imply that \(\mathfrak q_i\) was redundant in the original decomposition.
+%
+% So
+% \[
+%     (0)=\bigcap_{i=1}^n \pi(\mathfrak q_i)
+% \]
+% is a minimal primary decomposition of the zero ideal in \(R/\mathfrak a\). Applying the special case to the ring \(R/\mathfrak a\), the set of zero divisors of \(R/\mathfrak a\) is
+% \[
+%     \bigcup_{i=1}^n \pi(\mathfrak p_i).
+% \]
+%
+% Thus \(x+\mathfrak a\) is a zero divisor in \(R/\mathfrak a\) if and only if \(x\in\mathfrak p_i\) for some \(i\). Therefore the set of zero divisors of \(R/\mathfrak a\), viewed inside \(R\), is
+% \[
+%     \bigcup_{i=1}^n \mathfrak p_i.
+% \]
+% Equivalently,
+% \[
+%     \bigcup_{i=1}^n \mathfrak p_i
+%     =
+%     \{x\in R:(\mathfrak a:x)\neq\mathfrak a\}.
+% \]
+% This completes the proof.
+\end{proof}
+
+\begin{remark}
+A useful fact is the following. If \(f:R\to R'\) is a ring homomorphism and \(\mathfrak q'\) is a \(\mathfrak p'\)-primary ideal of \(R'\), then \(f^{-1}(\mathfrak q')\) is \(f^{-1}(\mathfrak p')\)-primary in \(R\).
+
+Indeed, if \(xy\in f^{-1}(\mathfrak q')\), then \(f(x)f(y)\in\mathfrak q'\). Since \(\mathfrak q'\) is primary, either \(f(x)\in\mathfrak q'\), or \(f(y)^N\in\mathfrak q'\) for some \(N\geq 1\). Hence either \(x\in f^{-1}(\mathfrak q')\), or \(y^N\in f^{-1}(\mathfrak q')\). Therefore \(f^{-1}(\mathfrak q')\) is primary, and
+\[
+    r(f^{-1}(\mathfrak q'))
+    =
+    f^{-1}(r(\mathfrak q'))
+    =
+    f^{-1}(\mathfrak p').
+\]
+\end{remark}
+

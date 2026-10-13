@@ -1,0 +1,90 @@
+\chapter{Lecture 16}
+\hfill {\footnotesize \emph{Date: 02.05.2026}}
+\section{Integral Dependence---continued}
+\begin{corollary}
+  Let \( A \subseteq B \) be rings and let \( C \) be the integral closure of  \( A \) in  \( B \). Then  \( C \) is integrally closed in  \( B \).
+\end{corollary}
+\begin{proof}
+  Let \( x \in B \) integral over  \( C \). Since  \( C \) is integral over  \( A \) in  \( B \), by \autoref{cor:IntDepTrans}, \( x \) is integral over  \( A \). Since  \( C \) is integral over  \( A \), it follows that  \( x \in C \). Therefore,  \( C \) is integrally closed in \( B \).
+\end{proof}
+The next proposition shows that integral dependence is preserved on passing to quotients and to rings of fractions:
+\begin{proposition}\label{prop:preservationOfIntegralDependenceUnderQuotientAndFractions}
+  Let \( A \subseteq B \) be rings, \( B \) integral over  \( A \). Then
+  \begin{enumerate}[label=\roman*)]
+    \item If \( \mathfrak{b} \) is an ideal of \( B \) and  \( \mathfrak{a} = \mathfrak{b}^c = A \cap B\) (where contraction is being taken with respect to inclusion \( \iota : A \hookrightarrow B \)), then \( B / \mathfrak{b} \) is integral over \( A / \mathfrak{a} \).
+    \item  If \( S \) is a multiplicatively closed subset of  \( A \), then  \( S^{-1} B \) is integral over  \( S^{-1} A \).
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  \begin{enumerate}[label=\roman*)]
+    \item To prove that \( B / \mathfrak{b} \) is integral over \( A / \mathfrak{a} \), we need to show that every element \( x + \mathfrak{b} \in B / \mathfrak{b}\) satisfies a monic polynomial with coefficients in \( A / \mathfrak{a} \). We have maps
+      \[
+        A \xhookrightarrow{\iota} B \xrightarrow{\pi} B / \mathfrak{b}
+      \]
+      by which we define \( \phi = \pi \circ \iota : A \to B / \mathfrak{b} \). Then
+      \[
+      \ker \phi = \ker(\pi \circ \iota) = \{a \in A \mid \phi(a) = 0 + \mathfrak{b}\} = \{a \in A \mid a \in \mathfrak{b}\} = A \cap \mathfrak{b} = \mathfrak{b}^c = \mathfrak{a}.
+      \]
+    \todo{To be written.}
+  \end{enumerate}
+\end{proof}
+\section{The Going-up Theorem}
+\begin{proposition}\label{prop:fieldCritIntDep}
+  Let \( A \subseteq B \) be integral domains, \( B \) integral over  \( A \). Then  \( B \) is a field if and only if  \( A \) is a field.
+\end{proposition}
+\begin{proof}
+  ($\Leftarrow$). Suppose \(A\) is a field and let \(y \in B\), \(y \neq 0\). Since \(B\) is integral over \(A\), \(y\) satisfies a monic equation of the form
+\[
+y^n + a_1 y^{n-1} + \dots + a_n = 0,
+\]
+chosen with the lowest possible degree.
+
+\begin{claim}
+  \(a_n \neq 0\).
+\end{claim}
+\begin{proof}[Proof of claim]
+  If \(a_n = 0\), then
+  \begin{gather*}
+    y^n + a_1 y^{n-1} + \dots + a_{n-1} y = 0,\\
+    \implies y\bigl(y^{n-1} + a_1 y^{n-2} + \dots + a_{n-1}\bigr) = 0.
+  \end{gather*}
+  Since \(B\) is an integral domain (it will be shown to be a field, but here we only need that \(y \neq 0\) and the ring has no zero‑divisors; the argument implicitly assumes this), we would have \(y^{n-1} + a_1 y^{n-2} + \dots + a_{n-1}=0\), contradicting the minimality of \(n\). Hence \(a_n \neq 0\).
+\end{proof}
+Because \(A\) is a field, \(a_n^{-1}\) exists in \(A\). We obtain the following:
+\begin{align*}
+  &y^n + a_1 y^{n-1} + \dots + a_n = 0\\
+  \implies & y\bigl(y^{n-1} + a_1 y^{n-2} + \dots + a_{n-1}\bigr) = -a_n\\
+  \implies &y\Bigl[(-a_n^{-1})\bigl(y^{n-1} + a_1 y^{n-2} + \dots + a_{n-1}\bigr)\Bigr] = 1,
+\end{align*}
+which means \(y\) has a multiplicative inverse in \(B\). Thus every nonzero element of \(B\) is invertible; therefore \(B\) is a field.
+
+($\Rightarrow$). Suppose \(B\) is a field. Let \(x \in A\) with \(x \neq 0\). Since \(A \subseteq B\), we have \(x \in B\) and therefore \(x^{-1} \in B\). Because \(B\) is integral over \(A\), \(x^{-1}\) satisfies a monic equation
+\[
+(x^{-1})^m + a_1 (x^{-1})^{m-1} + \dots + a_m = 0
+\]
+for some \(a_1,\dots,a_m \in A\). Multiplying by \(x^m\) yields
+\begin{align*}
+  &1 + a_1 x + \dots + a_m x^{m-1} + a_m x^m = 0\\
+  \implies & 1 + x\bigl(a_1 + \dots + a_{m-1} x^{m-2} + a_m x^{m-1}\bigr) = 0\\
+  \implies &x\Bigl[-\bigl(a_1 + \dots + a_{m-1} x^{m-2} + a_m x^{m-1}\bigr)\Bigr] = 1.
+.\end{align*}
+Thus \(x^{-1} = -\bigl(a_1 + \dots + a_{m-1} x^{m-2} + a_m x^{m-1}\bigr) \in A\). Hence every nonzero element of \(A\) is invertible in \(A\), i.e. \(A\) is a field.
+\end{proof}
+\begin{corollary}
+  Let \( A \subseteq B \) be rings, \( B \) integral over  \( A \); let  \( \mathfrak{q} \) be a prime ideal of \( B \) and let  \( \mathfrak{p} = \mathfrak{q}^c = \mathfrak{q} \cap A \). Then \( \mathfrak{q} \) is maximal if and only if \( \mathfrak{p} \) is maximal.
+\end{corollary}
+\begin{proof}
+  By (i) of \autoref{prop:preservationOfIntegralDependenceUnderQuotientAndFractions}, \( B / \mathfrak{q} \) is integral over \( A / \mathfrak{q^c} \). By \autoref{prop:fieldCritIntDep}, \( B / \mathfrak{q} \) is a field iff \( A / \mathfrak{q}^c \) is a field. Equivalently,  \( \mathfrak{q} \) is maximal iff \( \mathfrak{q}^c = \mathfrak{p} \) is maximal.
+\end{proof}
+\begin{corollary}
+  Let \( A \subseteq B \) be rings, \( B \) integral over  \( A \); let  \( \mathfrak{q} \), \( \mathfrak{q}' \) be prime ideals of \( B \) such that  \( \mathfrak{q} \subseteq  \mathfrak{q}' \) and \( \mathfrak{q}^c = \mathfrak{q}'^c = \mathfrak{p} \) say. Then \( \mathfrak{q} = \mathfrak{q}' \).
+\end{corollary}
+\begin{proof}
+  
+\end{proof}
+\begin{theorem}
+  Let \( A \subseteq B \) be rings, \( B \) integral over  \( A \), and let  \( \mathfrak{p} \) be a prime ideal of \( A \). Then there exists a prime ideal  \( \mathfrak{q} \) of \( B \) such that  \( \mathfrak{q} \cap A = \mathfrak{p} \).
+\end{theorem}
+\begin{theorem}[Going-up theorem]
+  Let \( A \subseteq B \) be rings, \( B \) integral over  \( A \); let  \( \mathfrak{p}_1 \subset \cdots \subset \mathfrak{p}_n \) be a chain of prime ideals of \( A \) and  \( \mathfrak{q}_1 \subset \mathfrak{q}_m \) (\( m < n \)) a chain of prime dieal of \( B \) such that  \( \mathfrak{q}_i \cap A = \mathfrak{p}_i \) (\( 1 \le i \le m \)). Then the chain \( \mathfrak{q}_1 \subseteq \cdots \subseteq \mathfrak{q}_m \) can be extended to a chain \( \mathfrak{q}_1 \subseteq \cdots \subseteq \mathfrak{q}_n \) such that \( \mathfrak{q}_i \cap A = \mathfrak{p}_i \) for \( 1 \le i \le n \).
+\end{theorem}

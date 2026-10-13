@@ -1,0 +1,151 @@
+\chapter{Lecture 14}
+
+\hfill {\footnotesize \emph{Date: 29.04.2026}}
+\todo{This part of the lecture is yet to be updated!}
+\section{Extended and Contracted Ideals in Rings of Fractions}
+Let \( R \) be a ring,  \( S \) be a multiplicatively closed subset of  \( S \) and  \( f: R \to S^{-1}R \) the natural homomorphism, defined by  \( f(a) = a / 1 \). 
+\begin{nonexample}
+  \( f \) defined above is not in general injective. Take \( R = \mathbb{Z}/6\mathbb{Z} \), and \( S = \{1, 3\} \). Then \( f(1) = 1 / 1 \) and  \( f(3) = 3 / 1 \), and \( 1 / 1 = 3 / 1 \) because  \( (1 \cdot 1 - 3 \cdot 1) 3 = 0 \). So  \( f(1) = f(3) \).
+\end{nonexample}
+\begin{lemma}\label{lem:extensionOfIdealinRingOfFra}
+  If \( \mathfrak{a} \) is an ideal of \( R \), then extension of  \( \mathfrak{a} \) with respect to \( f \) is  \( S^{-1}\mathfrak{a} \).
+\end{lemma}
+\begin{proof}
+  Let \( p_1 p_2 \cdots p_{i-1}\hat{p_i}p_{i+1}\cdots p_N \) denote the product of \( p_1, \ldots, p_N \), where \( p_i \) is absent. 
+  \begin{align*}
+    \mathfrak{a}^e = (S^{-1}R)f(\mathfrak{a}) &= \left\{\sum_{i=1}^{N} (r_i / s_i) f(a_i) \mid r_i \in R, s_i \in S, a_i \in \mathfrak{a}, N \in \mathbb{N}\right\}\\
+                                              &= \left\{\sum_{i=1}^{N} (r_i / s_i) a_i / 1 \mid r_i \in R, s_i \in S, a_i \in \mathfrak{a},  N \in \mathbb{N}\right\}\\
+                                              &= \left\{\frac{r_i a_i s_1s_2 \cdots s_{i-1}\hat{s_i} s_{i+1} \cdots s_N}{\prod_{i=1}^N s_i} \mid r_i \in R, s_i \in S, a_i \in \mathfrak{a}, N \in \mathbb{N}\right\}\\
+                                              &= S^{-1}\mathfrak{a}
+  .\end{align*}
+\end{proof}
+With the setup above, we have the following proposition:
+\begin{proposition}\label{prop:contractextendpropfrac}
+  \begin{enumerate}[label=\roman*)]
+    \item Every ideal in \( S^{-1}A \) is an extended ideal.
+    \item If  \( \mathfrak{a} \) is an ideal in \( R \), then  \( \mathfrak{a}^{ec} = \bigcup_{s \in S}(\mathfrak{a}: (s))\). Hence, \( \mathfrak{a}^e = (1) \) if and only if \( \mathfrak{a} \) meets \( S \). 
+    \item The prime ideals of \( S^{-1}R \) are in one-to-one correspondence (\( \mathfrak{p} \leftrightarrow S^{-1}\mathfrak{p} \)) with the prime ideals of \( R \) which don't meet \( S \).
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  \begin{enumerate}[label=\roman*)]
+    \item Suppose \( \widetilde{\mathfrak{a}} \) is an ideal in \( S^{-1}R \). Let  \( x / s \in \widetilde{\mathfrak{a}} \). Then \( x / 1 \in \widetilde{\mathfrak{a}} \) because \( s / 1 \in S^{-1}R \), and using closure under multiplication of \( \widetilde{\mathfrak{a}} \) we have \( s / 1 \cdot x / s = x / 1 \in \widetilde{\mathfrak{a}} \). Therefore
+    \[
+      x / s \in \widetilde{\mathfrak{a}} \implies x / 1 \in\widetilde{\mathfrak{a}} \implies x \in \widetilde{\mathfrak{a}}^c \implies x / 1 \in \widetilde{\mathfrak{a}}^{ce} \implies 1 / s \cdot x / 1 = x / s \in \widetilde{\mathfrak{a}}^{ce}.
+    \]
+    That means \( \widetilde{\mathfrak{a}} \subseteq \widetilde{\mathfrak{a}}^{ce} \).
+
+    Using (i) of \autoref{prop:contractextendprop}, we conversely have, \( \widetilde{\mathfrak{a}} \supseteq \widetilde{\mathfrak{a}}^{ce} \), proving 
+    \[
+    \widetilde{\mathfrak{a}} = \widetilde{\mathfrak{a}}^{ce}.
+  \]
+  So we have found an ideal \( \mathfrak{a} \coloneq \widetilde{\mathfrak{a}}^c \) such that \( \mathfrak{a}^e = \widetilde{\mathfrak{a}} \).
+\item Let  \( x \in \mathfrak{a}^{ec} = (S^{-1}\mathfrak{a})^c\). Then \( x \in f^{-1}(a / s)\) for some \( a \in \mathfrak{a} \), \( s \in S \). Therefore \( f(x) = x / 1 = a / s \), i.e., \( (xs - a)u = 0 \) for some  \( u \in S \). Since  \( a \in \mathfrak{a} \), we have \( au \in \mathfrak{a} \). So, \( xsu = au \in \mathfrak{a} \). Here, \( su \in (s) \), and since \( x(su) \in \mathfrak{a} \), hence \( x \in (\mathfrak{a}: (s)) \). Therefore,
+  \[
+    \mathfrak{a}^{ec} \subseteq \bigcup_{s \in S}(\mathfrak{a} : (s)). 
+  \]
+  Conversely, let \( y \in \bigcup_{s \in S}(\mathfrak{a} : (s)) \). Then \( y \in (\mathfrak{a} : (s)) \) for some \( s \in S \). That means  \( sy \in \mathfrak{a} \). \( f(sy) = a s / 1 \in \mathfrak{a}^e = S^{-1}\mathfrak{a} \). Since \( S^{-1} \mathfrak{a} \) is an ideal in \( S^{-1} R\), \( 1 / s \cdot sy = y / 1 \in S^{-1}\mathfrak{a} \) for \( 1 / s \in S^{-1}R \).  So \( f(y) = y / 1 \in S^{-1}\mathfrak{a} \), which implies \( y \in (S^{-1}\mathfrak{a})^c =  \mathfrak{a}^{ec}\), showing \( \mathfrak{a}^{ec} \supseteq \bigcup_{s \in S}(\mathfrak{a} : (s)) \). Therefore, we have
+  \[
+    \mathfrak{a}^{ec} = \bigcup_{s \in S}(\mathfrak{a} : (s)).
+  \]
+
+  Now, we wish to prove 2nd part of the statement. Let us prove the converse first. Suppose \(  \mathfrak{a} \cap S \neq \varnothing \). Then there exists \( s' \in \mathfrak{a}, S \). So \( f(s') = s' / 1 \in \mathfrak{a}^e \). Since \( s'\in S\), we have \( 1 / s' \in S^{-1}R \). Using ``primacy'' of  \( \mathfrak{a}^e \), we have \( s' / 1 \cdot 1 / s' = 1 / 1 \in \mathfrak{a}^e\). Hence, \( \mathfrak{a}^e = (1) \). 
+
+  Now we will prove the forward direction using contradiction. Suppose \( \mathfrak{a}^e = (1) \), but \( \mathfrak{a} \cap S = \varnothing \). 
+
+  Since \( \mathfrak{a}^e = S^{-1}\mathfrak{a} = (1) \), there exists \( a / s \in \mathfrak{a}^e \) (\( a \in \mathfrak{a}, s \in S \)) such that \( a / s = 1 / 1 \). Then there exists  \( u \in S \) such that \( (a - s)u = au - su = 0 \), which implies  \( au = su \). \( au \in  \mathfrak{a} \), and \( su \in S \), therefore, \( au = su \in \mathfrak{a} \cap S \),  which is a contradiction. Thus, we have proven the forward direction.
+
+\item If \( \widetilde{\mathfrak{p}} \) is a prime ideal in \( S^{-1}R \), then  \( \widetilde{\mathfrak{p}}^c \) is a prime ideal in \( R \) (true for any ring homomorphism). From \textbf{part (i)}, we know \( \widetilde{p}^{ce} = S^{-1}\widetilde{p}^c = \widetilde{p} \). Therefore, if  \( \widetilde{p}^c \) had met  \( S \), \( \widetilde{p}^{ce} \) would have not been prime. Hence, \( \widetilde{p}^c \) is a prime ideal in  \( R \) that do not meet  \( S \).
+
+  Conversely, if  \( \mathfrak{p} \) is a prime in \( R \) such that \( \mathfrak{p} \cap S = \varnothing \), we want to show that \( S^{-1}\mathfrak{p} \) is a prime ideal in \( S^{-1}R \). Since \( \mathfrak{p} \) is prime, \( R / \mathfrak{p} \) is an integral domain. Let \( \pi : R \to R / \mathfrak{p} \) be the projection map and \( \overline{S} = \pi(S) \).  Define \( \phi : S^{-1} R \to \overline{S}^{-1}(R / \mathfrak{p}), a / s \mapsto \pi(a) / \pi(s) \). We want to find \( \ker \phi \). Let \( \phi(a / s) = \pi(a) / \pi(s) = 0 / 1 \). Since  \( \overline{S}^{-1}(R / \mathfrak{p}) \) is the ring of fractions \( R / \mathfrak{p} \), \( \pi(a) / \pi(s) = 0 / 1 \) if and only if \( \pi(as) = 0 \) for some \( s \in S \). Then \( \pi(as) = 0 \implies as \in \mathfrak{p} \). Since \( s \not\in \mathfrak{p} \), ``primacy'' of \( \mathfrak{p} \) implies \( a \in \mathfrak{p} \Longleftrightarrow \pi(a) = 0\). So \( \ker \phi = S^{-1}\ker \pi = S^{-1}\mathfrak{p} \). \( \phi \) is surjective because it was defined using  \( \pi \), and \( \pi \) is surjective previously. Using first isomorphism theorem, we have
+  \[
+    S^{-1}R / S^{-1} \mathfrak{p} \cong \overline{S}^{-1}(R / \mathfrak{p}).\tag{1}
+  \]
+  Now right side of (1) is ring of fractions of an integral domain and \( 0 \not\in \overline{S} \) since \( S \) do not meet  \( \mathfrak{p} \). Therefore, right side is again an integral domain, so is left side. Therefore, we conclude \( S^{-1}\mathfrak{p} \) is prime. 
+
+  Therefore, we have two maps between prime ideals \( R \to S^{-1}R \) and  \( S^{-1}R \to R \). Bijectivity follows from (ii) \autoref{prop:contractextendprop} and from the fact (easy check) that \( \mathfrak{p}^{ec} = \mathfrak{p} \) when \( \mathfrak{p} \) is prime in \( R \) that do not meet \( S \).
+ \end{enumerate} 
+\end{proof}
+\section{Primary Decomposition---again}
+\begin{proposition}
+  Let \( S \) be a multiplicatively closed subset of \( R \), and let  \( \mathfrak{q} \) be a \( \mathfrak{p} \)-primary
+  \begin{enumerate}[label=\roman*)]
+    \item If \( S \cap \mathfrak{p} \neq \varnothing\), then \( S^{-1}\mathfrak{q} = S^{-1}R\).
+    \item If \( S \cap \mathfrak{p} = \varnothing \), then \( S^{-1}\mathfrak{q} \) is \( S^{-1}\mathfrak{p} \) primary and its contraction in \( R \) is  \( \mathfrak{q} \).
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  \begin{enumerate}[label=\roman*)]
+    \item Suppose \( S \cap \mathfrak{p} \neq \varnothing \). Then there exists \( s \in S \cap \mathfrak{p} \). So \( s \in \mathfrak{p} = r(\mathfrak{q}) \), which implies \( s^n \in \mathfrak{q} \) for some \( n > 0 \). Also \( s^n \in S \) since \( S \) is multiplicatively closed subset of  \( R \). So  \( s^n \in S \cap \mathfrak{q} \), which means \( S \cap \mathfrak{q} \neq \varnothing \). Using \autoref{lem:extensionOfIdealinRingOfFra} (ii) of \autoref{prop:contractextendpropfrac}, we have \( \mathfrak{q}^e = S^{-1}\mathfrak{q} = (1) = S^{-1}R\).
+    \item Let \( S \cap \mathfrak{p} = \varnothing \). So if \( s \in S \), then \( s \not\in \mathfrak{p} \) for any \( n > 0 \). So, for any \( a \in R \), \( as \in \mathfrak{q} \) implies \( a \in \mathfrak{q} \) because \( s \not\in \mathfrak{p} = r(\mathfrak{q}) \supseteq \mathfrak{q} \).
+
+      First we have to want to show that \( S^{-1}\mathfrak{q} \) is primary. Let \( q_1 / s_1, q_2 / s_2 \in S^{-1}\mathfrak{q} \). Then \( (q_1q_2) / (s_1s_2) = q / s\) for some \( q \in \mathfrak{q} \) and \( s \in S \). So by definition, there exists \( u \in S \) such that
+       \[
+         ( s q_1 q_2 - qs_1s_2 )u = 0 \implies u s q_1 q_2 = uqs_1s_2 \in \mathfrak{q} 
+      \] 
+      Let \( s' = us \). Since \( (s' q_1 q_2) \in \mathfrak{q}\), it implies that \( q_1 q_2 \), which implies \( q_1 \in \mathfrak{q} \) or \( q_2 \in r(\mathfrak{q}) \). Therefore, \( q_1 / s_1 \in S^{-1}\mathfrak{q} \) or \( q_2 / s_2 \in r(\mathfrak{q}) \). So we conclude that \( S^{-1}\mathfrak{q} \) is primary.
+
+      Next, we want to show that \( S^{-1}\mathfrak{q} \) is \( S^{-1}p \) primary, i.e.,  \( r(S^{-1}\mathfrak{q}) = S^{-1}\mathfrak{p} = S^{-1}(r(\mathfrak{q})) \). 
+
+      Let \( a / t \in r(S^{-1}\mathfrak{q}) \). Then \( a^n / t^n \in S^{-1}\mathfrak{q} \) for some \( n > 0 \). Then for some  \( q \in \mathfrak{q} \) and \( s \in S \), 
+       \begin{align*}
+           & a^n / t^n = 1 / s\\
+         \implies & (a^ns - qt^n)u = 0 \text{ for some } u \in S\\
+         \implies & a^n s u - q t^n u = 0\\
+         \implies & a^nsu = qt^n u \in \mathfrak{q}\\
+         \implies & a^n (su) \in \mathfrak{q}\\
+         \implies & a^n s' \in \mathfrak{q} \text{ for } s' = su \in S\\
+         \implies & a^n \in \mathfrak{q}\\
+         \implies & a \in r(\mathfrak{q})\\
+         \implies & a / t \in S^{-1}(r(\mathfrak{q}))\\
+         \therefore~&r(S^{-1}\mathfrak{q}) \subseteq S^{-1}(r(\mathfrak{q}))
+      .\end{align*}
+
+      Conversely, let \( q / s \in S^{-1}(r(\mathfrak{q})) \). Then \( q^n \in \mathfrak{q} \) for some \( n > 0 \). Then for the same  \( n \),  \( s^n \in S \). So,  \( (q / s)^n \in S^{-1}\mathfrak{q} \), which implies \( q / s \in r(S^{-1}\mathfrak{q}) \). Hence, \( r(S^{-1}\mathfrak{q}) \subseteq S^{-1}(r(\mathfrak{q})) \), proving the equality. 
+
+      Finally, we want to show that \( (S^{-1}\mathfrak{q})^c = \mathfrak{q} \). Using (ii) of \autoref{prop:contractextendpropfrac}, we have
+      \[
+        \mathfrak{q}^{ec} = \bigcup_{s\in S} (\mathfrak{q} : (s)).
+      \]
+
+      For all \( s \in S \), if \( a \in (\mathfrak{q} : (s)) \), then \( as \in \mathfrak{q} \), which implies \( a \in \mathfrak{q} \).
+      So we have
+      \[
+        \mathfrak{q} \subseteq \bigcup_{s \in S} (\mathfrak{q} : (s)) \subseteq \mathfrak{q}.
+      \]
+    Hence,
+    \[
+      \mathfrak{q} = \bigcup_{s \in S} (\mathfrak{q} : (s)) = \mathfrak{q}^{ec} = (S^{-1}\mathfrak{q})^c.
+    \]
+  \end{enumerate}
+\end{proof}
+\begin{proposition}
+  Let \( S \) be a multiplicatively closed subset of  \( R \), and let  \( \mathfrak{a} \) be a decomposable ideal. Let \( \mathfrak{a} = \bigcap_{i=1}^n \mathfrak{q}_i \) be a minimal primary decomposition of \( \mathfrak{a} \). Let \( \mathfrak{p}_i = r(\mathfrak{q}_i) \) and suppose the \( \mathfrak{q}_i \). And suppose the primary ideals \( \mathfrak{q}_i \) are enumerated so that \( S \cap \mathfrak{p}_j \neq \varnothing \) for \( m \le  j \le n \), but  \( S \cap \mathfrak{p}_k = \varnothing \) for \( 1 \le k < m \). Then 
+  \[
+    S^{-1}\mathfrak{a} = \bigcap_{i=1}^m S^{-1}\mathfrak{q}_i, \qquad S(\mathfrak{a}) = \bigcap_{i=1}^m \mathfrak{q}_i,
+  \]
+
+  and these are minimal primary decompositions.
+\end{proposition}
+\begin{proof}
+\end{proof}
+\todo{To be written...}
+\begin{definition}[Isolated set of prime ideals belonging to \( \mathfrak{a} \)]
+  A set \( \Sigma \) of prime ideals belonging to an ideal \( \mathfrak{a} \) is called \emph{isolated} if it satisfies the following condition: if \( \mathfrak{p}' \) is a prime ideal belonging to \( \mathfrak{a} \) and if \( \mathfrak{p}' \subseteq \mathfrak{p} \) for some \( \mathfrak{p} \in \Sigma \), then \( \mathfrak{p}' \) also is in \( \Sigma \).
+\end{definition}
+\begin{proposition}
+  Suppose \( \Sigma \) is an isolated set of prime ideals belonging to  \( \mathfrak{a} \). Then \( R \smallsetminus \left( S \coloneq \bigcup_{p \in \Sigma} \mathfrak{p} \right) \) is multiplicatively closed, and for any prime ideal \( \mathfrak{p}' \) belonging to \( \mathfrak{a} \), we have
+  \begin{enumerate}[label=\roman*)]
+    \item \( \mathfrak{p}' \in \Sigma \implies \mathfrak{p}' \cap S = \varnothing\) ;
+    \item \( \mathfrak{p}' \not\in \Sigma \implies \mathfrak{p}' \not\subseteq \bigcup_{\mathfrak{p} \in \Sigma} \mathfrak{p} \implies \mathfrak{p}' \cap S \neq \varnothing\).
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  \todo{To be written...}
+\end{proof}
+\begin{proposition}[2nd uniqueness lemma]
+  Let \( \mathfrak{a} \) be a decomposable ideal, let \( \mathfrak{a} = \bigcap_{i=1}^n \mathfrak{q}_i \) be a minimal primary decomposition of \( \mathfrak{a} \), and let \( \{\mathfrak{p}_{i_1}, \mathfrak{p}_{i_2}, \ldots, \mathfrak{p}_{i_m}\} \) be an isolated set of prime ideals of \( \mathfrak{a} \). Then \( \mathfrak{q}_{i_1} \cap \cdots \cap \mathfrak{q}_{i_m} \) is independent of the decomposition. 
+\end{proposition}
+\begin{proof}
+  \todo{To be written...}
+\end{proof}

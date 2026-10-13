@@ -1,0 +1,368 @@
+\hfill {\footnotesize \textit{Date: 26/02/2026 (Part 2)}}
+
+\section{Operations on Ideals---continued}
+In this lecture we continue the proof of \autoref{proposition:RhomtoR/a_is}.
+\begin{proof}[Proof of (ii)]
+    \((\Longrightarrow)\) Let \(\Phi\) be surjective. Then for \(i\), there exists \(x \in R\) such that 
+     \[
+    \Phi(x) = (0,\ldots, 0, 1+ \mathfrak{a}_i, 0, \ldots, 0).
+    \]
+    That means \(x + \mathfrak{a}_i = 1 + \mathfrak{a}_i\), which implies \(1 - x \in \mathfrak{a}_i\). And for \(i \neq j\),  \(x + \mathfrak{a}_i = 0 + \mathfrak{a_i}\), which implies \(x \in \mathfrak{a}_i\). Together they imply
+    \[
+        1 = (1 - x) + x \in \mathfrak{a}_i + \mathfrak{a}_j \implies (1) = \mathfrak{a}_i + \mathfrak{a}_j.
+    \]
+    Hence, \(\mathfrak{a}_i\) and \(\mathfrak{a}_j\) are coprime whenever \(i \neq j\).
+
+    \((\Longleftarrow)\) Assume \(\mathfrak{a}_i\) and \(\mathfrak{a}_j\) are coprime whenever \(i \neq j\). We have to show  \(\Phi\) is surjective. 
+
+    Let  \(y \in \prod_{i=1}^{n} (R/\mathfrak{a}_i)\). Then
+    \[
+    y = (y_1 + \mathfrak{a_1}, \ldots, y_n + \mathfrak{a}_n) = \sum_{i=1}^{n} (0, \ldots, 0, y_i + \mathfrak{a}_i, 0, \ldots, 0) = \sum_{i=1}^{n} \Phi(y_i) \cdot (0, \ldots, 0, 1 + \mathfrak{a}_i, 0, \ldots, 0)
+    \] for some \(y_1, \ldots, y_n \in R\). So it suffices to show, for example, that there is an element \(x_1 \in R\) such that  \(\Phi(x_1) = (1 + \mathfrak{a}_1, 0, \ldots, 0).\) 
+
+    For \(i > 1\),  \(\mathfrak{a}_1 + \mathfrak{a}_i = (1)\). So we there exists \(u_i \in \mathfrak{a}_1, v_i \in \mathfrak{a}_i\) such that \(u_i + v_i =1\) or  \(v_i = 1 - u_i\). Let 
+    \[
+        x_1 = \prod_{i=2}^{n} v_i =  \prod_{i=1}^{n} (1 - u_i) = 1 - \sum_{i=2}^{n} u_i + \cdots + (-1)^{n-1} \prod_{i=2}^{n} u_i.
+    \] 
+    Observe \(x_1 \in 1 + \mathfrak{a}_1\) because for each \(i\), \(u_i \in \mathfrak{a}_1\), so \(1 - u_i \in 1 + \mathfrak{a}_1\). And \(x_1 \in \mathfrak{a}_i\) for all \(i > 2\) because \(1 - u_i \in \mathfrak{a}_i\), so \(\prod_{i=2}^{n} u_i \in \mathfrak{a}_i\) for each \(i > 2\).
+
+Therefore, 
+\[
+\Phi(x_1) = (1 + \mathfrak{a}_1, 0, \ldots, 0)
+\] completing the proof.
+\end{proof}
+\begin{proof}[Proof of (iii)]
+It suffices to show that \(\ker \Phi = \bigcap_{i=1}^n \mathfrak{a}_i\), because \(\Phi\) is injective if and only if \(\ker \Phi = \{0\}\), so it follows that
+\(\Phi \text{ is injective } \iff \bigcap_{i=1}^n \mathfrak{a}_i = \{0\}.\)
+
+Suppose \(x \in \bigcap_{i=1}^n \mathfrak{a}_i\). Then \(x \in \mathfrak{a}_i\) for all \(i \in \{1, \dots, n\}\), hence \(x + \mathfrak{a}_i = 0 + \mathfrak{a}_i\) for each \(i\). Therefore,
+\[
+\Phi(x) = (x + \mathfrak{a}_1, x + \mathfrak{a}_2, \dots, x + \mathfrak{a}_n) = (0, 0, \ldots, 0),
+\]
+so \(x \in \ker \Phi\). Thus,
+\[
+\bigcap_{i=1}^n \mathfrak{a}_i \subseteq \ker \Phi.
+\]
+Now suppose \(x \in \ker \Phi\). Then \(\Phi(x) = (x + \mathfrak{a}_1, x + \mathfrak{a}_2, \dots, x + \mathfrak{a}_n) = (0, 0, \ldots, 0)\), so \(x + \mathfrak{a}_k = 0 + \mathfrak{a}_k\) for all \(k \in \{1, \dots, n\}\). Hence \(x \in \mathfrak{a}_k\) for all \(k\), i.e., \(x \in \bigcap_{i=1}^n \mathfrak{a}_i\). Therefore,
+\[
+\ker \Phi \subseteq \bigcap_{i=1}^n \mathfrak{a}_i.
+\]
+From these two inclusions, we have \(\ker \Phi = \bigcap_{i=1}^n \mathfrak{a}_i\).
+\end{proof}
+The \emph{union} \(\mathfrak{a} \cup \mathfrak{b}\) is not in general an ideal.
+\begin{proposition}\label{prop:primeavoidance}
+    \begin{enumerate}[label=\roman*), leftmargin=*]
+        \item \textbf{(Prime Avoidance Lemma).} Let \(\mathfrak{p}_1, \ldots, \mathfrak{p}_n\) be a finite collection of prime ideals, and let \(\mathfrak{a}\) be an ideal that is contain in \(\bigcup_{i=1}^n \mathfrak{p}_i\). Then  \(\mathfrak{a} \subseteq \mathfrak{p}_i\) for some \(i\).
+        \item Let \(\mathfrak{a}_1, \ldots, \mathfrak{a}_n\) be a finite collection of ideals in \(R\), and let  \(\mathfrak{p}\) be a prime ideal that contains \(\bigcap_{i=1}^n \mathfrak{a}_i\). Then \(\mathfrak{a}_i \subset \mathfrak{p}\) for some \(i \in \{1, \ldots, n\}\). Furthermore, if \(\bigcap_{i=1}^n \mathfrak{a}_i = \mathfrak{p}\), a prime ideal, then \(\mathfrak{a}_i = \mathfrak{p}\) for some \(i \in \{1, \ldots, n\}\).
+    \end{enumerate} 
+\end{proposition}
+\begin{proof}
+    \begin{enumerate}[label=\roman*), leftmargin=*]
+        \item We shall prove the contrapositive statement: if \(\mathfrak{a} \not\subseteq \mathfrak{p}_i\) for all \(i \in \{1, \ldots, n\}\), then \(\mathfrak{a} \not\subseteq \bigcup_{i=1}^n \mathfrak{p}_i\).
+
+        We use induction on \(n\).
+
+        \textbf{Base case: \(\mathbf{n=1}\).} If \(\mathfrak{a} \not\subseteq \mathfrak{p}_1\), then \(\mathfrak{a} \not\subseteq \bigcup_{i=1}^1 \mathfrak{p}_i\) is true trivially.
+
+        \textbf{Inductive step.} Assume the statement is true for \(n=k-1\), where \(k\ge 2\), and consider prime ideals
+\(\mathfrak{p}_1,\dots,\mathfrak{p}_k\) such that
+\[
+\mathfrak{a} \nsubseteq \mathfrak{p}_i \qquad \text{for all } i=1,\dots,k.
+\]
+We must show that
+\[
+\mathfrak{a} \nsubseteq \bigcup_{i=1}^k \mathfrak{p}_i.
+\]
+
+For each \(i\in\{1,\dots,k\}\), since
+\[
+\mathfrak{a} \nsubseteq \bigcup_{\substack{j=1\\ j\ne i}}^k \mathfrak{p}_j,
+\]
+by the inductive hypothesis there exists an element
+\[
+x_i \in \mathfrak{a} \setminus \bigcup_{\substack{j=1\\ j\ne i}}^k \mathfrak{p}_j.
+\]
+Thus \(x_i\notin \mathfrak{p}_j\) for all \(j\neq i\).
+
+If for some \(i\) we also have \(x_i\notin \mathfrak{p}_i\), then \(x_i\notin \bigcup_{i=1}^k \mathfrak{p}_i\), and we are done.
+
+So we may assume that
+\[
+x_i\in \mathfrak{p}_i \qquad \text{for all } i=1,\dots,k.
+\]
+
+Now define
+\[
+x=\sum_{i=1}^k x_1x_2\cdots x_{i-1}x_{i+1}\cdots x_k.
+\]
+Since each term is a product of elements of \(\mathfrak{a}\), and \(\mathfrak{a}\) is an ideal, each term lies in \(\mathfrak{a}\), hence
+\[
+x\in \mathfrak{a}.
+\]
+
+We claim that \(x\notin \mathfrak{p}_i\) for every \(i=1,\dots,k\). Suppose, for contradiction, that \(x\in \mathfrak{p}_r\) for some \(r\).
+For every summand of \(x\) except
+\[
+x_1\cdots x_{r-1}x_{r+1}\cdots x_k,
+\]
+the factor \(x_r\) appears, and since \(x_r\in P_r\), those summands lie in \(\mathfrak{p}_r\). Therefore,
+subtracting them from \(x\), we get
+\[
+x_1\cdots x_{r-1}x_{r+1}\cdots x_k \in \mathfrak{p}_r.
+\]
+Because \(\mathfrak{p}_r\) is prime, one of the factors must lie in \(\mathfrak{p}_r\). But for \(j\neq r\), we chose \(x_j\notin \mathfrak{p}_r\), a contradiction.
+
+Hence \(x\notin \mathfrak{p}_i\) for all \(i\), so
+\[
+x\notin \bigcup_{i=1}^k \mathfrak{p}_i.
+\]
+Since \(x\in \mathfrak{a}\), it follows that
+\[
+\mathfrak{a} \nsubseteq \bigcup_{i=1}^k \mathfrak{p}_i.
+\]
+This proves the contrapositive, and therefore proves (i).
+    \item We prove the statement by contraposition.
+
+Assume that
+\[
+\mathfrak{a}_i \nsubseteq \mathfrak p
+\qquad \text{for all } i\in \{1,\dots,n\}.
+\]
+We want to show that
+\[
+\bigcap_{i=1}^n \mathfrak{a}_i \nsubseteq \mathfrak p.
+\]
+
+For each \(i=1,\dots,n\), choose an element
+\[
+x_i\in \mathfrak{a}_i \setminus \mathfrak p.
+\]
+Since \(\mathfrak p\) is prime and none of the factors \(x_1,\dots,x_n\) lies in \(\mathfrak p\), it follows that
+\[
+x_1x_2\cdots x_n \notin \mathfrak p.
+\]
+
+On the other hand, for every \(i\in \{1,\dots,n\}\), we have \(x_i\in \mathfrak{a}_i\), and therefore
+\[
+x_1x_2\cdots x_n \in \mathfrak{a}_i
+\]
+because \(\mathfrak{a}_i\) is an ideal. Hence
+\[
+x_1x_2\cdots x_n \in \bigcap_{i=1}^n \mathfrak{a}_i.
+\]
+
+So we have found an element of \(\bigcap_{i=1}^n \mathfrak{a}_i\) which does not belong to \(\mathfrak p\). Therefore
+\[
+\bigcap_{i=1}^n \mathfrak{a}_i \nsubseteq \mathfrak p.
+\]
+This proves the contrapositive, and hence the original statement.
+
+For the ``furthermore'' part, notice that for each \( i \), \( \mathfrak{a}_i\) contains \( \mathfrak{p} \). By previous part, we have for some \( i \),  \( \mathfrak{a}_i \subseteq \mathfrak{p} \). Therefore, for that \( i \), we have 
+ \[
+\bigcap_{i = 1}^n \mathfrak{a}_i = \mathfrak{p}
+\]
+completing the proof.
+\end{enumerate}
+\end{proof}
+\begin{definition}[Ideal Quotient]
+    Suppose \(\mathfrak{a}\) and \(\mathfrak{b}\) are two ideals of a ring \(R\). The \emph{ideal quotient} is the set 
+    \[
+        (\mathfrak{a}: \mathfrak{b}) \coloneq \{x \in R  \mid \mathfrak{b} \cdot x \subseteq \mathfrak{a}\}.  
+    \] 
+\end{definition}
+It's straightforward to check that this is indeed an ideal of \(R\):
+
+ \(0 \in (\mathfrak{a}: \mathfrak{b})\) because \(\mathfrak{b} \cdot 0 = (0) \subseteq \mathfrak{a}\). Also, let \(x, y \in (\mathfrak{a}: \mathfrak{b})\). Then \(\mathfrak{b} \cdot x \subseteq \mathfrak{a}\) and \(\mathfrak{b} \cdot y \subseteq \mathfrak{a} \implies \mathfrak{b} \cdot (-y) \subseteq \mathfrak{a}\). So we have 
+ \[
+ \mathfrak{b} \cdot (x + (- y)) = \mathfrak{b} \cdot x + \mathfrak{b} \cdot (-y) \subseteq \mathfrak{a}.
+ \] 
+
+ Furthermore, let \(r \in R\) and  \(x \in (\mathfrak{a}: \mathfrak{b})\), then \(\mathfrak{b} \cdot x \subseteq \mathfrak{a}\). So, \(\mathfrak{b}\cdot rx = (\mathfrak{b}x) \cdot r \subseteq \mathfrak{a} \cdot r \subseteq \mathfrak{a}\). Therefore, \(\mathfrak{b} \cdot rx \subseteq \mathfrak{a}\), i.e., \(rx \in (\mathfrak{a}: \mathfrak{b})\).
+
+ In particular, \(((0): \mathfrak{b})\) is called the \emph{annihilator} of \(\mathfrak{b}\), and is also denoted by \(\text{Ann}(\mathfrak{b})\).
+
+\begin{proposition}
+    The set of all zero-divisors \(D\) of a ring \(R\) is the same as the union of the annihilators of principal ideals generated by non-zero elements.
+    \[
+        D = \bigcup_{x \in R \smallsetminus \{0\}} \text{Ann}((x))
+    \] 
+\end{proposition}
+\begin{proof}
+    Straightforward.    
+\end{proof}
+\begin{example}
+\end{example}
+\todo{To be written.}
+\subsubsection{\cite{AtiyahMacdonald} Exercise 1.12 (solved)}
+Question and solution to exercise 1.12 from \cite{AtiyahMacdonald}.
+\begin{exercise*}
+    \begin{enumerate}[label=\roman*)]
+        \item \(\mathfrak{a} \subseteq (\mathfrak{a}:\mathfrak{b})\),
+        \item \((\mathfrak{a}:\mathfrak{b}) \mathfrak{b} \subseteq \mathfrak{a}\),
+        \item \(\left((\mathfrak{a}:\mathfrak{b}): \mathfrak{c}\right) = (\mathfrak{a}:\mathfrak{bc}) = \left((\mathfrak{a}:\mathfrak{c}): \mathfrak{b}\right)\),
+        \item \(\left(\bigcap_{i} \mathfrak{a}_i: \mathfrak{b}\right) = \bigcap_{i} (\mathfrak{a}_i: \mathfrak{b})\),
+        \item \(\left(\mathfrak{a}: \sum_{i} \mathfrak{b}_i \right) = \bigcap_{i} (\mathfrak{a}: \mathfrak{b}_i)\).
+    \end{enumerate}
+\end{exercise*}
+\begin{proof}
+    \begin{enumerate}[label=\roman*)]
+        \item \(x \in \mathfrak{a}\). So \(\mathfrak{b} \cdot x \subseteq R \cdot x \subseteq \mathfrak{a}\), by definition of an ideal.  Therefore, \(x \in (\mathfrak{a}: \mathfrak{b})\).
+
+        \item Let  \(x \in (\mathfrak{a}: \mathfrak{b})\mathfrak{b}\). Then  \(x = \sum_{\alpha \in \mathcal{A}}x_\alpha y_\alpha\), where \(x_\alpha \in (\mathfrak{a}: \mathfrak{b})\) and \(y_\alpha \in \mathfrak{b}\). Since \(x_\alpha \cdot \mathfrak{b} \subseteq \mathfrak{a}\), we have \(x_\alpha y_\alpha \in \mathfrak{a}\) for each \(\alpha \in \mathcal{A}\). Therefore, \(x \in \mathfrak{a}\)
+
+        \item To be written...
+
+        \item \begin{align*}
+        &x \in \left(\bigcap_{i} \mathfrak{a}_i: \mathfrak{b}\right)\\
+        \Longleftrightarrow& x \cdot \mathfrak{b} \subseteq \bigcap_i \mathfrak{a}_i\\
+        \Longleftrightarrow& x \cdot \mathfrak{b} \subseteq \mathfrak{a}_i \text{ for all } i\\
+        \Longleftrightarrow& x \in (\mathfrak{a}_i : \mathfrak{b}) \text{ for all } i\\
+        \Longleftrightarrow& x \in  \bigcap_i (\mathfrak{a}_i: \mathfrak{b}) 
+    .\end{align*}
+        \item \todo{To be written...}
+    \end{enumerate}
+    \end{proof}
+\section{Radicals of an Ideal}
+\begin{definition}
+    Suppose \(\mathfrak{a}\) is an ideal in \(R\). The \emph{radical} of  \(\mathfrak{a}\) is defined as
+\[
+    r(\mathfrak{a}) \coloneq \{x \in R  \mid  x^n \in \mathfrak{a} \text{ for all } n > 0\}.
+\] 
+\end{definition}
+\begin{proposition}
+    Radical \(r(\mathfrak{a})\) of an ideal \(\mathfrak{a}\) is an ideal of \(R\).
+\end{proposition}
+\begin{proof}
+    Firstly, \(0 \in r(\mathfrak{a})\) since \(0^1 = 0 \in \mathfrak{a}\).
+
+    Let \(x, y \in r(\mathfrak{a})\). Then there exist non-negative integers \(m, n\) such that  \(x^m, y^n \in  \mathfrak{a}\). 
+
+    Observe, 
+    \[
+        (x + \mathfrak{a})^m \in 0 + \mathfrak{a} \text{ and } (y + \mathfrak{a})^n \in 0 + \mathfrak{a}.
+    \] 
+    So \(x + \mathfrak{a}, y + \mathfrak{a} \in \mathfrak{N}(R/\mathfrak{a})\). So \(x + y + \mathfrak{a} \in \mathfrak{N}(R/\mathfrak{a})\) since \(\mathfrak{N}(R/\mathfrak{a})\) is an ideal. So there exists non-negative integer \(k\) such that  \((x+y)^k + \mathfrak{a} = 0 + \mathfrak{a}\). Therefore, \((x+y)^k \in \mathfrak{a}\), implying \(x+y \in r(\mathfrak{a})\).
+\end{proof}
+\begin{proposition}\label{prop:radIdealInteofPrimes}
+    The radical of an ideal \( \mathfrak{a} \) is the intersection of all the prime ideals which contain \( \mathfrak{a} \).
+\end{proposition}
+\begin{proof}
+\todo{To be written...}
+\end{proof}
+Following lemma will be useful in future:
+\begin{lemma}\label{lem:radBigcap}
+     Let \( \mathfrak{a}_i \in R\) be ideals. Then
+     \[
+    \bigcap_{i=1}^n r(\mathfrak{a}_i) = r\left(\bigcap_{i=1}^n \mathfrak{a}_i \right)
+     \] 
+\end{lemma}
+    \begin{proof}
+        Let \( x \in \bigcap_{i=1}^n r(\mathfrak{a}_i) \). Then \( x^{m_i} \in \mathfrak{a}_i\) for \( m_i > 0 \). Then  \( x^{m_1 \cdots m_n} \in \mathfrak{a_i}\) for all \( i: 1 \le i \le n \). Hence,  \( x \in r\left(\bigcap_{i=1}^n \mathfrak{a}_i\right)\).
+
+        Converse direction is trivial.
+    \end{proof}
+\subsubsection{\cite{AtiyahMacdonald} Exercise 1.13 (solved)}
+\begin{exercise}
+    \todo{To be written...}
+\end{exercise}
+\section{Contraction \& Extension}
+For the rest of this section, suppose \(f: (A, +_A, \cdot_A) \longrightarrow (B, +_B, \cdot_B)\) is a ring homomorphism. We have following two definitions:
+\begin{definition}[Contraction]
+    If \(\mathfrak{b}\) is an ideal of \(B\), then  \(f^{-1}(\mathfrak{b})\) is always an ideal of \(A\). \( \mathfrak{b}^c \coloneq f^{-1}(\mathfrak{b}) \) is called the \emph{contraction}  of \(\mathfrak{b}\) with respect to \(f\).
+\end{definition}
+However, if \(\mathfrak{a}\) is an ideal in \(A\), the \(f(\mathfrak{a})\) -- the image of \(\mathfrak{a}\) under \(f\) is not always an ideal in  \(B\). For example, consider the embedding  \(\iota: \mathbb{Z} \hookrightarrow \mathbb{Q}\) of \(\mathbb{Z}\) in \(\mathbb{Q}\). Then \(\iota((2)) = \{\ldots, -4, -2, 0, 2, 4, \ldots\}\) is not an ideal in \(\mathbb{Q}\) as \(2 \in \iota((2))\) but  \(2 \times \frac{1}{2} = 1 \not\in \iota((2))\). 
+\begin{definition}
+    If \(\mathfrak{a}\) is an ideal in \(A\), then the ideal generated by  \(f(\mathfrak{a})\) in \(B\) is called the \emph{extension} of \(\mathfrak{a}\) with respect to \(f\), denoted by \(\mathfrak{a}^e\).
+\end{definition}
+Contraction of a prime ideal is always a prime ideal. But if \(\mathfrak{a}\) is prime, \(\mathfrak{a}^e\) need not to be prime. For example, \(\iota: \mathbb{Z} \hookrightarrow \mathbb{Q}\), \(\mathfrak{a} \neq 0\); then \(\mathfrak{a}^e = \mathbb{Q}\), which is not prime ideal by definition.
+
+\begin{proposition}\label{prop:contractextendprop}
+    Let \(f: A \longrightarrow B\) homomorphism as before and let \(\mathfrak{a} \subset A\) and  \(\mathfrak{b} \subset B\). Then 
+    \begin{enumerate}[label=\roman*.]
+         \item \(\mathfrak{a} \subseteq \mathfrak{a}^{ec}, \mathfrak{b} \supseteq \mathfrak{b}^{ce}\),
+         \item \(\mathfrak{b}^c = \mathfrak{b}^{cec}, \mathfrak{a}^e = \mathfrak{a}^{ece}\),
+     \item If \(C\) is the set of contracted ideals in  \(A\) and if  \(E\) is the set of extended ideals in  \(B\), then  \[C = \{\mathfrak{a}  \mid \mathfrak{a}^{ec} = \mathfrak{a}\}, E = \{\mathfrak{b}  \mid \mathfrak{b}^{ce} = \mathfrak{b}\},\] and \(\mathfrak{a} \mapsto \mathfrak{a}^e\) is a bijective map of \(C\) onto  \(E\), whose inverse is  \(\mathfrak{b} \mapsto \mathfrak{b}^c\).
+     \end{enumerate}   
+\end{proposition}
+\begin{proof}
+    \begin{enumerate}[label=\roman*.]
+        \item Firstly, let \(x \in \mathfrak{a}\), then \(f(x) \in f(\mathfrak{a})\), then \(1 \cdot f(x) \in (f(\mathfrak{a})) = \mathfrak{a}^e\), which implies \(x \in f^{-1}(\mathfrak{a}^e)\), i.e., \(x \in (\mathfrak{a}^e)^c\). Therefore, \(\mathfrak{a} \subseteq \mathfrak{a}^{ec}\).
+
+            Secondly, \((\mathfrak{b}^c) = (f^{-1}(\mathfrak{b}))\). So \(\mathfrak{b}^{ce}\) is the ideal generated by \(f(f^{-1}(\mathfrak{b}))\) in \(B\), and it contains  \(\mathfrak{b}\) as \(f(f^{-1}(\mathfrak{b})) \supseteq \mathfrak{b}\).
+        \item \(\mathfrak{b}^c\) and \(\mathfrak{a}^e\) are ideals in \(A\) and  \(B\) respectively. So the result follows from  \((i)\).
+        \item \todo{To be written...}
+    \end{enumerate}
+\end{proof}
+% \begin{letterchapter}{Spectrum of a Ring}
+%     This section was written based on \cite[Lecture~11]{BorcherdsComAlg}.
+%     \section{Motivation}
+%     Let \( X \) be a compact Hasudorff space. Let  \( R \coloneq C(X) \) be the ring of all continuous real-valued functions on  \( X \). So, given \( X \), we can construct  \( R \). And given  \( R \), can we go back, and construct  \( X \)? The answer is: yes!
+%     \begin{proof}[\( \mu \) is a homeomorphism]
+%         \begin{enumerate}
+%             \item \( \mu \) is surjective: Let \( \mathfrak{m} \) be a maximal ideal of \( C(X) \). We wish to prove that  \( \mathfrak{m} = \mathfrak{m}_x \) for some \( x \in X \). Define
+%                 \[
+%                 V(\mathfrak{m}) \coloneq \{ x \in X \mid f(x) = 0, \forall f \in \mathfrak{m}\}.
+%                 \]
+%             If \( V(\mathfrak{m}) \) is empty, then for each \( x \in X \), there exists  \( f_x \in \mathfrak{m} \) such that \( f_x(x) \neq 0 \). Since  \( f_x \) is continuous, there exists a neighborhood of  \( \mathcal{U}(x) \) such that \( f_x \) does not vanish on  \( \mathcal{U}(x) \). By compactness, \( X \) is the union of finitely many of these neighborhoods, say
+%              \[
+%                 X = \mathcal{U}(x_1) \cup \cdots \cup \mathcal{U}(x_n).
+%             \]
+%             Each corresponding \( f_{x_i} \) does not vanish on \( \mathcal{U}(x_i) \). So the sum
+%             \[
+%                 F = \sum_{i=1}^n f_{x_i}^2 \in \mathfrak{m}
+%             \]
+%             does not vanish on whole \( X \). So \( \mathfrak{\frac{1}{F}} \in C(X)\), therefore, \( \frac{1}{F} \cdot F = 1 \in \mathfrak{m} \), which is a contradiction. Hence, \( V(\mathfrak{m}) \) is not empty, so there exists \( x \in X \) such that  for all \( f(x) \in \mathfrak{m}\), we have \( f(x) = 0 \). So  \( \mathfrak{m} \subseteq \mathfrak{m}_x \). Since \( \mathfrak{m} \) is maximal, we indeed have \( \mathfrak{m} = \mathfrak{m}_x \), proving surjectivity of \( \mu \).
+%         \item \( \mu \) is injective: Let  \( x, y \in X \) with  \( x \neq y \). Since  \( X \) is Hausdorff,  \( \{ x \}, \{y\} \) are closed in \( X \). \( X \) is compact Hausdorff space, so \( X \) is normal. By Urysohn's lemma, there exists a continuous function \( f: X \to [0,1] \) such that  \( f(x) = 0 \), and  \( f(y) = y \). Hence,  \( f \in \mathfrak{m}_x \), but \( f \neq \mathfrak{m}_y \), which implies
+%              \[
+%             \mu(x) = \mathfrak{m}_x \neq \mathfrak{m}_y = \mu(y).
+%             \]
+%             So \( \mu \) is injective.
+%         \item
+%         \end{enumerate}
+%     \end{proof}
+%     \begin{definition}[Spectrum of a Ring]
+%     \emph{Prime spectrum} or simply \emph{spectrum of a ring} \( R \) is the set of all prime ideal of  \( R \). It is denoted by  \( \Spec(R) \).
+%     \end{definition}
+%     We can define a topology\footnote{If you are not familiar with the notion of topology, please refer to \cite[Lecture~01, 03]{IvanTop}} on \( \Spec(R) \).
+%     \begin{definition}[Zariski Topology]
+%         Let \( R \) be a ring. For each subset \( E \) of  \( R \), the set
+%          \[
+%              V(E) \coloneq \{\mathfrak{p} \subset R \text{ prime} \mid E \subseteq \mathfrak{p}\}.
+%         \]
+%         is defined to be closed in \( \Spec(R) \). Then the resulting topology is called the  \emph{Zariski topology}.
+%     \end{definition}
+%     \begin{proof}[Well-definedness of the topology]
+%          We will now verify that the collection of \( V(E) \)'s indeed satisfy the definition of topology:
+%          \begin{enumerate}
+%              \item \( \varnothing \) and  \( \Spec(R) \)  are in the collection because \( V(R) = \varnothing \) and \( V({0}) = \Spec (R)\).
+%             \item Let \( \{V(E_\alpha)\} \) be an arbitrary collection of closed subsets in \( \Spec(R) \), then we want to show that
+%                  \[
+%                     \bigcap_{\alpha} V(E_\alpha) = V\left(\bigcup_{\alpha} E_\alpha \right).
+%                 \]
+%                 Take \( \mathfrak{a} \in \bigcap_{\alpha} V(E_\alpha)\). Then \( \mathfrak{a} \) contains all the \( E_\alpha \)'s, and so \( \bigcup_{\alpha} E_\alpha \) as well. Therefore, \( \mathfrak{a} \in V\left(\bigcup_{\alpha} E_\alpha\right) \)
+%
+%                 Conversely, take \( \mathfrak{b} \in V\left(\bigcup_{\alpha} E_\alpha \right) \). Then \( \bigcup_{\alpha} E_\alpha \subseteq \mathfrak{b} \), and so \( E_\alpha \subseteq \mathfrak{b}\) for all \( \alpha \). Therefore,  \( \mathfrak{b} \in \bigcap_{\alpha} V(E_\alpha)  \).
+%
+%                 So,
+%                 \[
+%                 \bigcap_{\alpha} V(E_\alpha) = V\left(\bigcup_{\alpha} E_\alpha \right) \in \Spec(R).
+%                 \]
+%             \item Let \( \{V(E_i)\}_{i=1}^n \) be a finite collection of closed sets in \( \Spec(R) \). We want to show that
+%                  \[
+%                      \bigcup_{i=1}^n V(E_i) = V\left(\prod_{i=1}^nE_i\right),
+%                 \]
+%                 where \( \prod_{i=1}^nE_i \) is the set of all products of the type  \( e_1 \cdots e_n \) with \( e_i \in E_i \).
+%
+%                 Let  \( \mathfrak{a} \in \bigcup_{i=1}^n V(E_i) \). Then \( E_i \in \mathfrak{a} \) for some \( i \). Since  \( \mathfrak{a} \) is an ideal, for all \( e = e_1 \cdots e_i \cdots e_n \in \prod_{i=1}^n E_i \), we have \( e \in  \mathfrak{a}\). So \( \prod_{i=1}^n E_i \subseteq \mathfrak{a} \), implying \( \mathfrak{a} \in V\left(\prod_{i=1}^n E_i\right) \).
+%
+%
+%          \end{enumerate}
+%     \end{proof}
+%     \begin{proposition}
+%         The sets
+%         \[
+%             D(f) \coloneq \{\mathfrak{p} \subset R \text{ prime} \mid f \not\in \mathfrak{p}\}
+%              \]
+%         for each \( f \in R \) forms basis for \( \Spec(R) \).
+%     \end{proposition}
+% \end{letterchapter}

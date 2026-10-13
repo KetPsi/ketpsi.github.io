@@ -1,0 +1,327 @@
+\chapter{Lecture 05}\label{section:lec05pt1}
+\hfill {\footnotesize \textit{Date: 25/02/2026 (Part 1)}}
+\section{Operations on Ideals}
+We can define various operations on ideals:
+\begin{definition}[Sum of two ideals]
+    Suppose \(\mathfrak{a}\) and \(\mathfrak{b}\) are ideals in a ring \(R\). Their \emph{sum} \(\mathfrak{a}+\mathfrak{b}\) is defined as
+    \[
+        \mathfrak{a} + \mathfrak{b} := \{a + b \mid a \in \mathfrak{a}, b\in \mathfrak{b}\}.
+    \]
+\end{definition}
+It is very easy to check that \(\mathfrak{a} + \mathfrak{b}\) is an ideal:
+
+    Firstly, \(0 \in \mathfrak{a}\) and \(0 \in \mathfrak{b}\). So, \(0+0 = 0 \in \mathfrak{a} + \mathfrak{b}\). Let \(a_1 + b_1, a_2+b_2 \in \mathfrak{a} + \mathfrak{b}\) with \(a_1, a_2 \in \mathfrak{a}\) and \(b_1, b_2 \in \mathfrak{b}\). Then \((a_1 - a_2) \in \mathfrak{a}\) and \((b_1-b_2) \in \mathfrak{b}\). So it follows that 
+        \[(a_1 + b_1) - (a_2+b_2) = (a_1 - a_2) + (b_1 - b_2) \in \mathfrak{a} + \mathfrak{b}, \] Therefore,  \(\mathfrak{a} + \mathfrak{b}\) is a subgroup of \(R\). 
+
+    Furthermore, if \(a + b \in \mathfrak{a} + \mathfrak{b}\) with \(a \in \mathfrak{a}\) and \(b \in \mathfrak{b}\), then for any \(r \in R\), we have \(ra \in \mathfrak{a}\) and \(rb \in \mathfrak{b}\), which implies \(rx + ry = r(x+y) \in \mathfrak{a} + \mathfrak{b}\). So, \(\mathfrak{a} + \mathfrak{b}\) is closed under multiplication by ring elements.
+    \begin{example}\label{example:mplusnequalgcd}
+    Consider the ring \((\mathbb{Z}, +, \times)\). Then \((m) + (n) = \text{gcd(m, n)}\).
+
+    To prove that, let \(d = (\text{gcd}(m,n))\). Since \(d | m, n\), therefore, \(d | mx + ny\) for all \(x, y \in \mathbb{Z}\). So \[(m) + (n) = \{mx + ny \mid x, y \in \mathbb{Z}\} \subseteq (d).\]
+    Conversely, take \(x \in (d)\). Then \(x = dk\) for some \(m \in \mathbb{Z}\). By Bezout's identity, there exists \(x, y \in \mathbb{Z}\) such that \[d = mx + ny \implies dk = m(xk) + n(yk) \in (m)+(n).\]
+    Hence, \((d) \subseteq (m) + (n)\), completing the proof.
+\end{example}
+\begin{proposition}
+    \(\mathfrak{a}+\mathfrak{b}\) is the smallest ideal that contains both \(\mathfrak{a}\) and \(\mathfrak{b}\).
+\end{proposition}
+\begin{proof}
+    We want to show that if \(\mathfrak{c}\) is an ideal containing both \(\mathfrak{a}\) and \(\mathfrak{b}\), then \(\mathfrak{c}\) contains \(\mathfrak{a}+\mathfrak{b}\).
+
+    Take \(a + b \in \mathfrak{a} + \mathfrak{b}\) with \(a \in \mathfrak{a}\) and \(b \in \mathfrak{b}\). Then \(a \in \mathfrak{a} \subseteq \mathfrak{c}\) and \(b \in \mathfrak{b} \subseteq \mathfrak{c}\). Since \(\mathfrak{c}\) is an ideal, we have \(a+b \in \mathfrak{c}\), implying, \(\mathfrak{c}\) contains \(\mathfrak{a}+\mathfrak{b}\).
+\end{proof}
+More generally, we can define the following:
+\begin{definition}[Sum of a collection of ideals]
+    Let \(\{\mathfrak{a}_\alpha\}_{\alpha \in \mathcal{A}}\) be an arbitrary collection of ideals in \(R\). We can define the \emph{sum}
+    \[\sum_{\alpha \in \mathcal{A}} \mathfrak{a}_\alpha \coloneq \left\{\sum_{\alpha \in \mathcal{A}} a_\alpha \mid a_\alpha \in \mathfrak{a}_\alpha \text{ and } a_\alpha = 0 \text{ for all but finitely many } \alpha \in \mathcal{A}\right\}.\]
+\end{definition}
+It is straightforward to check that this is indeed an ideal, and that it is the smallest ideal of \(R\) that contains \(\mathfrak{a}_\alpha\) for all \(\alpha \in \mathcal{A}\).
+\begin{remark}
+In this definition, we allowed only finitely many terms to be nonzero; because no topology has been defined on the set of ideals, so we cannot discuss the convergence of an infinite sum.
+\end{remark}
+
+\begin{definition}[Interseciton]
+    Let \(\{\mathfrak{a}_\alpha\}_{\alpha \in \mathcal{A}}\) be an arbitrary collection of ideals in \(R\). Then \emph{intersection} \[\bigcap_{\alpha \in \mathcal{A}}\mathfrak{a}_\alpha\] is also an ideal.
+\end{definition}
+The proof that \(\bigcap_{\alpha \in \mathcal{A}}\mathfrak{a}_\alpha\) is an ideal is very straightforward:
+
+Firstly, for all \(\alpha \in \mathcal{A}\), \(0 \in \mathfrak{a}_\alpha\), so \(0 \in \bigcap_{\alpha \in \mathcal{A}}\mathfrak{a}_\alpha\). Moreover, take \(x, y \in \bigcap_{\alpha \in \mathcal{A}}\mathfrak{a}_\alpha\). Then for all for all \(\alpha \in \mathcal{A}\), \(x, y \in \mathfrak{a}_\alpha\), implying \(x-y \in \mathfrak{a}_\alpha\). Hence, \(x-y \in \bigcap_{\alpha \in \mathcal{A}} \mathfrak{a}_{\alpha}\).
+
+Furthermore, suppose \(r \in R\), and \(x \in \bigcap_{\alpha \in \mathcal{A}} \mathfrak{a}_{\alpha}\). Then for all \(\alpha \in \mathcal{A}, x \in \mathfrak{a}_\alpha\), implying \(rx \in \mathfrak{a}_\alpha\). Thus \(rx \in \bigcap_{\alpha \in \mathcal{A}} \mathfrak{a}_{\alpha}\).
+
+\begin{example}\label{mcapnequalslcm}
+    Again, consider the ring \((\mathbb{Z}, +, \times)\). \((m) \cap (n) = (\text{lcm}(m, n))\).
+
+    To show that, let \(l = \text{lcm}(m, n)\). Since \(l\) is multiple of both \(m, n\), we have \((l) \subseteq (m)\) and \((l) \subseteq (n)\). Hence, \(l \subseteq (m) \cap (n)\).
+
+    Conversely, let \(k \in (m) \cap (n)\). Then \(m\) and \(n\) both divides \(k\).
+    \begin{claim}
+        If \(m | k\) and \(n | k\), then \(l = \text{lcm}(m,n) | k\). 
+    \end{claim}
+    \begin{proof}
+        Write the prime factorizations
+\[
+m=\prod P_i^{a_i}, 
+\quad 
+n=\prod P_i^{b_i}, 
+\quad 
+k=\prod P_i^{c_i}.
+\]
+Since $m |k$ and $n | k$, we have $a_i \le c_i$ and $b_i \le c_i$ for all $i$.
+Thus
+\[
+\operatorname{lcm}(m,n)=\prod P_i^{\max(a_i,b_i)}.
+\]
+Because $\max(a_i,b_i)\le c_i$ for all $i$, it follows that
+\[
+\operatorname{lcm}(m,n)| k.
+\]
+    \end{proof}
+    So \(\text{lcm}(m,n) | k\), which implies \(k \in (\text{lcm}(m,n))\). So \((m)\cap (n) \subseteq (l)\).
+
+    Therefore, \((m) \cap (n) = (l) = (\text{lcm}(m,n))\).
+\end{example}
+\begin{definition}[Product of Two Ideals]
+    Suppose \(\mathfrak{a}, \mathfrak{b}\) are two ideals in \(R\). Then their \emph{product} \(\mathfrak{a}\mathfrak{b}\) is defined as \[\mathfrak{a}\mathfrak{b} \coloneq \left\{\sum_{\alpha \in \mathcal{A}} a_\alpha b_\alpha \mid a_\alpha \in \mathfrak{a}, b_\alpha \in \mathfrak{b} \text{ and } a_\alpha b_\alpha = 0 \text{ for all but finitely many } \alpha \in \mathcal{A} \right\}.\]
+\end{definition}
+We now check that \(\mathfrak{a}\mathfrak{b}\) is indeed an ideal: 
+
+Firstly, \(0 \in \mathfrak{a}\) and \(0 \in \mathfrak{b}\). So \(0 \cdot 0 = 0 \in \mathfrak{a}\mathfrak{b}\). Moreover, suppose \(\sum_{\alpha \in \mathcal{A}} a_\alpha b_\alpha, \sum_{\beta \in \mathcal{B}} a_\beta' b_\beta' \in \mathfrak{ab}\) where \(a_\alpha, a_\beta' \in \mathfrak{a}\) and \(b_\alpha, b_\beta' \in \mathfrak{b}\), and let \(\mathcal{C} = \mathcal{A} \sqcup \mathcal{B}\) be the \href{https://math.stackexchange.com/questions/1631396/what-is-the-difference-between-disjoint-union-and-union}{disjoint union} of \(\mathcal{A}, \mathcal{B}\).
+
+Then \[
+    \sum_{\alpha \in \mathcal{A}} a_\alpha b_\alpha - \sum_{\beta \in \mathcal{B}} a_\beta' b_\beta' = \sum_{\alpha \in \mathcal{A}} a_\alpha b_\alpha + \sum_{\beta \in \mathcal{B}} (-a_\beta') b_\beta' = \sum_{\gamma \in \mathcal{C}} a_\gamma'' b_\gamma'',
+\]
+where \(a_\gamma'' = \begin{cases}
+    a_\alpha &\text{if } \gamma \in \mathcal{A}\\
+    -a_\beta' &\text{if } \gamma \in \mathcal{B}
+\end{cases}\) and \(b_\gamma'' = \begin{cases}
+    b_\alpha &\text{if } \gamma \in \mathcal{A}\\
+    b_\beta' &\text{if } \gamma \in \mathcal{B}
+\end{cases}\). And clearly, \(a_\gamma'' \in \mathfrak{a}\) and \(b_\gamma'' \in \mathfrak{b}\), and \(a_\gamma''b_\gamma'' = 0\) for all but finitely many  \(\gamma \in \mathcal{C}\).
+
+Furthermore, suppose \(r \in R\), and \(\sum_{\alpha \in \mathcal{A}} a_\alpha b_\alpha \in \mathfrak{ab}\) with \(a_\alpha \in  \mathfrak{a}, b_\alpha \in \mathfrak{b}\). Then \(ra_\alpha \in  \mathfrak{a}\) as well. Since the sum is finite, we can use repeated distributive law of ring \(R\) to write 
+\[
+    r \left(\sum_{\alpha \in \mathcal{A}} a_\alpha b_\alpha\right) = \sum_{\alpha \in \mathcal{a}} r (a_\alpha b_\alpha) =  \sum_{\alpha \in \mathcal{a}} (r a_\alpha) b_\alpha, \text{ where } ra_\alpha \in \mathfrak{a}, b_\alpha \in \mathfrak{b}.
+\]
+
+This definition can be generalised to finitely many ideals:
+\begin{definition}[Product of Finitely Many Ideals]
+    Suppose \(\{\mathfrak{a}_1, \cdots, \mathfrak{a}_n\}\) is a finite collection of ideals in a ring \(R\). Then
+    \[
+        \mathfrak{a_1}\cdots \mathfrak{a}_n \coloneq  \left\{\sum_{\alpha \in \mathcal{A}} a_{1_\alpha }\cdots a_{n_\alpha } \mid a_{k_\alpha } \in \mathfrak{a}_k \text{ and } a_{1_\alpha }\cdots a_{n_\alpha } = 0 \text{ for all but finitely many } \alpha \in \mathcal{A} \right\}.
+        \]
+\end{definition}
+Multiplication distributes over sum. 
+\begin{lemma}[Distributivity for Product and sum] 
+\(\mathfrak{c} (\mathfrak{a} + \mathfrak{b}) = \mathfrak{c}\mathfrak{a} + \mathfrak{cb}\) for ideals \(\mathfrak{a}, \mathfrak{b}, \mathfrak{c}\) in ring \(R\).
+\end{lemma}
+\begin{proof}
+    Suppose \(x \in \mathfrak{c}(\mathfrak{a}+\mathfrak{b})\) Then \(x = \sum_{\alpha \in \mathcal{A}} c_\alpha (a_\alpha + b_\alpha)\) where \(a_\alpha \in \mathfrak{a}, b_\alpha \in \mathfrak{b}, c_\alpha \in \mathfrak{c}\)
+    \[
+        x = \sum_{\alpha \in \mathcal{A}} c_\alpha (a_\alpha + b_\alpha) = \sum_{\alpha \in \mathcal{A}} (c_\alpha a_\alpha + c_\alpha b_\alpha) = \sum_{\alpha \in \mathcal{A}} c_\alpha a_\alpha +  \sum_{\alpha \in \mathcal{A}} c_\alpha b_\alpha \in \mathfrak{ca}+ \mathfrak{cb}.
+    \]
+    (Note, we could use distributive law and split the sum because we are working with finite summands.)
+
+    Therefore, \(\mathfrak{c} (\mathfrak{a} + \mathfrak{b}) \subseteq \mathfrak{c}\mathfrak{a} + \mathfrak{cb}\).
+
+    The other inclusion could be proved similarly. 
+\end{proof}
+However, intersection does not distribute over sum in general. Best we have in this direction is the following:
+\begin{lemma}[Modular Law for Intersection and Sum] 
+    \(\mathfrak{c} \cap (\mathfrak{a} + \mathfrak{b}) = \mathfrak{c} \cap \mathfrak{a} + \mathfrak{c} \cap \mathfrak{b}\) for ideals \(\mathfrak{a}, \mathfrak{b}, \mathfrak{c}\) in ring \(R\) if \(\mathfrak{a} \subseteq \mathfrak{c}\) or \(\mathfrak{b} \subseteq \mathfrak{c}\) or 
+\end{lemma}
+\begin{proof}
+    Given \(\mathfrak{a} \subseteq \mathfrak{c}\) or \(\mathfrak{b} \subseteq \mathfrak{c}\) is true. Without loss of generality, suppose  \(\mathfrak{a} \subseteq \mathfrak{c}\) is true.
+
+    Let \(x \in \mathfrak{c}  \cap (\mathfrak{b} + \mathfrak{c})\). Then \(x \in \mathfrak{c}\) and \(x \in \mathfrak{a} + \mathfrak{b}\). Then \(x = a + b\) for some  \(a \in \mathfrak{a}\) and \(b \in \mathfrak{b}\). Since \(\mathfrak{a} \subseteq \mathfrak{c}\), we have \(a \in \mathfrak{c}\). So \(b = (a+b) - a \in \mathfrak{c}\) as we already had \(x = a+b \in \mathfrak{c}\). Ultimately we have, \(a \in \mathfrak{c} \cap \mathfrak{a}\) and \(b \in \mathfrak{c} \cap \mathfrak{b}\). Therefore, \(a + b \in \mathfrak{c} \cap \mathfrak{a} + \mathfrak{c} \cap \mathfrak{b}\). So we have proven  \(\mathfrak{c} \cap (\mathfrak{a} + \mathfrak{b}) \subseteq \mathfrak{c} \cap \mathfrak{a} + \mathfrak{c} \cap \mathfrak{b}\).
+
+    To show the other inclusion, let \(x \in \mathfrak{c} \cap \mathfrak{a} + \mathfrak{c} \cap \mathfrak{b}\). Then \(x = a + b\) for some  \(a \in \mathfrak{c} \cap \mathfrak{a}\) and \(b \in \mathfrak{c} \cap \mathfrak{b}\). That means \(a, b \in \mathfrak{c}\) and \(a \in \mathfrak{a}\) and \(b \in \mathfrak{b}\). So \(a + b \in \mathfrak{c}\) and \(a + b \in \mathfrak{a} + \mathfrak{b}\). So \(x =  a+b  \in \mathfrak{c} \cap \mathfrak{(\mathfrak{a}+\mathfrak{b})}\), proving \(\mathfrak{c} \cap (\mathfrak{a} + \mathfrak{b}) \supseteq \mathfrak{c} \cap \mathfrak{a} + \mathfrak{c} \cap \mathfrak{b}\).
+\end{proof}
+However, intersection does distribute over sum in \(\mathbb{Z}\) unconditionally.
+\begin{exercise}\label{exercise:gcdlcmidentity2}
+    Show that \(\mathfrak{c} \cap (\mathfrak{a} + \mathfrak{b}) = \mathfrak{c} \cap \mathfrak{a} + \mathfrak{c} \cap \mathfrak{b}\) for ideals \(\mathfrak{a}, \mathfrak{b}, \mathfrak{c}\) in ring \(\mathbb{Z}\).
+\end{exercise}
+\begin{proof}
+    Since all the ideals in \(\mathbb{Z}\) are principle, \(\mathfrak{a}=(m), \mathfrak{b} = (n), \mathfrak{c} = (k)\) for some \(m,n,k \in \mathbb{Z}\)
+
+    Using \autoref{example:mplusnequalgcd} and \autoref{mcapnequalslcm} we can reduce problem to proving the equality of ideals \[
+        (\text{lcm}(k, \text{gcd}(m,n))) = (\text{gcd}(\text{lcm}(k, m)), \text{lcm}(k, n)),
+    \] which further reduce the problem to showing the equality 
+    \begin{equation}\label{equation:gcdlcmidentity}
+        \text{lcm}(k, \text{gcd}(m,n)) = \text{gcd}(\text{lcm}(k, m)), \text{lcm}(k, n)
+    \end{equation}
+    So, for each prime \(P\), if exponent of \(P\) in the prime factorisation of both sides are equal, then we are done. We now compare exponents of primes on both sides of \autoref{equation:gcdlcmidentity}:
+
+    Let prime factorisation of \(m,n,k\) as follows:
+     \[
+         m = \prod_{P \text{ prime}} P^\alpha, \quad n = \prod_{P \text{ prime}} P^\beta, \quad k = \prod_{P \text{ prime}} P^\gamma, \quad \text{where } \alpha, \beta, \gamma \text{ are on-negative integers}.
+    \]
+    
+    For a particular prime \(P\), let exponent of  \(P\) in \(m,n,k\) are  \(\alpha, \beta, \gamma\) respectively. Then
+    exponent of prime \(P\) on the left-side is:  \[\max\{\gamma, \text{gcd}(m,n)\} = \max\{\gamma, \min\{\alpha,\beta\}\}.\]
+    Similarly, exponent of prime \(P\) on the right-side is:
+     \[
+         \min\{\max\{\gamma, \alpha\}, \max\{\gamma, \beta\}\}.
+    \]
+    We claim that both exponents are are indeed equal:
+       \begin{claim}
+           \(\max\{\gamma, \min\{\alpha,\beta\}\} = \min\{\max\{\gamma, \alpha\}, \max\{\gamma, \beta\}\}\).
+       \end{claim}
+       \begin{proof}[Proof of claim]
+           Assume without loss of generality that \(\alpha \le \beta\).
+           Then \(\min\{\alpha,\beta\}=\alpha\). So left-hand side becomes: \(\max\{\gamma,\alpha\}\)
+
+           For the right-side, since \(\alpha \le \beta, \max\{\gamma,\alpha\} \le \max\{\gamma,\beta)\}.\)
+       Therefore, \(\min(\max\{\gamma,\alpha\},\max\{\gamma,\beta)\} = \max\{\gamma,\alpha\}\). Thus both sides are equal.
+       \end{proof}
+       Therefore, \(\max\{\gamma, \min\{\alpha,\beta\}\} = \min\{\max\{\gamma, \alpha\}, \max\{\gamma, \beta\}\}\), which completes the proof.
+\end{proof}
+\begin{proposition}\label{proposition:aplusbtimesacapbinab}
+    Suppose \(\mathfrak{a}\) and \(\mathfrak{b}\) are ideals in \(R\). Then  \((\mathfrak{a} + \mathfrak{b})  (\mathfrak{a} \cap \mathfrak{b}) \subseteq \mathfrak{a} \mathfrak{b}\).
+\end{proposition}
+\begin{proof}
+    Let $x \in (\mathfrak{a} + \mathfrak{b})(\mathfrak{a} \cap \mathfrak{b})$. Then
+\[
+x = \sum_{\alpha \in A} x_\alpha y_\alpha,
+\]
+where $x_\alpha \in \mathfrak{a} + \mathfrak{b}$ and 
+$y_\alpha \in \mathfrak{a} \cap \mathfrak{b}$.
+
+Since $y_\alpha \in \mathfrak{a} \cap \mathfrak{b}$, we have \(y_\alpha \in \mathfrak{a} \text{ and } y_\alpha \in \mathfrak{b}.\)
+
+Also, because $x_\alpha \in \mathfrak{a} + \mathfrak{b}$, we may write \(x_\alpha = x_\alpha^{\mathfrak{a}} + x_\alpha^{\mathfrak{b}}\), where $x_\alpha^{\mathfrak{a}} \in \mathfrak{a}$ and
+$x_\alpha^{\mathfrak{b}} \in \mathfrak{b}$. Thus,
+\[
+x
+= \sum_{\alpha \in A}
+(x_\alpha^{\mathfrak{a}} + x_\alpha^{\mathfrak{b}}) y_\alpha
+= \sum_{\alpha \in A} x_\alpha^{\mathfrak{a}} y_\alpha
++ \sum_{\alpha \in A} x_\alpha^{\mathfrak{b}} y_\alpha.
+\]
+
+Since $x_\alpha^{\mathfrak{a}} \in \mathfrak{a}$ and $y_\alpha \in \mathfrak{b}$,
+we have $x_\alpha^{\mathfrak{a}} y_\alpha \in \mathfrak{a}\mathfrak{b}$.
+Similarly, $x_\alpha^{\mathfrak{b}} \in \mathfrak{b}$ and $y_\alpha \in \mathfrak{a}$,
+so $x_\alpha^{\mathfrak{b}} y_\alpha \in \mathfrak{a}\mathfrak{b}$.
+
+Hence each term lies in $\mathfrak{a}\mathfrak{b}$, and therefore \(x \in \mathfrak{a}\mathfrak{b}.\)
+\end{proof}
+
+Again, for in \(\mathbb{Z}\), the above statement holds true in both direction, which can be proven easily using similar arguments as \autoref{exercise:gcdlcmidentity2}.
+
+Moving on, notice, if \(m, n \in \mathbb{Z}\) are coprime, then using \autoref{example:mplusnequalgcd}, we can conclude that  \((m) + (n) = (1) = \mathbb{Z}\). We generalise this statement for any ring  \(R\), and give the following definition:
+\begin{definition}[Coprimality of Two Ideals]
+Two ideals \(\mathfrak{a, b}\) in \(R\) are said to be \emph{coprime} to each other if \(\mathfrak{a}+\mathfrak{b} = (1)\)
+\end{definition}
+If \(\mathfrak{a}, \mathfrak{b}\) are coprime, then it will happen that there exists \(a \in \mathfrak{a}\) and \(b \in \mathfrak{b}\) such that \(a+b = 1\).
+\begin{definition}[Direct Product of Rings]
+    Suppose \(A_1, A_2, \ldots, A_n\) are all commutative rings with multiplicative identities. Then their \emph{direct product} \[
+        A = \prod_{i=1}^n A_i
+    \] is the set of all sequences \(x = (x_1, \ldots, x_n)\) with \(x_i \in A_i\). 
+     \(A\) is a commutative unital ring with pointwise addition and multiplication. 
+\end{definition}
+We have projections \(\pi_i: A \longrightarrow A_i\) defined by \(\pi_i(x) =x_i\); they are ring homomorphisms.
+\begin{proposition}\label{proposition:RhomtoR/a_is}
+    Let \(R\) be a ring and  \(\mathfrak{a}_1, \mathfrak{a}_2, \ldots, \mathfrak{a}_n\) ideals of \(R\). Define homomorphism  \[
+    \Phi: R \longrightarrow \prod_{i=1}^{n} (R/\mathfrak{a}_i)
+    \]  by the rule \(\Phi(x) = (x+\mathfrak{a}_1, \ldots, x+\mathfrak{a}_n)\). Then
+    \begin{enumerate}[label=\roman*.]
+        \item If \(\mathfrak{a}_i, \mathfrak{a}_j\) are coprime whenever \(i \neq j\), then the product \(\mathfrak{a}_1 \cdots \mathfrak{a}_n = \bigcap_{i=1}^n \mathfrak{a}_i\).
+        \item \(\Phi\) is surjective if and only if \(\mathfrak{a}_i\) and \(\mathfrak{a}_j\) are coprime whenever \(i \neq j\).
+        \item  \(\Phi\) is injective if and only if \(\bigcap_{i=1}^n \mathfrak{a}_i = (0)\).
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (i)]
+We use induction on $n$.
+
+\textbf{Base case: $\mathbf{n=2}$.}  
+Suppose $\mathfrak{a}$ and $\mathfrak{b}$ are coprime, i.e. \(\mathfrak{a} + \mathfrak{b} = R\). Then there exist $x \in \mathfrak{a}$ and $y \in \mathfrak{b}$ such that \(x + y = 1\).
+
+First, $\mathfrak{a}\mathfrak{b} \subseteq \mathfrak{a} \cap \mathfrak{b}$, since if
+\[
+z = \sum_{\alpha} x_\alpha y_\alpha \in \mathfrak{ab}
+\quad (x_\alpha \in \mathfrak{a},\; y_\alpha \in \mathfrak{b}),
+\]
+then each $x_\alpha y_\alpha \in \mathfrak{a}$ and in $\mathfrak{b}$, hence
+$z \in \mathfrak{a} \cap \mathfrak{b}$.
+
+Conversely, 
+\((\mathfrak{a} + \mathfrak{b})(\mathfrak{a} \cap \mathfrak{b}) \subseteq \mathfrak{a}\mathfrak{b},\) in general using \autoref{proposition:aplusbtimesacapbinab}. And since $\mathfrak{a} + \mathfrak{b} = (1) = R$, we obtain \(R(\mathfrak{a} \cap \mathfrak{b}) \subseteq \mathfrak{a} \cap \mathfrak{b} \subseteq \mathfrak{a}\mathfrak{b}.\)
+Thus,
+\[
+\mathfrak{a} \cap \mathfrak{b} = \mathfrak{a}\mathfrak{b}.
+\]
+
+\textbf{Induction step.}  
+Assume the state be true for some \(k \ge 2\). We want to show that the statement is also true for \(n = k+1\).
+
+Suppose $\mathfrak{a}_1, \dots, \mathfrak{a}_{k+1}$ are pairwise coprime.
+
+By the induction hypothesis,
+\[
+    \mathfrak{a}_1 \cdots \mathfrak{a}_k
+=
+\bigcap_{i=1}^{k} \mathfrak{a}_i.
+\]
+
+It suffices to show that
+\[
+\left( \bigcap_{i=1}^{k} \mathfrak{a}_i \right)
+\quad \text{and} \quad
+\mathfrak{a}_{k+1}
+\]
+are coprime.
+
+Since each $\mathfrak{a}_i$ is coprime with $\mathfrak{a}_{k+1}$, for each
+$i=1,\dots,k$ there exist \(x_i \in \mathfrak{a}_i, y_i \in \mathfrak{a}_{k+1}\)
+such that \(x_i + y_i = 1\).
+
+Consider
+\[
+x := x_1 x_2 \cdots x_k
+\in
+\prod_{i=1}^{k} \mathfrak{a}_i.
+\]
+
+Since $x_i = 1 - y_i$, we have
+\[
+x
+=
+\prod_{i=1}^{k} (1 - y_i)
+=
+1 + y,
+\]
+where $y = -(y_1 + \cdots + y_k) + \sum_{1 \le i < j \le k} y_iy_j + \cdots (-1)^k y_1\cdots y_k \in \mathfrak{a}_{k+1}$ (because the expansion consists of sums of
+products of the $y_i$'s).
+
+Thus,
+\[
+x + (-y) = 1,
+\]
+with \(x \in \bigcap_{i=1}^{k} \mathfrak{a}_i, (-y) \in \mathfrak{a}_{k+1}.\)
+
+Hence,
+\[
+\left( \bigcap_{i=1}^{k} \mathfrak{a}_i \right)
++
+\mathfrak{a}_{k+1}
+=
+(1),
+\]
+so they are coprime.
+
+Applying the case $n=2$, we obtain
+\[
+\bigcap_{i=1}^{k+1} \mathfrak{a}_i
+=
+\left( \bigcap_{i=1}^{k} \mathfrak{a}_i \right)
+\cap
+\mathfrak{a}_{k+1}
+=
+(\mathfrak{a}_1 \cdots \mathfrak{a}_k)
+\mathfrak{a}_{k+1}
+=
+\mathfrak{a}_1 \cdots \mathfrak{a}_k \mathfrak{a}_{k+1}.
+\]
+By induction, the proof is complete.
+\end{proof}
+\emph{To be continued...}

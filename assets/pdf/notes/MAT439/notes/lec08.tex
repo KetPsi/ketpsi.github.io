@@ -1,0 +1,196 @@
+\chapter{Lecture 08}
+\hfill {\footnotesize \textit{Date: 09/03/2026}}
+\section{Freely Generated Modules---continued}
+\autoref{prop:fingeneratedmodpoly} has the following corollary:
+\begin{corollary}
+    Let \(M\) be a finitely generated \(R\)-module, and let \(\mathfrak{a}\) be an ideal of \(R\) such that \(\mathfrak{a}\cdot M = M\). Then there exists \(x \in R\) with \(x \equiv 1 \pmod{\mathfrak{a}}\) (i.e., \(1 - x \in \mathfrak{a}\)) such that \(x \cdot M = 0\).
+\end{corollary}
+\begin{proof}
+    Let \(\mathds{1}_M\) be the identity endomorphism of the module \(M\). Using \autoref{prop:fingeneratedmodpoly} we have 
+    \[
+    \mathds{1}_M^n + a_1 \mathds{1}_M^{n-1} + \cdots + a_n = (1 + a_1+\cdots + a_n)\cdot \mathds{1}_M= \mathbf{0}.
+    \]
+    Let \(x = 1 + a_1 + a_2 + \cdots + a_n\), then \( 1 - x \in \mathfrak{a} \), and for all \(y \in M\), we have
+    \begin{align*}
+        &(x\cdot \mathds{1}_M)(y) = 0\\
+        \implies &x \cdot \mathds{1}_M(y) = 0\\
+        \implies & x \cdot y = 0.
+    \end{align*}
+    In other words, \(x \cdot M = 0\), completing the proof. 
+\end{proof}
+\begin{lemma}[Nakayama's lemma]\label{lemma:nakayama}
+    Let \(M\) be a finitely generated \(R\)-module. And let \(\mathfrak{a}\) be an ideal of \(R\) that is contained in the Jacobson radical \(\mathfrak{R}\) of \(R\). Then \(\mathfrak{a} \cdot M = M\) implies \(M = 0\).
+\end{lemma}
+\begin{proof}[Proof 1]
+    Using \autoref{prop:fingeneratedmodpoly}, we have an \(x \in R\) with \(1 - x \in \mathfrak{a}\) such that \(x \cdot M = 0\). Since \(1 - x \in \mathfrak{a} \subseteq \mathfrak{R}\); using \hyperref[thm:characterisationOfJacobsonRad]{characterisation of Jacobson radical}, we have \(1 - (1-x)\cdot 1= x\) is a unit, i.e., \(x\) has an inverse \(x^{-1}\) in \(R\). Therefore, 
+    \[
+    M = 1\cdot M = x^{-1}x M = x^{-1} (x \cdot M) = x^{-1} \cdot 0 = 0.
+    \]
+\end{proof}
+\begin{proof}[Proof 2]
+    \todo{To be written...}    
+\end{proof}
+\begin{corollary}
+    Let \(M\) be a finitely generated \(R\)-module. Let \(N\) be a submodule of \(M\), and \(\mathfrak{a} \subseteq \mathfrak{R}\) an ideal of \(R\). Then \(M = \mathfrak{a} M + N \) implies \(M = N\).
+\end{corollary}
+\begin{proof}
+    We apply Nakayama's Lemma to the quotient module $M/N$.
+
+Since $M$ is finitely generated, the quotient $M/N$ is also finitely generated. Now we want to show that
+\[
+    \mathfrak{a}(M/N)= M/N \text{ or equivalently } \mathfrak{a}(M/N) = (\mathfrak{a}M + N) / N.
+\]
+
+If $\pi \colon M \to M/N$ is the quotient map and $S$ is any submodule of \( M \), then
+\[
+\pi(S)=\frac{S+N}{N}.
+\]
+Indeed,
+\[
+\pi(S)=\{\pi(s):s\in S\}=\{s+N:s\in S\},
+\]
+while
+\[
+\frac{S+N}{N}
+= \{(s+n)+N : s\in S,\ n\in N\}
+= \{s+N : s\in S\}.
+\]
+So these two sets are equal.
+
+Now take $S=\mathfrak{a}M$. Then
+\[
+\pi(\mathfrak{a}M)= \frac{\mathfrak{a}M+N}{N}.
+\]
+We claim that
+\[
+\pi(\mathfrak{a}M)=\mathfrak{a}(M/N).
+\]
+
+To see this, first let $\overline{x}\in \mathfrak{a}(M/N)$. Then
+\[
+\overline{x}=\sum_{i=1}^r a_i(m_i+N)
+\]
+for some $a_i\in \mathfrak{a}$ and $m_i\in M$. Hence
+\[
+\overline{x}=\left(\sum_{i=1}^r a_i m_i\right)+N=\pi\left(\sum_{i=1}^r a_i m_i\right),
+\]
+and since $\sum_{i=1}^r a_i m_i\in \mathfrak{a}M$, we get $\overline{x}\in \pi(\mathfrak{a}M)$. Therefore
+\[
+\mathfrak{a}(M/N)\subseteq \pi(\mathfrak{a}M).
+\]
+
+Conversely, if $\overline{x}\in \pi(\mathfrak{a}M)$, then $\overline{x}=\pi(y)$ for some $y\in \mathfrak{a}M$. Write
+\[
+y=\sum_{i=1}^r a_i m_i
+\qquad (a_i\in \mathfrak{a},\ m_i\in M).
+\]
+Then
+\[
+\overline{x}=y+N=\sum_{i=1}^r a_i(m_i+N)\in \mathfrak{a}(M/N).
+\]
+So
+\[
+\pi(\mathfrak{a}M)\subseteq \mathfrak{a}(M/N).
+\]
+
+Hence
+\[
+\frac{\mathfrak{a}M+N}{N}=\pi(\mathfrak{a}M)=\mathfrak{a}(M/N).
+\]
+Combining this with $M/N=(\mathfrak{a}M+N)/N$, we obtain
+\[
+M/N=\mathfrak{a}(M/N).
+\]
+
+Now $M/N$ is finitely generated and $\mathfrak{a}\subseteq \mathfrak{R}$, so \hyperref[lemma:nakayama]{Nakayama's Lemma} gives
+\[
+M/N=0.
+\]
+Therefore $M=N$.
+\end{proof}
+\begin{remark}
+    Let \(M\) be an  \(R\)-module. Suppose  \(\mathfrak{a} \subseteq \text{Ann}(M)\). Then there is a ``natural way'' to treat \(M\) as an  \(R/\mathfrak{a}\)-module. For that we need to define left \( R / \mathfrak{a} \)-action on \( M \). We define as follows
+    \[
+        (r + \mathfrak{a})m = rm
+    \] 
+
+    To check well-definedness of this action, we have to show that if \( r + \mathfrak{a} = r' + \mathfrak{a} \), (which means \( r - r' \in \mathfrak{a} \subseteq \operatorname{Ann}(M) \)), then \( (r + \mathfrak{a}) m = (r' + \mathfrak{a}) m\).
+
+    The equations \( (r + \mathfrak{a})m = rm\) and \( (r' + \mathfrak{a})m = r'm\) implies \( ((r - r') + \mathfrak{a})m = (r-r')m\). Since \( r-r' \in \operatorname{Ann}(M) \),  \( (r - r')m = 0\). Therefore, 
+     \begin{align*}
+        ((r - r') + \mathfrak{a})m = 0\\
+        \implies & [(r+\mathfrak{a}) - (r + \mathfrak{a})]m = 0\\
+        \implies & (r + \mathfrak{a})m - (r + \mathfrak{a})m = 0\\
+        \therefore \ & (r + \mathfrak{a})m = (r + \mathfrak{a})m 
+    .\end{align*}
+\end{remark}
+\begin{remark}
+    Suppose \( R \) is a local ring with its only maximal ideal  \( \mathfrak{m} \). Then \( R / \mathfrak{m} \) should be a field, which is also known as \textit{residue field.}
+
+    Suppose \( M \) is a module over the local ring  \( R \). Then 
+    \[
+        \operatorname{Ann}(M / \mathfrak{m} M) = \mathfrak{m}
+    \] 
+    Then \( M / \mathfrak{m} M \) has a ``natural'' \( R / \mathfrak{m} \)-module structure. But \( R / \mathfrak{m} \) is a field, so \( M / \mathfrak{m} M\) is a finite-dimensional vector space over the field \( R / \mathfrak{m} \).
+\end{remark}
+\section{Exact Sequences}
+\begin{definition}[Exact Sequences]
+    A sequence of \(R\)-modules and \(R\)-homomorphisms
+    \[\begin{tikzcd}
+	\cdots & {M_{i-1}} & {M_i} & {M_{i+1}} & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow["{f_i}", from=1-2, to=1-3]
+	\arrow["{f_{i+1}}", from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+is said to be \textit{exact at} \(M_i\) if \(\Img f_i = \ker f_{i+1}\). And the sequence is said to be \textit{exact} if it is exact at each \(M_i\).
+\end{definition}
+\begin{remark}
+\begin{itemize}
+    \item Consider the following: \[\begin{tikzcd}
+	\cdots & \mathbf{0} & M & M' & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow["\phi", from=1-2, to=1-3]
+	\arrow["\psi", from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+Here, \(\Img \phi = \{0\}\). This sequence is exact at \(M'\) if and only if (by definition) \(\Img \phi  = \ker \psi\), which is equivalent to \(\ker \psi = \{0\}\), and that is equivalent to \(\psi\) is injective.
+\item Consider the following:
+\[\begin{tikzcd}
+	\cdots & M & {M'} & {\mathbf{0}} & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow["\psi", from=1-2, to=1-3]
+	\arrow["\phi", from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+The sequence will be exact at \(M'\) if and only if (by definition) \(\Img \psi = \ker \phi = M'\), i.e., if and only if \(\psi\) is surjective.
+\end{itemize}
+\end{remark}
+\begin{definition}[Short Exact Sequence]
+    An exact sequence of the following form is called \textit{short exact}:
+    \[\begin{tikzcd}
+	{\mathbf{0}} & {M'} & M & {M''} & {\mathbf{0}}
+	\arrow[from=1-1, to=1-2]
+	\arrow["f", from=1-2, to=1-3]
+	\arrow["g", from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+\end{definition}
+The following observations are immediate:
+\begin{itemize}
+    \item Exactness at \(M'\) is equivalent to \(f\) is injective.
+    \item  Exactness at \(M''\) is equivalent to \(g\) is surjective.
+    \item Exactness at \(M\) is equivalent to \(\Img f  = \ker g\). According to first isomorphism theorem, we have the following:
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIl0sWzEsMCwiTScnIl0sWzEsMSwiTS9cXGtlciBnIl0sWzAsMSwiZyJdLFswLDIsIlxccGkiLDJdLFsyLDEsIlxcc2ltIiwxXV0=
+\[\begin{tikzcd}
+	M & {M''} \\
+	& {M/\ker g}
+	\arrow["g", from=1-1, to=1-2]
+	\arrow["\pi"', from=1-1, to=2-2]
+	\arrow["\sim"{description}, from=2-2, to=1-2]
+\end{tikzcd}\]
+But \(M/\ker g = M/\Img f = \text{Coker} \ f\). Hence, \(g\) induces an isomorphism \(\text{Coker}  \ f \cong M''\).
+
+In short, a sequence \(\mathbf{0} \rightarrow M' \xrightarrow{f}M \xrightarrow{g} M'' \rightarrow \textbf{0}\) is exact if and only if (1) \(f\) is injective, (2) \(g\) is surjective, and (3) \(g\) induces an isomorphism Coker \(f \cong M''\).
+\end{itemize}
+
