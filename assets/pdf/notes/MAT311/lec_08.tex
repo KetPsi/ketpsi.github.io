@@ -1,0 +1,57 @@
+\section{Cycle Notation}
+\textbf{Cycle Notation:} The cycle which sends $a_i$ to $a_{i+1}, 1 \le i \le m-1$ and sends $a_m$ to $a_1$ is written as  $(a_1, a_2 ... a_m)$.
+\begin{eg}[Cycle Decomposition Algorithm]  
+Let $n = 13$ and let $\sigma \in S_{13}$ be defined by
+\[
+\sigma(1) = 12, \quad \sigma(2) = 13, \quad \sigma(3) = 3, \quad \sigma(4) = 1, \quad \sigma(5) = 11,
+\]
+\[
+\sigma(6) = 9, \quad \sigma(7) = 5, \quad \sigma(8) = 10, \quad \sigma(9) = 6, \quad \sigma(10) = 4,
+\]
+\[
+\sigma(11) = 7, \quad \sigma(12) = 8, \quad \sigma(13) = 2.
+\]
+
+\begin{center}
+    \def\arraystretch{2}
+    \begin{tabular}{|p{0.55\textwidth}|p{0.45\textwidth}|}
+    \hline
+    \textbf{Method} & \textbf{Example} \\ \hline
+    To start a new cycle, pick the smallest element of $\{1, 2, \ldots, n\}$ which has not yet appeared in a previous cycle --- call it $a$ (if you are just starting, $a = 1$); begin the new cycle: $(a$ & $(1$ \\ \hline
+    Read off $\sigma(a)$ from the given description of $\sigma$ --- call it $b$. If $b = a$, close the cycle with a right parenthesis (without writing $b$ down); this completes a cycle --- return to step 1. If $b \neq a$, write $b$ next to $a$ in this cycle: $(a\ b$ & $\sigma(1) = 12 = b,  12 \neq 1  \text{ so write: }  (1\ 12$ \\ \hline
+    Read off $\sigma(b)$ from the given description of $\sigma$ --- call it $c$. If $c = a$, close the cycle with a right parenthesis to complete the cycle --- return to step 1. If $c \neq a$, write $c$ next to $b$ in this cycle: $(a\ b\ c$. Repeat this step using the number $c$ as the new value for $b$ until the cycle closes. & $\sigma(12) = 8, \ 8 \neq 1 \ \text{ so cycle runs:} \ (1\ 12\ 8$ \\ \hline
+    Naturally, this process stops when all the numbers from $\{1, 2, \ldots, n\}$ have appeared in some cycle. & $\sigma = (1 \ 12 \ 8 \ 10 \ 4)(2 \ 13)(3)(5 \ 11 \ 7)(6 \ 9)$\\ \hline
+    Final Step: Remove all cycles of length $1$ & $\sigma = (1 \ 12 \ 8 \ 10 \ 4)(2 \ 13)(5 \ 11 \ 7)(6 \ 9)$ \\ \hline
+    \end{tabular}
+\end{center}
+\end{eg}
+\begin{eg}[Computing Products in $S_n$]
+    While computing products in $S_n$ one reads the permutations from \textit{right to left}. Let's compute $(1 \ 2 \ 3) \circ (1 \ 2)(3 \ 4)$.
+    \begin{align*}
+        \text{Reading off permutations} & \ \ \ \text{Computing product}\\
+        1 \rightarrow 2 \rightarrow 3 & \ \ \ (1 \ 3\\
+        3 \rightarrow 4 & \ \ \ (1 \ 3 \ 4\\
+        4 \rightarrow 1 & \ \ \ (1 \ 3 \ 4)
+    \end{align*}
+    Hence, $(1 \ 2 \ 3) \circ (1 \ 2)(3 \ 4) = (1 \ 3 \ 4).$
+\end{eg}
+\textit{$S_n$ is non-abelian group for all $n \ge 3$.}
+\section{Cyclic Permutation, Transposition \& Alternating Group}
+\begin{definition}[Cyclic Permutation]
+    $\pi \in S_\Omega$ has a cycle of length $r$, and all other cycles are of length $1$, then, $\pi$ is a \textit{cyclic permutation}.
+\end{definition}
+\begin{definition}[Transposition]
+    A cyclic permutation of length $2$ is called a \textit{transposition}.
+\end{definition}
+\begin{prop}
+    Any $r$ cycle can be decomposed into a product of $(r-1)$ transpositions.
+\end{prop}
+\begin{eg}
+    Let $\tau = (1 \ 3 \ 4 \ 6 \ 7 \ 9) \in S_9$\\
+    Method 1: $\tau = (1 \ 3 \ 4 \ 6 \ 7 \ 9) = (1 \ 9)(1 \ 7)(1 \ 6)(1 \ 4)(1 \ 3)$\\
+    Method 2: $\tau = (1 \ 3 \ 4 \ 6 \ 7 \ 9) = (1 \ 3)(3 \ 4)(4 \ 6)(6 \ 7)(7 \ 9)$\\
+    Both products of transpositions method $1$ or method $2$ represent the same permutation $\tau$. Note that the order of the disjoint cycle $\tau$ is $\tau$ but in both expressions of $\tau$ as the product of transpositions, $\tau$ has $5$ (odd numnber of) permutations.  Hence $\tau$ is an \textit{odd permutation}. Similarly, if a permutation is the product of an even number of transpositions, it is called \textit{even permutation}.
+\end{eg}
+\begin{definition}[Alternating Group]
+    Let $A_n$ be the subset of $S_n$ consisting of all even permutations. Since product of two even permutations is even, $A_n$ is a subgroup of $S_n$. $A_n$ is called the \textit{alternating group} of degree $n$.
+\end{definition}

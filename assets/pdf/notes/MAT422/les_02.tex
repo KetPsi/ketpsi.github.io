@@ -1,0 +1,156 @@
+\section{Basics of Divisibility}
+\begin{definition}[Divisibility]
+    Let $a,b\in\mathbb{Z}$. We say that $a \neq 0$ divides $b$ if there exists an integer $c$ such that $b=ac$. We write $a\mid b$ if $a$ divides $b$.
+\end{definition}
+We say $a$ is a divisor of $b$ if $a\mid b$. The set of all divisors of $b$ is denoted by $Div(b)$.
+\[
+Div(b) := \{a \in \Z: a \mid b\}.
+\]
+We can also say $a \mid b$ implies there is a solution in $\Z$ to the equation $ax=b$.
+\begin{prop}
+    \begin{enumerate}
+        \item For all $a\in\Z \setminus {0}$, $a\mid 0$.
+        \item $a\mid b$ and $b\mid c$ implies $a\mid c$.
+        \item $a \mid b$ and $a \mid c$ implies $a \mid (bx+cy)$ for all $x,y\in\Z$.
+    \end{enumerate}
+\end{prop}
+\begin{proof}
+    \begin{enumerate}
+        \item $a\mid 0$ since $0=a\cdot 0$.
+        \item $a\mid b$ implies $b=ax$ and $b\mid c$ implies $c=by=axy=a(xy)$ implies $a \mid c$.
+        \item $a\mid b$ implies $b=ax$ and $a\mid c$ implies $c=ay$. So, $bx+cy=a(x^2+y^2)$ implies $a \mid (bx+cy)$.
+    \end{enumerate}
+\end{proof}
+\begin{theorem}[Division Algorithm]
+    Let $a,b\in\Z$ with $b>0$. Then there exist unique integers $q,r$ such that $a=qb+r$ and $0\leq r<b$.
+\end{theorem}
+\begin{proof}
+    Consider the set
+    \[S = \{a - xb \mid x\in\Z, a-xb \ge 0\}.\]
+    The set is nonempty because $a - (-|a|)b = a + |a|b \ge a + |a| \ge 0.$ According to the Well-Ordering Principle, $S$ has a least element, say $r$. So, $r = a - qb$ for some $q\in\Z$. We will show that $0\leq r < b$. $0 \le r$ by the construction of $S$. We argue that $r < b$. If this were not the case, then $r \ge b \implies r - b \ge 0$. But 
+    \[
+    a - (q+1)b = a - qb - b = r - b \ge 0.
+    \]
+    Hence, $a - (q+1)b = r - b \in S$ which contradicts the minimality of $r$. Hence, $0\leq r < b$. This completes the proof of existence.
+
+    Now, we will show the uniqueness of $q$ and $r$. Suppose there exist $q_1, q_2, r_1, r_2$ such that $a = q_1b + r_1$, $a = q_2b + r_2$, $0\leq r_1, r_2 < b$. Subtracting the two equations, we get \[(q_1 - q_2)b = r_2 - r_1.\] Since $0\leq r_1, r_2 < b$, we have $-b < r_2 - r_1 < b$, or, \[|r_2 - r_1| < b.\] Therefore, $|q_1-q_2|b < b$, which implies,
+    \[0 \le |q_1 - q_2| < 1\]
+    So, $r_2 - r_1 = 0 \implies r_1 = r_2$ and $q_1 = q_2$. This completes the proof of uniqueness.
+\end{proof}
+\section{Primes \& Related Theorems}
+\begin{definition}[Prime Number]
+    An element $p\in\N$ and $p > 1$ is called a prime number if for all $q \in \N$, $q \mid p \implies q = 1$ or $q = p$.
+\end{definition}
+Equivalently, $p > 1$ is prime if $Div(p) = \{\pm 1, \pm p\}$.
+\begin{eg}
+$2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59$ etc. are primes.
+\end{eg}
+\begin{eg}[Biggest Prime]
+    As of writing this note, the biggest known prime number is \[2^{136279841}-1.\]
+\end{eg}
+\begin{theorem}[Existence of Prime Factorization]
+    Every positive integer greater than $1$ can be written as a product of primes.
+\end{theorem}
+\begin{proof}
+    Assume for the sake of contradiction, that there exits a positive integer greater than $1$ that cannot be written as a product of primes. By well-ordering principle, we will have a least $n$ of this sort. If $n$ is prime, then it is already a product of primes (just itself), which is a contradiction. 
+
+    If $n$ is composite, then it can be written as $n = a \cdot b$, for some $a,b \in \N$ where $1 < a,b < n$. Since $a,b < n$, they can be written as a product of primes. So, $n = a \cdot b$ can also be written as a product of primes, which is again a contradiction.
+    
+    Hence, every positive integer greater than $1$ can be written as a product of primes.
+\end{proof}
+We can extend this concept to negative integers as well by including $-1$ as a factor.  
+For any integer $n \neq 0$,
+\[
+n = (-1)^{\epsilon(n)} \prod_{i=1}^{k} p_i^{a(p_i)},
+\]
+where $\epsilon(n) = 0$ if $n > 0$ and $ 1$ otherwise. And $a(p_i)$ is called \textit{order of $n$ at $p_i$} which is a non-negative integer such that $p^a \mid n$ but $p^{a+1} \nmid n$.
+
+Next lemma requires a theorem which we will just state but not prove.
+\begin{theorem}[Bezout's Identity]
+    Given two integers $a$ and $b$, not both of which are zero, there exist $x,y\in\Z$ such that \[ax+by=\gcd(a,b).\]
+\end{theorem}
+\begin{lemma}
+    If $p$ is a prime and $p \mid ab$, then $p \mid a$ or $p \mid b$.
+\end{lemma}
+\begin{proof}
+    If $p \mid a$, then we are done. So, assume $p \nmid a$. Let $g = gcd(a, p).$ Since, $p$ is a prime $g = 1$ or $g = p$ (which is not possible). Hence, $g = 1$. By Bezout's Identity, there exist $x,y\in\Z$ such that $px + ay = 1.$ Multiplying both sides by $b$, we get \[bpx + aby = b.\] In the equation, left side is divisible by $p$, so is the right side. Hence, $p \mid b$.
+\end{proof}
+\begin{corollary}
+    If $p$ is a prime and $p \mid a_1a_2\dots a_n$, then $p \mid a_i$ for some $i$.
+\end{corollary}
+\begin{proof}
+    We will prove this by induction on $n$. For $n=1$, the statement is trivial. When $n = 2$, the result is the content of Lemma $2.1$. Assume the result is true for $n = k$. We will show that it is true for $n = k+1$. By Lemma $2.1$, $p \mid a_1a_2\dots a_k$ or $p \mid a_{k+1}$. Let $p \mid a_1a_2\dots a_{k+1}$. By induction hypothesis, $p \mid a_1a_2\dots a_k$ implies $p \mid a_i$ for some $i$ and we are done. Otherwise, $p \mid a_{k+1}$. This completes the proof.
+\end{proof}
+\begin{theorem}[Fundamental Theorem of Arithmetic]
+    Every positive integer greater than $1$ can uniquely be written as a product of primes (upto reordering).
+\end{theorem}
+\begin{proof}
+    Existence is already proved in theorem $2.2$. We will now show uniqueness. Assume for the sake of contradiction that there exists a positive integer greater than $1$ that can be written as a product of primes in two different ways. Let $n$ be the smallest such number. Let $n = p_1p_2\dots p_k = q_1q_2\dots q_l$ where $p_i, q_i$ are primes. Since $p_1 \mid q_1q_2\dots q_l$, by Corollary $2.1$, $p_1 \mid q_i$ for some $i$. WLOG, let $p_1 \mid q_1$. Since $q_1$ is prime, $p_1 = q_1$. Let, $n' = p_2p_3\dots p_k = q_2q_3\dots q_l$. Clearly, $n > n'$ which contradicts the minimality of $n$. Hence, every positive integer greater than $1$ can uniquely be written as a product of primes.
+\end{proof}
+\begin{theorem}
+    There are infinitely many primes.
+\end{theorem}
+\begin{proof}
+    Assume for the sake of contradiction that there are finitely many primes, say $p_1, p_2, \dots, p_n$. Consider the number $N = p_1p_2\dots p_n + 1$. Since $N > 1$, it can be written as a product of primes. But none of $p_1, p_2, \dots, p_n$ divides $N$ as $N$ leaves a remainder of $1$ when divided by any of $p_i$. Hence, $N$ is a prime which is not in the list $p_1, p_2, \dots, p_n$. This contradicts the assumption that there are finitely many primes.
+\end{proof}
+\begin{definition}[Riemann Zeta Function]
+    The Riemann Zeta function is defined as
+    \[\zeta(s) = \sum_{n=1}^{\infty} \frac{1}{n^s},\]
+    where the function is defined for $s \in \R$ (in this context) and $s > 1$.
+\end{definition}
+\begin{theorem}[Euler's Product Formula]
+    For $s > 1$, we have
+    \[\zeta(s) = \prod_{p \text{ prime}} \frac{1}{1-p^{-s}}.\]
+\end{theorem}
+\begin{proof}
+    The geometric series formula gives us,
+    \[\frac{1}{1-p^{-s}} = \sum_{m=0}^{\infty} \frac{1}{p^{ms}}.\]
+    So,
+    \[\prod_{p \text{ prime}} \frac{1}{1-p^{-s}} = \prod_{p \text{ prime}} \sum_{m=0}^{\infty} \frac{1}{p^{ms}} = \sum_{n=1}^{\infty} a_n \frac{1}{n^s}.\]
+    By Fundamental Theorem of Arithmetic, $a_n = 1$ for all $n$. Hence, the product is equal to $\zeta(s)$.
+\end{proof}
+Now, set $s=1$ in Euler's Product Formula to get 
+\[\zeta(1) = \sum_{n=1}^{\infty} \frac{1}{n} = \prod_{p \text{ prime}} \frac{1}{1-p^{-1}}.\]
+Left side is the harmonic series which diverges to $\infty$. So, the product on the right side must also diverge to $\infty$ which requires the product on the right side to be over infinite index. This implies that we must have infinitely many primes.
+\section{Distribution of Primes}
+Gauss conjectured that the density of primes is approximately given by: 
+\[
+\frac{1}{\log x}
+\]
+Let \( \pi(x) \) denote the number of primes less than or equal to \( x \). Then, an asymptotic estimate for \( \pi(x) \) is: 
+\[
+\pi(x) \sim \frac{x}{\log x}
+\]
+In asymptotic notation, if \( f(x) \sim g(x) \), it means: 
+\[
+\lim_{x \to \infty} \frac{f(x)}{g(x)} = 1.
+\]
+A more refined approximation is given by the logarithmic integral: 
+\[
+\text{Li}(x) = \int_2^x \frac{dt}{\log t}.
+\]
+The \textbf{Prime Number Theorem (PNT)} states that: 
+\[
+\pi(x) \sim \text{Li}(x),
+\]
+which was proven in 1896.
+
+\textbf{Von Mangoldt's Explicit Formula:} Von Mangoldt’s explicit formula connects the sum of the von Mangoldt function $\Lambda(n)$ to the nontrivial zeros of the Riemann zeta function. It is a key result in analytic number theory, particularly in understanding the distribution of prime numbers.
+
+Define the von Mangoldt function \( \Lambda(n) \) as:
+\[
+\Lambda(n) =
+\begin{cases}
+\log p, & \text{if } n = p^m \text{ for some prime } p \text{ and integer } m \geq 1, \\
+0, & \text{otherwise}.
+\end{cases}
+\]
+The Chebyshev function \( \psi(x) \) is given by:
+\[
+\psi(x) = \sum_{n \leq x} \Lambda(n).
+\]
+Von Mangoldt's explicit formula states:
+\[
+\psi(x) = x - \sum_{\rho} \frac{x^{\rho}}{\rho} - \log 2\pi - \frac{1}{2} \log(1 - x^{-2}),
+\]
+where the sum runs over all the nontrivial zeros \( \rho \) of the Riemann zeta function \( \zeta(s) \).

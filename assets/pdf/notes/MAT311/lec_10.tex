@@ -1,0 +1,86 @@
+If $G$ is a finite group and $N$ is normal subgroup of $G$, then $$|G/N| = [G:N] = \frac{|G|}{|N|}$$
+\begin{eg}
+    Let $N = \{e\}$, then $G/N \cong G$.
+    Again if $N = G$, then $G/N \cong \{e\}$.\\
+    \textbf{Note:} We will learn what $\cong$ means shortly.
+\end{eg}
+\begin{eg}
+ Let $G = (\Z, +)$. Then $n\Z = \{nk: k \in \Z\}$ is normal in $\Z$. Because for all $g \in \Z, g + n\Z + (-g) = n\Z$. Now, let $N = n\Z$. Then distinct cosets of $n\Z$ are:
+ \begin{align*}
+    \overline{0} &= 0 + n\Z\\
+    \overline{1} &= 1 + n\Z\\
+    &\vdots\\
+    \overline{n-1} &= (n-1) + n\Z
+ \end{align*}
+ We denote the quotient group as $\Z/n\Z = \{\overline{0}, \overline{1}, \cdots, \overline{n-1}\}$. Notice, from the definition, coset multiplication here is: $(a + n\Z) + (b + n\Z) = a + b + n\Z$ which is exactly how we initially defined the operation on $\Z/n\Z$, i.e., $\overline{a} + \overline{b} = \overline{a + b}$.
+\end{eg}
+\begin{eg}
+    $G = \R$ and $N = 2\pi \Z$. Then, $G/N = \{\theta +2\pi \Z: 0 \le \theta < 2\pi\}$. And multiplication would be like $(\theta_1 + 2\pi\Z) + (\theta_2 + 2\pi\Z) = (\theta_1 + \theta_2 + 2\pi\Z)$.
+\end{eg}
+\begin{eg}
+    We know $A_n$ is a normal subgroup of $S_n$. And since index of $A_n$ in $S_n$ is $2$, $A_n$ has two cosets: $eA_n, (1 \ 2)A_n$. Cayley table for the quotient group modulo $A_n$ is:
+    $$
+    \begin{tabular}{ |c|c|c| } 
+        \hline
+        $\cdot$ & $eA_n$ & $(1 \ 2)A_n$  \\
+        \hline
+        $eA_n$  & $eA_n$  & $(1 \ 2)A_n$  \\
+        \hline
+        $(1 \ 2)A_n$ & $(1 \ 2)A_n$  & $eA_n$  \\ 
+        \hline
+    \end{tabular}
+    $$
+\end{eg}
+\section{Group Homomorphism}
+Group homomorphism between two groups is aptly called \textit{structure preserving} map as it respect their algebraic structure.
+\begin{definition}[Group Homomorphism]
+    Given two groups, $(G, *)$ and $(H, \cdot)$, a \textit{group homomorphism} is a map $f: G \rightarrow  H$ such that for all $g_1, g_2 \in G$, $$f(g_1 * g_2) = f(g_1) \cdot f(g_2).$$
+\end{definition}
+\begin{definition}[Isomorphism]
+    A group homomorphism that is bijective is called \textit{isomorphism}.
+\end{definition}
+When two groups are isomorphic (there's an isomorphism between those groups), they are essentially the same. They differ in that their elements are labeled differently. The isomorphism gives us the key to the labeling, and with it, knowing a given computation in one group, we can carry out the analogous computation in the other. If two groups $G, H$ are isomorphic, we write $G \cong H$.
+\begin{prop}
+    If $f:G \rightarrow H$ is a homomorphism, then:
+    \begin{enumerate}
+        \item $f(e_G) = e_H$;
+        \item $f(x^{-1}) = f(x)^{-1}$, for all $x \in G$.
+    \end{enumerate}
+\end{prop}
+\begin{propproof}
+    To prove $(1)$ we calculate, 
+    \begin{align*}
+        &f(e_G * e_G) = f(e_G) \cdot f(e_G)\\
+        &\implies f(e_G) = f(e_G) \cdot f(e_G)\\
+        &\implies f(e_G) \cdot f(e_G)^{-1} = f(e_G) \cdot f(e_G) \cdot f(e_G)^{-1}\\
+        &\implies e_H = f(e_G)
+    \end{align*}
+    To prove $(2)$,
+    \begin{align*}
+        &f(xx^{-1}) = f(e_G) = e_H\\
+        \implies &f(x)f(x^{-1}) = e_H\\
+        \implies &f(x^{-1}) = f(x)^{-1}
+    \end{align*}
+\end{propproof}
+\begin{eg}
+    $f:G \rightarrow \{e\}$ is homomorphism.
+\end{eg}
+\begin{explanation}
+    For all $g_1, g_2 \in G,$
+    \[f(g_1g_2) = e.\]
+    Then,
+    \[f(g_1) \cdot f(g_2) = e \cdot e = e.\]
+\end{explanation}
+\begin{eg}
+    Let $G = (R, +), H = (R^\times, \times).$\\
+    Define $f:G \rightarrow H$ such that $f(x) = e^x$. $f$ is a homomorphism, but not isomorphism.
+\end{eg}
+\begin{explanation}
+    For all $x,y \in \R,$
+    \begin{align*}
+        f(x + y) &= e^{x+y}\\
+        &= e^x \times x^y\\
+        &= f(x) \times f(y).
+    \end{align*}
+    The map is not isomorphism because it is not surjective, e.g., there's no $x\in G$ such that $f(x) = -1 \in H$.
+\end{explanation}

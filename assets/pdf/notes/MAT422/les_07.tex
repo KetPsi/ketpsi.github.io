@@ -1,0 +1,182 @@
+\section{Euler's Totient Function \& Chinese Remainder Theorem}
+\begin{definition}[Euler's Totient Function]
+    Euler's totient function, denoted by \( \phi(n) \), is defined as
+    \[
+    \phi(n) = \#\{ k \in \mathbb{Z} \mid 1 \leq k \leq n, \gcd(k, n) = 1 \}.
+    \]
+    That is, \( \phi(n) \) counts the number of integers from \( 1 \) to \( n \) that are coprime to \( n \).
+    \end{definition}
+Euler's theorem \[a^{\phi(n)} \equiv 1 \pmod{n}\] is a beautiful and powerful result. But it won't be of much use unless we can find an efficient way to compute $\phi(n)$. As usual, we first try to solve for primes.
+
+\begin{prop}
+    If $p$ is prime and $\alpha \ge 1$, then 
+    \begin{enumerate}
+        \item $\phi(p) = p-1$.
+        \item $\phi(p^\alpha) = p^\alpha - p^{\alpha-1}.$
+    \end{enumerate}
+\end{prop}
+\begin{proof}
+    \begin{enumerate}
+    \item Since \( p \) is prime, the only number in \( \{1, 2, \dots, p\} \) that is not coprime to \( p \) is \( p \) itself. Thus, all \( p-1 \) numbers from \( 1 \) to \( p-1 \) are coprime to \( p \), giving \( \phi(p) = p-1 \).
+
+    \item The numbers in \( \{1, 2, \dots, p^\alpha\} \) that are not coprime to \( p^\alpha \) are precisely the multiples of \( p \), i.e., \( p, 2p, \dots, p^{\alpha-1} p \). There are \( p^{\alpha-1} \) such multiples. Since there are \( p^\alpha \) numbers in total, we obtain
+    \[
+    \phi(p^\alpha) = p^\alpha - p^{\alpha-1}.
+    \]
+    \end{enumerate}
+\end{proof}
+
+Having established results for $\phi(p)$ and $\phi(p^\alpha)$, we now aim to compute $\phi(n)$ based on the prime factorization of $n$. This brings us to the multiplicative property of $\phi(n)$.
+
+\begin{theorem}\label{thm:mulphi}
+    If $gcd(m,n) = 1$, then $\phi(mn) = \phi(m)\phi(n)$.
+\end{theorem}
+\begin{proof}
+    As proven in Example~\ref{eg:directprod}, direct product of two rings form a ring.
+
+    Consider the map $h: \Z/mn\Z \rightarrow \Z/m\Z \times \Z/n\Z$ defined by \[h(x \pmod{mn}) = (x \pmod{m}, x \pmod{n}).\]
+
+    We claim $h$ is an isomorphism. $h$ is a homomorphism because for $x,y \in \Z/mn\Z$, \[h(x+y) = (x+y \pmod{m}, x+y \pmod{n})\] \[= (x \pmod{m} + y \pmod{m}, x \pmod{n} + y \pmod{n}\] \[= (x \pmod{m}, x \pmod{n}) + (y \pmod{m}, y \pmod{n})\] \[= h(x \pmod{mn}) + h(y \pmod{mn}).\] Similarly (and tediously), $h(xy) = h(x)h(y)$.
+
+    By Theorem~\ref{thm:ringinjker}, $h$ is injective iff $\ker h = \{0\}$. Let $x \in \ker h$. Then, $h(x) = (0,0)$. This implies $x \equiv 0 \pmod{m}$ and $x \equiv 0 \pmod{n}$. Since $gcd(m,n) = 1$, $x \equiv 0 \pmod{mn}$. Hence, $\ker h = \{0\}$ and $h$ is injective.
+
+    To check surjectivity, let $(b \pmod{m}, c \pmod{n}) \in \Z/m\Z \times \Z/n\Z$. We have to find $a \pmod{mn}$ such that \[h(a \pmod{mn}) = (b \pmod{m}, c \pmod{n}).\]
+
+    So we are basically want to solve the following system of congruences modulo $mn$: \[a \equiv b \pmod{m}\] \[a \equiv c \pmod{n}.\]
+
+    Our next theorem will ensure that such an $a$ exists.
+
+    Hence $h$ is an isomorphism and \[\Z/mn\Z \cong \Z/m\Z \times \Z/n\Z.\] 
+    
+    Then it is immediate that \[U(\Z/mn\Z) \cong U(\Z/m\Z) \times U(\Z/n\Z),\] via the group isomorphism induced from $h$. Which means they have the same cardinality, that is \[|U(\Z/mn\Z)| = |U(\Z/m\Z) \times U(\Z/n\Z)|.\]
+
+    But $|U(\Z/mn\Z)| = \phi(mn)$ and $|U(\Z/m\Z| \times |\Z/n\Z)| = \phi(m)\phi(n),$ therefore we have \[\phi(mn) = \phi(m)\phi(n),\] as required.
+\end{proof}
+
+\begin{theorem}[Chinese Remainder Theorem]\label{thm:chinese2}
+    Let $m$ and $n$ be integers satisfying $gcd(m,b) = 1$, and let $b,c \in \Z$. Then the simultaneous congruences \[x \equiv b \pmod{m} \text{ and } x \equiv c \pmod{n}\] have a unique solution modulo $mn$.
+\end{theorem}
+\begin{proof}
+    $x \equiv b \pmod{m}$ is equivalent to \[x = b + my,\] for some $y \in \Z$. Then the second congruence is the same as \[b + my \equiv c \pmod{n}\]\[\implies my \equiv c - b \pmod{n}.\]
+
+    Since $gcd(m,n) = 1$, there exists $m'$ such that $mm' \equiv 1 \pmod{n}$. Multiplying both sides by $m'$, we get \[y \equiv m'(c-b) \pmod{n},\] equivalently, \[y = m'(c-b) + nz\] for some $z \in \Z$.
+
+    substituting $y$ in $x = b + my$, we get \[x = b + m(m'(c-b) + nz)\] \[= b + m'm(c-b) + m^2z\] \[= b + m'm(c-b) + mnz.\]
+
+    Any $x$ satisfies the original two congruences must have this form. We will check if this $x$ satisfies the two congruences. \[x = b + m'm(c-b) + mnz \equiv b + 0 + 0 = b \pmod{m}\] and \[x = b + m'm(c-b) + mnz \equiv b + 1(c-b) + 0 = c \pmod{n}\] as required.
+
+    To prove uniqueness, let $x= x_1$ and $x = x_2$ both satisfy the congruences \[x \equiv b \pmod{m} \text{ and } x \equiv c \pmod{n}.\] Then, \[x_1 \equiv x_2 \pmod{m} \text{ and } x_1 \equiv x_2 \pmod{n}.\] This implies \[m \mid x_1 - x_2 \text{ and } n \mid x_1 - x_2.\] Since $gcd(m,n) = 1$, $mn \mid x_1 - x_2$. Hence, $x_1 \equiv x_2 \pmod{mn}$, proving the uniqueness.
+\end{proof}
+\begin{remark}
+    We have shown that if $gcd(m,n)=1$ then Theorem~\ref{thm:chinese2} (Chinese Remainder Theorem) implies \[\Z/mn\Z \cong \Z/m\Z \times \Z/n\Z.\] The converse also holds, that is \[\Z/mn\Z \cong \Z/m\Z \times \Z/n\Z\] implies the congruences \[x \equiv b \pmod{m} \text{ and } x \equiv c \pmod{n}\] have a unique solution modulo $mn$.
+\end{remark}
+
+\begin{theorem}[Generalized Chinese Remainder Theorem]
+    For $k \geq 2$, let $m_1, m_2, \dots, m_k$ be nonzero integers that are pairwise relatively prime: 
+$(m_i, m_j) = 1$ for $i \neq j$. Then, for all integers $a_1, a_2, \dots, a_k$, the system of congruences
+\begin{align*}
+    x &\equiv a_1 \pmod{m_1}, \\
+    x &\equiv a_2 \pmod{m_2}, \\
+    &\vdots \\
+    x &\equiv a_r \pmod{m_k},
+\end{align*}
+has a solution modulo $M = m_1 m_2 \cdots m_k$.
+\end{theorem}
+\begin{replacementproof}[Rough]
+    Using ring theory,
+
+    \[\Z/M\Z \cong \Z/m_1\Z \times \Z/m_2\Z \times \cdots \times \Z/m_k\Z,\] through the isomorphism \[x \pmod{M} \mapsto (x \pmod{m_1}, x \pmod{m_2}, \dots, x \pmod{m_k}),\]
+
+    hence the system of congruences has a unique solution modulo $M$.
+\end{replacementproof}
+
+\begin{corollary}
+    If $m_1, m_2, \dots, m_k$ are pairwise relatively prime, then \[\phi(m_1 m_2 \cdots m_k) = \phi(m_1) \phi(m_2) \cdots \phi(m_k).\]
+\end{corollary}
+
+\begin{corollary}\label{cor:phi_form}
+    $\phi(n) = n \prod_{i=1}^{k} (1 - p_i^{-1})$, where $p_1, p_2, \dots, p_k$ are distinct prime factors of $n$.
+\end{corollary}
+\begin{proof}
+    \[
+    \phi(n) = \phi \left( p_1^{a_1} \cdots p_k^{a_k} \right)
+    \]
+    \[
+    = \phi(p_1^{a_1}) \cdots \phi(p_k^{a_k})
+    \]
+    \[
+    = (p_1^{a_1} - p_1^{a_1-1}) \cdots (p_k^{a_k} - p_k^{a_k-1})
+    \]
+    \[
+    = p_1^{a_1 - 1} (p_1 - 1) \cdots p_k^{a_k - 1} (p_k - 1)
+    \]
+    \[
+    = \prod_{i=1}^{k} p_i^{a_i - 1} (p_i - 1)
+    \]
+    \[
+    = \prod_{i=1}^{k} p_i^{a_i} \cdot \prod_{i=1}^{k} p_i^{-1} (p_i - 1)
+    \]
+    \[
+    = n \prod_{i=1}^{k} (1 - p_i^{-1})
+    \]
+\end{proof}
+
+These results allow us to compute congruence related problems for any large power of $n$ by prime factorizing $n$.
+
+\begin{eg}
+    Compute $(102^{73} + 55)^{37} \pmod{111}$.
+\end{eg}
+\begin{explanation}
+    Let $x \equiv (102^{73} + 55)^{37} \pmod{111}$. 
+
+    We know $111 = 3 \times 37$. Since $gcd(3,37) = 1$, by Chinese Remainder Theorem, we can compute $x$ modulo $3$ and $37$ separately.
+
+    First, we compute $x \pmod{3}$. Since $102 \equiv 0 \pmod{3}$, we have \[102^{73} \equiv 0^{73} = 0 \pmod{3},\] and $55 \equiv 1 \pmod{3}$. Hence, \[102^{73} + 55 \equiv 0 + 1 = 1 \pmod{3}.\] Therefore, \[x \equiv (102^{73} + 55)^{37} \equiv 1^{37} = 1 \pmod{3}.\]
+
+    Next, we compute $x \pmod{37}$.
+
+    $102^{73} \equiv (102^{36})^2 \cdot 102 \equiv 1 \cdot 102 \equiv 28 \pmod{37}$ by Fermat's Little Theorem. 
+    Replacing this to 
+    \[x \equiv (102^{73} + 55)^{37} \equiv (28+55) \equiv 9 \pmod{37}.\]
+
+    By procedure used in Theorem~\ref{thm:chinese2}, we solve $x \equiv 1 \pmod{3}$ and $x \equiv 9 \pmod{37}$ to get $x \equiv 46 \pmod{111}$.
+\end{explanation}
+
+\begin{prop}
+    \begin{enumerate}
+        \item When $gcd(m,n) \neq 1$, $\phi(mn) = \phi(m) \phi(n) \frac{d}{\phi(d)}$, where $d = gcd(m,n)$.
+        \item $a \mid b$ implies $\phi(a) \mid \phi(b)$.
+    \end{enumerate}
+\end{prop}
+\begin{proof}
+    
+\end{proof}
+
+\section{Addendum: Primality Test}
+A primality test is an algorithm for determining whether an input number is prime. Result's of this chapter can be used to design primality tests.
+
+Wilson's theorem gives a definitive test for primality since it is a biconditional statement. For a prime \( n \),
+\[
+(n-1)! \equiv -1 \pmod{n}.
+\]
+If this condition is not satisfied, \( n \) is composite. However, computing \( (n-1)! \pmod{n} \) is impractical for large \( n \).
+
+Fermat's Little Theorem provides a faster, probabilistic primality test. It states that if \( n \) is prime, for any \( a \) such that \( \gcd(a, n) = 1 \),
+\[
+a^{n-1} \equiv 1 \pmod{n}.
+\]
+If this fails for any \( a \), \( n \) is composite. If it holds for many \( a \), \( n \) is \textit{probably prime}.
+
+\begin{definition}[Carmichael Number]
+    A composite number \( n \) is a \textit{Carmichael number} if it satisfies Fermat's test for all \( a \) coprime to \( n \), i.e.,
+    \[
+    a^{n-1} \equiv 1 \pmod{n}
+    \]
+    for all \( a \) such that \( \gcd(a, n) = 1 \).
+\end{definition}
+
+Carmichael numbers, like 561, are composite yet pass Fermat's test for all bases \( a \), making Fermat's test unreliable.
+
+Wilson's and Euler's criteria suggest that primality testing for large numbers is infeasible within a reasonable amount of time, particularly within polynomial time. However, in 2002, three Indian computer scientists—Agrawal, Kayal, and Saxena created a general, polynomial-time, deterministic and unconditionally correct algorithm for primality testing, known as the AKS primality test. Previous algorithms, developed for centuries, achieved three of these properties at most. Hence, primality testing is fundamentally easier than one might expect.
+
+Given that primality testing is in $P$ (class of problems solvable in polynomial time), a natural question arises: can we also factorize a number in polynomial time? The answer remains unknown. It is an important question because modern cryptography assumes that factorization is not in $P$. This problem can be formulated using mathematics and is now one of the central open problems in computational complexity and mathematics.  No formal discipline is close to resolving this question, highlighting the gaps in our fundamental understanding of computation.

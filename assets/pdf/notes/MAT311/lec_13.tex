@@ -1,0 +1,133 @@
+\begin{theorem}[Second Isomorphism Theorem]
+    Given a group $G$ with a subgroup $H$ and a normal subgroup $N$, $H/(H \cap N) \cong HN / N$.
+\end{theorem}
+\begin{proof}
+    % Let \(x, y \in HN$ then $x = h_1n_1, y= h_2 n_2, \text{ for } h_1, h_2 \in H, n_1, n_2 \in N\). Then, 
+    % \begin{align*}
+    %     xy^{-1} &= h_1 n_1(h_2n_2)^{-1}\\
+    %          &= h_1n_1n_2^{-1}h_2^{-1}
+    % \end{align*}
+    % Since, $N$ is a normal subgroup and $n_1n_2^{-1} \in N$, $(n_1n_2^{-1})h_2^{-1} = h_2^{-1}n'$ for $n' \in N$. Hence, \[xy^{-1} = h_1n_1n_2^{-1}h_2^{-1} = h_1h_2^{-1}n' \in HN.\]
+    % Using subgroup criterion, $HN$ is a subgroup of $G$.
+    It is easy to check $HN \leq G$, $N \lhd HN$ and $(H \cap N) \lhd H$. So we directly move on to proving the isomorphic part.\\
+    Define $\phi : H \rightarrow HN / N$ such that $\phi(h) = hN$. $\phi$ is homomorphism because for all $x, y \in H$,
+        \[
+        \phi(xy) = xy N = xN yN = \phi(x)\phi(y).
+        \]
+    Suppose $xN \in HN$, and $x = hn, h\in H, n \in N$. Hence, $xN = hnN = hN = \phi(h)$. Hence, im $\phi = \phi(H) = HN/N$.\\
+    Now, ker $\phi = \{h \in H : \phi(h) = eN = N\}$. Note that $h \in \ker \phi \implies \phi(h) = N \implies hN = N \implies h \in N \implies h \in (H \cap N)$. Again, if $x \in (H \cap N) \implies x \in N \implies \phi(x) = N$. Hence, ker $\phi = H \cap N$.\\
+    Using first isomorphism theorem, $H/(H \cap N) \cong HN / N$.
+\end{proof}
+\begin{theorem}[Third Isomorphism Theorem]
+    Given a group $G$ with normal subgroups $N$ and $H$, such that $N \subseteq H, (G/N)/(H/N) \cong G/H$.
+\end{theorem}
+\section{Automorphism}
+\begin{definition}[Automorphism]
+    If $f:G \rightarrow G$ is an isomorphism, we call it an \textit{automorphism}.
+\end{definition}
+\begin{eg}
+    $f:G \rightarrow G$ such that $f(g) = g$ is an automorphism.
+\end{eg}
+\begin{noneg}
+    $f:G \rightarrow G$ such that $f(x) = x^{-1}$ is not an isomorphism.
+\end{noneg}
+\begin{explanation}
+    Because $f$ is not a homomorphism in the first place. For $g_1, g_2 \in G$,
+        $f(g_1g_2) = (g_1g_2)^{-1} = g_2^{-1}g_1^{-1} = f(g_2) f(g_1)$ is not always equals to $f(g_1)f(g_2)$.
+\end{explanation}
+\begin{eg}[Conjugation Action]
+    $\varphi : G \rightarrow G$ such that $\varphi(x) = gxg^{-1}$ is an automorphism.
+\end{eg}
+\begin{explanation}
+    Firstly, $\varphi$ is a homomorphism.\\
+    For all $x,y \in G$,
+    \begin{align*}
+        \varphi(xy) &= gxyg^{-1}\\
+                    &= gxg^{-1}gyg^{-1}\\
+                    &= \varphi(x) \varphi(y)
+    \end{align*}
+    Then, it is easy to show that $\varphi$ is injective and $|G| = |\im \varphi|$ which proves $\varphi$ is surjective too, hence, an automorphism.
+\end{explanation}
+\begin{noneg}
+    Define for $g \in G$, $\lambda_g: G \rightarrow G$ such that $\lambda_g(a) = ga$. $\lambda_g$ is not an automorphism because it is not a homomorphism although it is a bijective map.
+\end{noneg}
+\begin{lemma}
+    $\lambda_g$ in the previous example defines a permutation of $G$. 
+\end{lemma}
+\begin{lemmaproof}
+    To prove injectivity, let,
+    $$\lambda_g(a) = \lambda_g(b) \implies ga = gb \implies a = b.$$
+    To prove surjectivity, for any $c \in G, c = g g^{-1}c = \lambda_g(g^{-1}c).$\\
+    $\lambda_g$ is bijective and every bijective map from a group to itself is a permutation.
+\end{lemmaproof}
+\begin{theorem}[Cayley's Theorem]
+    Every group is isomorphic to a group of permutations.
+\end{theorem}
+\begin{proof}
+    Define for $g \in G$, $\lambda_g: G \rightarrow G$ such that $\lambda_g(a) = ga$ and $\overline{G} = \{\lambda_g: g \in G\}.$ We want to prove, $\overline{G}$ is a group under composition of permutations and $G \cong \overline{G}.$
+    To prove $\overline{G}$ is a group,
+    \[\lambda_g \circ \lambda_h(a) = \lambda_g[ha] = gha = \lambda_{gh}(a) \textbf{ (Closure)}\]
+    Composition of maps is associative \textbf{(Associativity)}.\\
+    \textbf{Inverse} and \textbf{identity} are $\lambda_{g^{-1}}$ and $\lambda_e$ respectively for all $g \in G$.\\
+    Now, we will define a bijection $\varphi$. Let $\varphi: G \rightarrow \overline{G}$ such that $\varphi(g) = \lambda_g$.\\
+    $\varphi$ is a homomorphism because for $g_1, g_2 \in G, \varphi(g_1g_2) = \lambda_{g_1g_2} = \lambda_{g_1} \circ \lambda{g_2} = \varphi(g_1) \varphi(g_2)$.\\
+    Now, $\lambda_e$ is the identity element in $\overline{G}$. Let $x \in \ker \varphi, x \in G$. Then, $\varphi(x) = \lambda_x = \lambda_e$. So, $\lambda_x(g) = \lambda_e(g)$ for $g \in G$ which is equivalent to $xg = g \Leftrightarrow x = e$. Hence, $\ker \varphi = \{e\}$, so $\varphi$ is injective.\\
+    And since $|G| = |\overline{G}|$, $\varphi$ is also bijective.\\
+    Hence, $\varphi$ is an isomorphism, so $G \cong \overline{G}$.
+\end{proof}
+\section{Conjugacy Classes}
+Let $G$ act on itself by conjugation. We write $g \cdot x = g x g^{-1}$. The conjugacy class of $x$ is given by \[\text{Cl} (x) = \{g x g^{-1}: g \in G\}.\]
+\begin{eg}
+    Consider
+    \[S_3 = \{( \ ), (1 \ 2), (1 \ 3), (2 \ 3), (1 \ 2 \ 3), (1 \ 3 \ 2)\}\]
+    \[\text{Cl}((1 \ 2)) = \{(1 \ 2), (1 \ 3),(2 \ 3)\}.\]
+    \[\text{Cl}((1 \ 2 \ 3)) = \{(1 \ 2 \ 3), (1 \ 3 \ 2)\}.\]
+\end{eg}
+\begin{theorem}
+    Conjugacy classes preserve the cycle structure in $S_n$.
+\end{theorem}
+\begin{theorem}
+    Therefore, conjugacy classes in $S_n$ corresponds to the partitions of $n$.
+\end{theorem}
+\begin{eg}
+    Consider $S_4$. Number of ways to partition $4$, $P(4) = 5$.
+    \begin{align*}
+        4 &\longleftrightarrow (1 \ 2 \ 3 \ 4)\\
+        3 + 1 &\longleftrightarrow (1 \ 2 \ 3) (4)\\
+        2 + 2 &\longleftrightarrow (1 \ 2) (3 \ 4)\\
+        2 + 1 + 1 &\longleftrightarrow (1 \ 2) (3) (4)\\
+        1 + 1 + 1 + 1 &\longleftrightarrow ( \ ) ( \ ) ( \ ) ( \ )
+    \end{align*}
+\end{eg}
+\begin{theorem}
+    Conjugacy classes of $G$ partition the group since conjugation defines an equivalence relation.
+\end{theorem}
+\begin{proof}
+    Define the conjugacy relation on \( G \) as follows: For \( g, h \in G \), we say that \( g \sim h \) if there exists some \( x \in G \) such that
+    \[
+    h = xgx^{-1}.
+    \]
+    For any \( g \in G \), we can take \( x = e \), the identity element of \( G \). Then,
+    \[
+    xgx^{-1} = ege = g.
+    \]
+    Thus, \( g \sim g \), so the relation is \textbf{reflexive}.\\
+    Let \( g \sim h \), meaning that there exists an element \( x \in G \) such that \( h = xgx^{-1} \). We want to show that \( h \sim g \), i.e., there exists some element \( y \in G \) such that \( g = yhy^{-1} \).
+    We can choose \( y = x^{-1} \). Then,
+    \[
+    yhy^{-1} = x^{-1}(xgx^{-1})x = g.
+    \]
+    Thus, \( h \sim g \), so the relation is \textbf{symmetric}.\\
+    Let \( g \sim h \) and \( h \sim k \), meaning that there exist elements \( x, y \in G \) such that \( h = xgx^{-1} \) and \( k = yhy^{-1} \). We want to show that \( g \sim k \), i.e., there exists some element \( z \in G \) such that \( k = zgz^{-1} \).
+    Substitute \( h = xgx^{-1} \) into the expression for \( k \):
+    \[
+    k = yhy^{-1} = y(xgx^{-1})y^{-1} = (yx)g(x^{-1}y^{-1}).
+    \]
+    Let \( z = yx \). Then we have
+    \[
+    k = zgz^{-1},
+    \]
+    so \( g \sim k \). Thus, the relation is \textbf{reflexive}.\\
+    Therefore, Conjugacy relation is an equivalence relation on \( G \).\\
+    The equivalence classes under this relation are called the \textit{conjugacy classes} of \( G \) which partition $G$.
+\end{proof}

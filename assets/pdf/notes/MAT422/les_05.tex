@@ -1,0 +1,107 @@
+\section{Linear Congruences}
+\begin{definition}[Linear Congruence]
+    An equation of the form 
+    \[ax \equiv b \pmod{m}\]
+    is called a \textit{linear congruence}. An integer $x_0$ is called a solution to this equation if $ax_0 \equiv b \pmod{m}$.
+\end{definition}
+Notice, $x_0$ is a solution to $ax \equiv b \pmod{m}$ is equivalent to $m \mid (ax_0 - b)$, which is equivalent to $my_0 = ax_0 - b$, for some $y_0 \in \Z$.
+\begin{theorem}
+    The linear congruence $ax \equiv b \pmod{m}$ has a solution if and only if $d \mid b$, where $d = gcd(a, m)$. Furthermore, if $d \mid b$, then it has $d$ mutually incongruent solutions modulo $m$.
+\end{theorem}
+\begin{proof}
+    $(\implies)$ Say the equation $ax \equiv b \pmod{m}$ has a solution $x_0$. Then there exists $y_0 \in \Z$ such that \[my_0 = ax_0 - b \implies ax_0 - my_0 = b.\] 
+    Here, $d \mid a, d \mid m$, so $d \mid ax_0 - my_0.$ Hence, $d \mid b$.
+
+    $(\Leftarrow)$ Conversely, suppose $d \mid b$. Then there is $c \in \Z$ such that $c = b/d$.
+
+    Since $d = gcd(a, m)$, there exists $x_0, y_0$ such that \[ax_0 - my_0 = d.\] Multiplying both sides with $c$, we have \[a(cx_0) - m(cy_0) = dc = b.\]
+
+    Which is equivalent to saying $cx_0$ is a solution to the equation $ax \equiv b \pmod{m}$.
+
+    Now we will prove there are exactly $d$ incongruent solutions. Let $x_0$ be a solution to this equation. It is clear that $x_0 + \frac{m}{d}t, t \in \Z$ is a solution to this equation also. Let $x'$ be any other solution to this equation. Then there exists $y_0, y' \in \Z$ such that 
+    \[
+        ax_0 - my_0 = b = ax' - my'
+    \]
+    \[
+        \implies a(x_0 - x') = y'-y_0
+    \]
+    \[
+        \implies \frac{a}{d}(x_0 - x') = \frac{m}{d}(y'-y_0)
+    \]
+    Since $gcd(a/d, m/d) = 1, \frac{m}{d} \mid x_0 - x'$.
+
+    Hence, for $t \in \Z,$ we have $x' = x_0 + \frac{m}{d}t$. So any solution to this congruence has this form.
+
+    Now, we will argue the solutions we get for the values $t = 0, 1, \cdots, d-1$ are all incongruent and all other such integers $x'$ are congruent to one of former solutions.
+
+    If it happened that 
+    \[x_0 + \frac{m}{d}t_1 \equiv x_0 + \frac{m}{d}t_2 \pmod{m},\]
+    where $0 \le t_1 < t_2 \le (d-1)$, then we would have 
+    \[\frac{m}{d}t_1 \equiv \frac{m}{d}t_2 \pmod{m}.\]
+    Since $gcd(m/d, m) = m/d$, therefore previous congruence implies 
+    \[t_1 \equiv t_2 \pmod{d} \implies d \mid t_2 - t_1,\]
+    which is impossible in view of the inequality $0 < t_2 - t_1 < d$. So, we have $d$ incongruent solutions so far. It remains to argue that any other solution \( x_0 + \frac{n}{d} t, t \ge d \) is congruent modulo \( m \) to
+one of these \( d \) integers. The Division Algorithm permits us to write \( t \) as
+\( t = qd + r \), where \( 0 \leq r \leq d - 1 \). Hence
+$$
+x_0 + \frac{m}{d} t = x_0 + \frac{m}{d} (qd + r)
+$$
+$$
+= x_0 + mq + \frac{m}{d} r
+$$
+$$
+\equiv x_0 + \frac{m}{d} r \pmod{m}
+$$
+with \( x_0 + \frac{m}{d} r \) being one of our \( d \) selected solutions. This ends the proof.
+\end{proof}
+\begin{corollary}\label{thm:uniquecong}
+    The linear congruence $ax \equiv b \pmod{m}$ has a unique solution mod $m$ if and only if  $gcd(a, m) = 1$
+\end{corollary}
+
+Now, coming back to the question "When $a \in \Z/m\Z$ is a unit?", we can now state the following proposition.
+\begin{prop}
+    An element $a$ of $\Z/m\Z$ is a unit iff $gcd(a,m) = 1$.
+\end{prop}
+
+Corollary~\ref{thm:uniquecong} has an equivalent from in terms of maps from $\Z/m\Z$ to $\Z/m\Z$.
+
+\begin{corollary}[Equivalent to corrolary $4.2$]\label{cor:phi_a}
+    Define $\varphi_a:\Z/m\Z \rightarrow \Z/m\Z$ such that \[\varphi_a(x) = ax \pmod{m}\]
+    The map is bijective if and only if $gcd(a, m) = 1$.
+\end{corollary}
+\begin{proof}
+    $(\Leftarrow)$ Let $gcd(a,m) = 1$, we have to prove $\varphi_a$ is bijective.
+
+    Let $x_1, x_2 \in \Z/m\Z$. And 
+    \[\varphi_a(x_1) = \varphi_a(x_2)\]
+    \[\implies ax_1 \equiv ax_2 \pmod{m}\]
+    Since, $gcd(a,m) = 1$ using cancellation law,
+    \[\implies x_1 \equiv x_2 \pmod{m}.\]
+
+    Hence, $\varphi_a$ is injective. 
+
+    Choose $b \Z/m\Z$. Since, $gcd(a,m) = 1$ there exist $x_0, y_0 \in \Z$ such that
+    \[ax_0 + my_0 = 1\]
+    \[\implies abx_0 + mby_0 = b.\]
+    Reduce this equation mod $m$, then we get
+    \[abx_0 \equiv b \pmod{m}.\]
+    Hence, we have $[bx_0] \in \Z/m\Z$ such that $\varphi_a([bx_0]) = b$, which prove $\varphi_a$ is surjective\footnote[1]{We could do even better. Here domain and co-domain are finite and are of same cardinality, so injectivity implies surjectivity (automatically).} and completes verifying bijectivity of $\varphi_a$.
+
+    $(\Rightarrow)$ Let $\varphi_a$ be bijective. We will prove $gcd(a, m) = 1$. 
+
+    Since $[1] \in \Z/m\Z$, surjectivity of $\varphi_a$ implies there exists $x_0 \in \Z/m\Z$ such that $ax_0 = [1]$ which is equivalent to saying $ax_0 \equiv 1 \pmod{m}$, which means there is $y_0 \in \Z$ such that 
+    \[ax_0 - my_0  =1,\]
+    where $gcd(a,m)$ divides left side of the equation, so is the right side. Which means $gcd(a, m) \mid 1$, and that implies $gcd(a,m) = 1$. Which proves the forward direction.
+\end{proof}
+Similarly we could prove
+\begin{corollary}\label{cor:unitbijection}
+    If $gcd(a, m) = 1$, then the map $\varphi_a: U(\Z/m\Z) \rightarrow U(\Z/m\Z)$ such that $\varphi(x) = ax \pmod{m}$ is a bijection.
+\end{corollary}
+
+\begin{prop}
+    If $p$ is a prime, then $\Z/p\Z$ is a field.
+\end{prop}
+\begin{proof}
+    If $p$ is prime, then for all $a \neq 0 \in \Z/p\Z$, $gcd(a, p) = 1$. Hence, each nonzero $a \in \Z/p\Z$ has multiplicative inverse. So $\Z/p\Z$ is a division ring, which is also commutative as previously proven. Therefore $\Z/p\Z$ is a field.
+\end{proof}
+$\Z/p\Z$ is an example of a finite field.

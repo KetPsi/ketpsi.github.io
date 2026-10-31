@@ -1,0 +1,104 @@
+\section{More Examples of Ring}
+\begin{eg}
+    $\Z/n\Z$ is an example of a commutative ring because $(\Z/n\Z, +)$ is an abelian group and multiplication modulo $n$ satisfies associativity and commutativity and distributes over addition.
+\end{eg}
+\begin{eg}
+    $\Z/6\Z$ is not a division ring, e.g., $\overline{3}$ doesn't have a multiplicative inverse.
+\end{eg}
+\begin{eg}[Finite Field]
+$\Z/5\Z$ is a division ring. Also it is commutative ring, hence, it is a field.\\
+Notice, for all prime numbers $p$, $F_p := \Z/p\Z$ is a field. Number of its elements is finite, hence, it is an example of a finite field.
+\end{eg}
+\begin{eg}[A ring without multiplicative identity]
+    $2\Z$.
+\end{eg}
+\begin{definition}[Quaternions]
+    Let $\mathbb{H}$ to be the set of all quaternions such that 
+    \[\mathbb{H} := \{a + bi + cj + dk: a,b,c,d \in R\}.\]
+    And define addition $+$ via-
+    \[(a_1 + b_1i + c_1j + d_1k)(a_2+b2_i+c_2i + d_2k) := (a_1+a_2) + (b_1 + b_2)i + (c_1+c_2)j + (d_1 + d_2)k.\]
+    And multiply using distributive laws subject to the relations:
+    \begin{align*}
+        &i^2 = j^2 = k^2 = -1\\
+        &ij = -ji = k\\
+        &jk = -kj = i\\
+        &ki = -ik = j
+    \end{align*}
+\end{definition}
+\begin{eg}
+The set of all quaternions $\mathbb{H}$ forms a non-commutative division ring.
+\end{eg}
+\begin{explanation}
+\textbf{Quaternions form a ring:}
+
+\begin{itemize}
+    \item \textbf{Addition}: The addition of two quaternions is componentwise and is associative and commutative because real numbers are commutative and associative. The additive identity is \( 0 = 0 + 0i + 0j + 0k \), and the additive inverse of \( q = a + bi + cj + dk \) is \( -q = -a - bi - cj - dk \).
+    \item \textbf{Multiplication}: The multiplication of quaternions is defined by the distributive law, and is associative.
+\end{itemize}
+\textbf{Quaternions form a division ring:}
+The identity element is \( 1 = 1 + 0i + 0j + 0k \), and every quaternion \( q = a + bi + cj + dk \) has a multiplicative inverse, as shown below. For any non-zero quaternion \( q = a + bi + cj + dk \), the inverse is given by:
+\[
+q^{-1} = \frac{a - bi - cj - dk}{a^2 + b^2 + c^2 + d^2},
+\]
+which satisfies \( q q^{-1} = 1 \), as can be verified by multiplying.\\
+\textbf{Quaternions form a non-commutative ring:}
+By definition, $ij = -ji$, hence, multiplication is not commutative.
+\end{explanation}
+\begin{eg}[Workout Example]
+    $a = 1 + 2j + 3k$ and $b = j + k$.
+    \begin{align*}
+        a + b &= (1 + 2j + 3k) + (j + k)\\
+              &= 1 + (2+1)j + (3+1)k\\
+              &= 1 + 3j + 4k.
+    \end{align*}
+    \begin{align*}
+        a \times b &= (1 + 2j + 3k) \times (j + k)\\
+                   &= (1 + 2j + 3k)j + (1 + 2j + 3k)k\\
+                   &= j + 2j^2 + 3kj + k + 2jk + 3k^2\\
+                   &= j + 2(-1) + 3(-i) + k + 2i + 3(-1)\\
+                   &= j -2 -3i + k +2i - 3\\
+                   &= -5 - i + j + k.
+    \end{align*}
+\end{eg}
+\section{Properties of Ring}
+\begin{prop} If $R$ is a ring, then for all $a, b \in R$,
+    \begin{enumerate}
+        \item $0\cdot a = a \cdot 0 = 0$.
+        \item $(-a)b = a(-b) = -(ab)$.
+        \item $(-a)(-b) = ab$.
+        \item The multiplicative identity is unique.
+    \end{enumerate}
+\end{prop}
+\begin{propproof}
+    \begin{enumerate}
+        \item \begin{align*}
+            (0 + 0) a &= 0\cdot a + 0 \cdot a\\
+            \implies 0 \cdot a &= 0\cdot a + 0 \cdot a\\
+            \implies 0 &= 0 \cdot a\\
+            \implies 0 \cdot a &= 0.
+        \end{align*}
+        Similarly, $a \cdot 0 = 0$.
+        \item \begin{align*}
+            (a - a) b &= 0\\
+            \implies ab + (-a)b&= 0\\
+            \implies (-a)b &= -(ab).
+        \end{align*}
+        Similarly, $a(-b) = -(ab)$.
+        \item Using previous result, $(-a)(-b) = -(a(-b)) = -(-(ab)) = ab.$
+        \item Let $1$ and $1'$ be two distinct multiplicative identity. Then for $a \in R$, $a \cdot 1 = a = a \cdot 1'$ which implies $1 = 1'$ (contradiction!). Hence, multiplicative identity has to be unique.
+    \end{enumerate}
+\end{propproof}
+\section{Subring}
+\begin{definition}[Subring]
+    A subset $S$ of ring $R$ is a \textit{subring} if it is a subgroup of $R$ under addition and if is closed under multiplication.
+\end{definition}
+\begin{eg}
+    $2\Z \subseteq \Z \subseteq \Q \subseteq \R \subseteq \C \subset \mathbb{H}$.
+\end{eg}
+\section{Characteristic}
+\begin{definition}[Characteristic]
+    Let $R$ be a ring with identity $1$. If there exists a positive integer $n$ such that $1 + 1 + \cdots + 1 = n1 = 0$, then $n$ is called the characteristic of $R$, and denoted by char($R$). If no such positive integer exists, then $R$ is said to be characteristic zero.
+\end{definition}
+\begin{eg}
+    In $R = \Z/n\Z$, char$(R) = 0$.
+\end{eg}

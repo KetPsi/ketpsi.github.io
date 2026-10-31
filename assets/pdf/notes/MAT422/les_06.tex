@@ -1,0 +1,59 @@
+\section{Wilson's, Euler's \& Fermat's Theorems}
+\begin{theorem}[Wilson's Theorem]
+    $p>1$ is a prime if and only if $(p-1)! \equiv -1 \pmod{p}$.
+\end{theorem}
+\begin{proof}
+    Consider the set \( S = \{1, 2, \dots, p-1\} \) of integers modulo \( p \). Since \( p \) is prime, every \( a \in S \) has a unique inverse \( a^{-1} \) modulo \( p \), satisfying \( a a^{-1} \equiv 1 \pmod{p} \). 
+
+    If \( a^2 \equiv 1 \pmod{p} \), then \( (a-1)(a+1) \equiv 0 \pmod{p} \), implying \( a \equiv \pm 1 \pmod{p} \). Thus, all elements in \( S \setminus \{1, p-1\} \) pair up with their distinct inverses, contributing a product congruent to \( 1 \) modulo \( p \), i.e.,
+    \[
+    (p-2)! \equiv 1 \pmod{p}
+    \]
+    \[
+    \implies (p-1)! \equiv p-1 \equiv -1 \pmod{p}.
+    \]
+
+    Conversely, assume $p$ has a non-trivial divisor $d>1$. Then \[(p-1)! \equiv -1 \pmod{p} \implies (p-1)! \equiv -1 \pmod{d}.\]
+    But \[-1 \equiv (p-1)! \equiv 0 \pmod{d},\] which implies $d = 1$ (contradiction!). Hence, We conclude $p$ cannot have non-trivial divisors and hence it is prime.
+\end{proof}
+
+Example~\ref{eg:fermatsmotiv} motivates us to find some trick to calculate integer raised to some power modulo $m$. i.e., we want to find properties of $a, a^2, a^3, ...$ modulo $m$. In number theory, it is often fruitful to reduce a problem to prime cases and then solve for those prime cases, or vice-versa. With respect to this approach, we set $m=p$ where $p$ is a prime and state the following theorem.
+
+\begin{theorem}[Fermat's Little Theorem]
+    Let $p$ be a prime, and let $a$ be any number with $a \not\equiv 0 \pmod{p}$. Then \[a^{p-1} \equiv 1 \pmod{p}.\]
+\end{theorem}
+\begin{proof}
+    Define the map $\varphi_a: \Z/p\Z \rightarrow \Z/p\Z$ such that \[\varphi_a(x) = ax \pmod{p}.\] Since $gcd(a,p) = 1$, using corollary~\ref{cor:phi_a}, we know $\varphi_a$ is a bijection and so $\varphi_a$ is just a permutation.
+
+    Then the numbers \[1,2,3, ..., (p-1) \pmod{p}\] are the same as the numbers \[a,2a,3a, ..., (p-1)a \pmod{p},\]
+    although they might be in a different order. Which means \[1,2,3, ..., (p-1) \equiv a,2a,3a, ..., (p-1)a \pmod{p}\] \[\implies (p-1)! \equiv a^{p-1}(p-1)! \pmod{p}.\]
+
+    But $p$ and $(p-1)!$ are co-prime. Hence, we conclude \[a^{p-1} \equiv 1 \pmod{p}.\]
+\end{proof}
+
+And then we have the following generalization of Fermat's Little Theorem.
+
+\begin{theorem}[Euler's Theorem]
+    If $a$ and $n$ are relatively prime then \[a^{\phi(n)} \equiv 1 \pmod{n},\] where $\phi(n) = \#\{u: 1 \le u \le n \text{ and } gcd(a,n)=1\}$.
+\end{theorem}
+\begin{proof}
+    The proof is identical to the previous one. Let $A= \{a_1, a_2, ..., a_{\phi(n)}\}$ be the set of all numbers coprime to $a$. Then the map $\varphi_a: A \rightarrow A$ such that $\varphi(x) = ax$ is a bijection according to corollary~\ref{cor:unitbijection}.
+    
+    Since $\varphi_a$ is a permutation, the numbers \[a_1, a_2, ..., a_{\phi(n)} \pmod{n}\] are the same as the numbers \[aa_1, aa_2, ..., aa_{\phi(n)} \pmod{n},\]
+    although they might be in a different order. Which means \[a_1, a_2, \cdots, a_{\phi(n)} \equiv (aa_1) (aa_2) \cdots, (aa_{\phi(n)}) \pmod{n}.\] Cancelling out all the $a_i$'s from both sides, we get \[a^{\phi(n)} \equiv 1 \pmod{n},\]
+    as required.
+\end{proof}
+We already know group of units $U(\Z/n\Z)$ has group structure under multiplication mod $n$. We can exploit this and provide an alternative proof to Euler's theorem.
+\begin{replacementproof}[Using group theory]
+    Order of $U(\Z/n\Z)$ is $\phi(n)$.
+
+    Since $[a] \in U(\Z/n\Z)$, Lagrange’s theorem states that the order of any element in a finite group divides the order of the group. That is, the order of $[a]$ (i.e., the smallest integer $d$ such that $[a]^d = [1]$) divides $\phi(n)$. This implies:
+    \[
+    [a]^{\phi(n)} = [1].
+    \]
+    Rewriting this in terms of modular arithmetic we get
+    \[
+    a^{\phi(n)} \equiv 1 \pmod{n},
+    \]
+    completing the proof.
+\end{replacementproof}

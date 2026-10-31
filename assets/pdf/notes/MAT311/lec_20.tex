@@ -1,0 +1,83 @@
+\section{Examples of Field of Fractions}
+\begin{eg}
+    $\Q$ is the field of fractions of $\Z$.
+\end{eg}
+\begin{definition}[Gaussian Integers]
+    Consider $\Z[i] = \{a + bi: a, b \in \Z\}$ known as \textit{Gaussian integers}. Define
+    \[(a+bi) + (c + di) := (a+c)+(b+d)i,\]
+    \[(a+bi) \cdot (c + di) := (ac-bd)+(ad + bc)i.\]
+    Then, $\Z[i]$ is an integral domain under these operations.
+\end{definition}
+\begin{eg}
+    $\Q[i]$ is the field of fractions of $\Z[i]$.
+\end{eg}
+\begin{explanation}
+    To prove that \(\mathbb{Q}[i]\) is the field of fractions of \(\mathbb{Z}[i]\), we verify the following:
+\begin{enumerate}
+    \item Every element of \(\mathbb{Q}[i]\) can be expressed as a fraction of elements in \(\mathbb{Z}[i]\).
+    \item If an element can be expressed as a fraction of elements in \(\mathbb{Z}[i]\), it belongs to \(\mathbb{Q}[i]\).
+\end{enumerate}
+\textbf{1.} By definition, \(\mathbb{Q}[i] = \{a + bi \mid a, b \in \mathbb{Q}\}\). 
+    Let \(a, b \in \mathbb{Q}\). Since \(\mathbb{Q}\) is the field of fractions of \(\mathbb{Z}\), we can write \(a = \frac{m}{n}\) and \(b = \frac{p}{q}\), where \(m, n, p, q \in \mathbb{Z}\) and \(n, q \neq 0\).\\
+    Then, 
+    \[
+    a + bi = \frac{m}{n} + \frac{p}{q}i = \frac{mq + np i}{nq},
+    \]
+    where \(mq + np i \in \mathbb{Z}[i]\) and \(nq \in \mathbb{Z} \setminus \{0\}\).\\
+    Hence, \(a + bi \in \mathbb{Q}[i]\) is expressible as \(\frac{\alpha}{\beta}\), where \(\alpha, \beta \in \mathbb{Z}[i]\) and \(\beta \neq 0\).\\\\
+\textbf{2.}
+    Let \(\frac{\alpha}{\beta}\) be a fraction where \(\alpha, \beta \in \mathbb{Z}[i]\) and \(\beta \neq 0\).\\
+    Write \(\alpha = a + bi\) and \(\beta = c + di\), where \(a, b, c, d \in \mathbb{Z}\).\\
+    The inverse of \(\beta\) in \(\mathbb{Q}[i]\) is given by:
+    \[
+    \beta^{-1} = \frac{\overline{\beta}}{\beta \overline{\beta}} = \frac{c - di}{c^2 + d^2},
+    \]
+    where \(\overline{\beta} = c - di\) is the complex conjugate of \(\beta\).\\
+    Since \(c^2 + d^2 \neq 0\), \(\beta^{-1} \in \mathbb{Q}[i]\).\\
+    Therefore, 
+    \[
+    \frac{\alpha}{\beta} = \alpha \cdot \beta^{-1} \in \mathbb{Q}[i],
+    \]
+completing the proof.
+\end{explanation}
+\begin{eg}
+    If $R$ is an integral domain, so is $R[x]$. Then the field of fractions of $R[x]$ is given by all the rational functions, which are given by $\frac{f(x)}{g(x)}$, where $f(x), g(x) \in R[x]$ and $g(x) \neq 0$.
+\end{eg}
+\section{Norm, Euclidean Norm \& Euclidean Domain}
+\begin{definition}[Norm, Euclidean Norm \& Euclidean Domain]
+    A \textit{norm} of an integral domain $D$ is a function $\nu : D \rightarrow \N$ with $\nu (0) = 0$.\\
+    If we have that $\nu$ also satisfying:
+    \begin{enumerate}
+        \item For all $a,b \neq 0$, $\nu(a) \le \nu(ab)$,
+        \item For all $a,b\in D$, there exists $q, r \in D$ such that $a = bq + r$ with $\nu(r) < \nu(b)$,
+    \end{enumerate}
+    then $\nu$ is called an \textit{Euclidean norm} and $D$ is called \textit{Euclidean Domain}.
+\end{definition}
+\begin{eg}
+    Take $D = \Z$. Then $\nu(a) = |a|$ is an Euclidean norm on $\Z$.\\
+\end{eg}
+\begin{explanation}
+    \begin{enumerate}
+        \item $\nu(0) = |0| = 0$
+        \item For all $a, b \neq 0$, \[\nu(ab) = |ab| = |a|\cdot|b|.\] But since $|b| \ge 1$, we have \[\nu(a) \le \nu(ab).\]
+        \item By the nature of Euclidean division, we have $q, r$ for all $a, b \in \Z$ such that \[a = bq + r,\] where $0 \le r < b$. Therefore, $\nu(r) = |r| < |b| = \nu(b)$.
+    \end{enumerate}
+\end{explanation}
+\begin{eg}
+    Consider $F[x]$, where $F$ is a field. Define $\nu(f(x)) = \deg f(x)$. Then $\nu$ is an Euclidean norm and make $F[x]$ an Euclidean domain.
+\end{eg}
+\begin{explanation}
+    \begin{enumerate}
+        \item $\nu(0) = \deg 0 = 0$.
+        \item For all $f, g \neq 0$, \begin{align*}
+            \nu(fg) &= \deg f \cdot g\\
+                    &= \deg f + \deg g\\
+        \end{align*}
+        Since deg $g \ge 0$, we have $\nu(f) \le \nu(fg)$.
+        \item By the virtue of polynomial division, there exists $q(x), r(x) \in F[x]$ such that \[f(x) = g(x)q(x) + r(x),\] with deg $r < \deg g$.
+    \end{enumerate}
+\end{explanation}
+\section{Principle Ideal Domain}
+\begin{definition}[Principle Ideal Domain]
+    A \textit{principle ideal domain} is an integral domain $D$ where every ideal is principle ideal.
+\end{definition}

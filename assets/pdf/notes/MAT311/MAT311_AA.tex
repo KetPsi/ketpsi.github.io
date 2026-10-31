@@ -1,0 +1,82 @@
+\documentclass[a4paper]{report}
+\usepackage[a4paper, margin=1.3in]{geometry}
+\input{./preamble.tex}
+% \usepackage{cmbright}
+% \usepackage{hyperref}
+\usepackage{faktor}
+
+\makeatletter
+\DeclareRobustCommand*{\mfaktor}[3][]
+{
+   { \mathpalette{\mfaktor@impl@}{{#1}{#2}{#3}} }
+}
+\newcommand*{\mfaktor@impl@}[2]{\mfaktor@impl#1#2}
+\newcommand*{\mfaktor@impl}[4]{
+   \settoheight{\faktor@zaehlerhoehe}{\ensuremath{#1#2{#3}}}%
+   \settoheight{\faktor@nennerhoehe}{\ensuremath{#1#2{#4}}}%
+      \raisebox{-0.5\faktor@zaehlerhoehe}{\ensuremath{#1#2{#3}}}%
+      \mkern-4mu\diagdown\mkern-5mu%
+      \raisebox{0.5\faktor@nennerhoehe}{\ensuremath{#1#2{#4}}}%
+}
+\makeatother
+
+\DeclareMathOperator{\Ker}{ker}
+\DeclareMathOperator{\im}{Im}
+
+\title{MAT311: Abstract Algebra}
+\begin{document}
+   \maketitle
+   \input{preface.tex}
+   \newpage
+   \tableofcontents
+   \newpage
+   % start lessons
+   \setcounter{chapter}{-1}
+   \chapter{23 Oct 2024}
+   \input{lec_00.tex}
+   \chapter{28 Oct 2024}
+   \input{lec_01.tex}
+   \chapter{30 Oct 2024}
+   \input{lec_02.tex}
+   \chapter{04 Nov 2024}
+   \input{lec_03.tex}
+   \chapter{06 Nov 2024}
+   \input{lec_04.tex}
+   \chapter{11 Nov 2024}
+   \input{lec_05.tex}
+   \chapter{13 Nov 2024}
+   \input{lec_06.tex}
+   \chapter{18 Nov 2024}
+   \input{lec_07.tex}
+   \chapter{20 Nov 2024}
+   \input{lec_08.tex}
+   \chapter{2 Dec 2024}
+   \input{lec_09.tex}
+   \chapter{4 Dec 2024}
+   \input{lec_10.tex}
+   \chapter{9 Dec 2024}
+   \input{lec_11.tex}
+   \chapter{11 Dec 2024}
+   \input{lec_12.tex}
+   \chapter{17 Dec 2024}
+   \input{lec_13.tex}
+   \chapter{18 Dec 2024}
+   \input{lec_14.tex}
+   \chapter{19 Dec 2024}
+   \input{lec_15.tex}
+   \chapter{23 Dec 2024}
+   \input{lec_16.tex}
+   \chapter{28 Dec 2024}
+   \input{lec_17.tex}
+   \chapter{30 Dec 2024}
+   \input{lec_18.tex}
+   \chapter{4 Jan 2025}
+   \input{lec_19.tex}
+   \chapter{4 Jan 2025}
+   \input{lec_20.tex}
+   \chapter{6 Jan 2025}
+   \input{lec_21.tex}
+   \chapter{8 Jan 2025}
+   \input{lec_22.tex}
+   % end lessons
+\end{document}

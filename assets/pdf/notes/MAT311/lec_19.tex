@@ -1,0 +1,75 @@
+\section{Maximal Ideals}
+\begin{definition}[Maximal Ideal]
+    An ideal $M$ in an arbitrary ring $R$ is a \textit{maximal ideal} if $M \neq R$ and the only ideals that contain $M$ are $M$ and $R$.
+\end{definition}
+In other words, $M \neq R$ is a maximal ideal if there is no other proper ideal of $R$ that contains $M$. $M \subset K \subset R \implies$ either $K = M$ or $K = R$.
+\begin{noneg}
+    $6\Z$ is not a maximal ideal of $\Z$ because $6\Z \subset 3\Z$.
+\end{noneg}
+\begin{lemma}
+    If $p$ is a prime, then $p\Z$ is a maximal ideal.
+\end{lemma}
+\begin{lemmaproof}
+    Let $p\Z \subset q\Z \subset \Z$. For the inclusion to be true, $q$ must divide $p$. Since $p$ is a prime, either $q=1 \implies q\Z = \Z$ or $q = p \implies q\Z = p\Z$. Which means $p\Z$ is a maximal ideal.
+\end{lemmaproof}
+\begin{eg}
+    $(2,x)$ in $\Z[x]$ is a maximal ideal.
+\end{eg}
+\begin{explanation}
+    $\Z/2\Z$ is a maximal ideal, $(2,x) = \{2p(x) + q(x): p(x), q(x) \in \Z[x]\}$ and $\Z[x]/(2,x) \cong \Z/2\Z$. Hence, $(2,x)$ is a maximal ideal in $\Z$.
+\end{explanation}
+\begin{noneg}
+    $(x) \subset \Z[x]$ is not a maximal ideal since $(x) \subset (2,x) \subset \Z$.
+\end{noneg}
+\begin{theorem}[Correspondence Theorem]
+    Let $R, R'$ be rings and $\varphi$ be a homomorphism from $R$ to $R'$ with kernel $u$. Then there is a one-one correspondence between the set of ideals in $R$ which contain $u$ and the set of ideals in $R'$. 
+\end{theorem}
+\begin{prop}
+    Assume $R$ is commutative. Then $M$ is maximal ideal if and only if $R/M$ is a field.
+\end{prop}
+\begin{propproof}
+    Consider canonical map $\varphi: R \rightarrow R/M$. Then $\varphi$ has kernel $M$.\\
+    Assume $M$ is a maximal ideal. Then only two ideals contain $M$: $M$ and $R$. Let $I$ be an ideal in $R/M$. By correspondence theorem, there is an ideal $K \subseteq R$ containing $M$. However, since $M$ is a maximal ideal, either $K = M$ or $K = R$. Therefore, there are only two ideals in $R/M$. They are $(0)$ and $(R/M)$ itself. Hence, $R/M$ is a field.\\
+    Conversely, let $R/M$ is a field. Then for all ideal $I$ in $R/M$, there exists a corresponding ideal $K$ in $R$ that contain $M$. But either $I = R/M$ or $I = (0)$. Which means $R$ has two ideals containing $M$, which are $M$ and $R$. Hence, $M$ is a maximal ideal.
+\end{propproof}
+\section{Prime Ideals}
+\begin{definition}[Prime Ideal]
+    Assume $R$ is commutative. An ideal $P \subset R$ is called \textit{prime ideal} if $P \neq R$ and whenever $ab \in P$ for $a,b \in R$, then either $a \in P$ or $b \in P$ or both.
+\end{definition}
+\begin{noneg}
+    $6\Z$ is not a prime ideal of $\Z$ because $3 \times 2 = 6 \in 6\Z$ but $2,3 \not \in 6\Z$.
+\end{noneg}
+\begin{lemma}
+    $p\Z$ is a prime ideal in $\Z$.
+\end{lemma}
+\begin{explanation}
+    Let $ab \in p\Z$. Then $ab = pk$ for some $k \in \Z$. By prime factorization, either $p \vert  a$ or $p \vert  b$ or both, which implies either $a \in p\Z$ or $b \in p\Z$ or both.
+\end{explanation}
+\begin{lemma}
+    Every maximal ideal is a prime ideal.
+\end{lemma}
+The converse of the above lemma does not hold.
+\begin{prop}
+    Assume $R$ is commutative. An ideal $P \in R$ is a prime ideal if and only if $R/P$ is an integral domain.
+\end{prop}
+\begin{propproof}
+    Assume $P$ is a prime ideal. Let $\overline{a}, \overline{b} \in R/P$ and $\overline{a} \cdot \overline{b} = 0$ which implies $\overline{ab} = 0 \implies ab \in P$.
+    Since $P$ is prime, either $a \in P \implies \overline{a}=0$ or $b \in P \implies \overline{b}$ or both. Therefore, according to the definition, $R/P$ is an integral domain.\\\\
+    Conversely, assume that $R/P$ is an integral domain. Let $ab \in P$. Then $0 + P = ab + P = (a+P)(b+P)$ which implies that $a+P = 0 +P$ or $b+P = 0 +P$, since $R/P$ is an integral domain. Thus, $a \in P$ or $b \in P$ and so $P$ is a prime ideal. 
+\end{propproof}
+\section{Fields of Fractions of An Integral Domain}
+\begin{definition}[Field of Fractions of an Integral Domain]  
+Let \( R \) be an integral domain. Define \( N \subseteq R \times R \) as the set of pairs \( (a, b) \) where \( b \neq 0 \). An equivalence relation \(\sim\) on \( N \) is defined by  
+\[
+(a, b) \sim (p, q) \iff aq = bp.
+\] 
+The \textit{field of fractions} of \( R \) is the set of equivalence classes under this relation.\\
+We denote the equivalence class of \( (a, b) \) by \([a, b]\). This set forms a field with the following operations:  
+\[
+[a, b] + [c, d] := [ad + bc, bd].
+\]  
+\[
+[a, b] \cdot [c, d] := [ac, bd].
+\] 
+\end{definition}
+The proof that field of fractions indeed forms a field is simple, but tedious to check. However, it is worth mentioning that the additive and multiplicative identities of such field are given by \([0, 1]\) and \([1, 1]\), respectively.

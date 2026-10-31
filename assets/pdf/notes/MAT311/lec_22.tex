@@ -1,0 +1,44 @@
+\begin{theorem}
+    Every prime element is irreducible.
+\end{theorem}
+\begin{proof}
+    Let \( R \) be an integral domain, and let \( p \) be a prime element in \( R \). By definition, \( p \) is prime if whenever \( p \) divides a product \( ab \), it must divide at least one of \( a \) or \( b \), i.e.,  
+\[
+p \mid ab \Rightarrow p \mid a \text{ or } p \mid b.
+\]  
+We want to show that \( p \) is irreducible, meaning that if \( p = ab \) for some \( a, b \in R \), then either \( a \) or \( b \) is a unit in \( R \).  
+
+Since \( p = ab \), we apply the definition of primeness to conclude that \( p \mid a \) or \( p \mid b \). Without loss of generality, suppose \( p \mid a \). Then, there exists some \( c \in R \) such that \( a = pc \). Substituting this into \( p = ab \), we get:  
+\[
+p = (pc)b = p(cb).
+\]  
+Since \( R \) is an integral domain, we can cancel \( p \), yielding \( 1 = cb \), which shows that \( b \) is a unit. Thus, \( p \) is irreducible.
+\end{proof}
+But every irreducible element is not prime.
+\section{Unique Factorization Domain}
+\begin{definition}
+    An integral domain \( U \) is a \textit{unique factorization domain (UFD)} if every non-zero, non-unit element of \( U \) can be written as a product of irreducible elements, and this factorization is unique up to order and multiplication by units. 
+    Moreover, in a UFD, every irreducible element is also a prime element.
+    \end{definition}
+    Let \( p \) be an element of a UFD \( U \). Suppose \( p \) has two factorizations into irreducibles:
+    \[
+    p = a_1 \cdots a_n = q_1 \cdots q_m.
+    \]
+    Since \( U \) is a UFD, uniqueness of factorization implies that each \( a_i \) is a unit multiple of some \( q_j \), meaning there exist units \( u_i \) such that
+    \[
+    a_1 = u_1 q_1, \quad a_2 = u_2 q_2, \quad \dots, \quad a_n = u_n q_n.
+    \]
+    From the standard results:
+    \[
+    \text{ED} \Rightarrow \text{PID} \Rightarrow \text{UFD}.
+    \]
+    For example:
+    \begin{itemize}
+        \item \( K[x,y] \) (a polynomial ring over a field \( K \)) is a UFD but not a PID.
+        \item \( \mathbb{Z} \) is an ED, and hence also a PID and a UFD.
+    \end{itemize}
+    To see that \( (2,3) = \mathbb{Z} \), observe that:
+    \[
+    (2,3) = \{ 2k + 3l \mid k, l \in \mathbb{Z} \}.
+    \]
+    Since \( 1 \) can be written as \( 1 = 2(2) + 3(-1) \), it follows that \( (2,3) = (1) = \mathbb{Z} \).

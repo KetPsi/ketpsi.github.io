@@ -1,0 +1,94 @@
+\section{Class Equation}
+\begin{definition}
+    Stab$(x) = \{g \in G: g \cdot x = x\}$.
+\end{definition}
+For conjugation action, 
+\[
+\text{Stab} (x) = \{g\in G: gxg^{-1} = x\} = C_G(x).
+\]
+\begin{theorem}
+    $|\text{Cl}(a)| = [G: \text{Stab}(a)] = [G:C_G(a)] = \frac{|G|}{|C_G(a)|}.$
+\end{theorem}
+\begin{proof}
+    Since \([G : C_G(a)]\) is the number of left cosets of \( C_G(a) \), we want to define a bijective map between elements in \( \text{Cl}(a) \) and the left cosets of \( C_G(a) \).\\
+    Let \( H = C_G(a) \).\\
+    Since the elements of \( \text{Cl}(a) \) are conjugates of \( a \), we define \( f \) by:
+    \[
+    f(xa x^{-1}) \mapsto xH
+    \]
+    We claim that \( f \) is 1-1. Suppose \( f(x) = f(y) \), then \( xH = yH \), and thus \( xh = y \) for some \( h \in H \). But then \( x^{-1}y \in H \), so that \( x^{-1}y \) commutes with \( a \), and therefore:
+    \[
+    x^{-1}y a = a x^{-1}y.
+    \]
+    From this, we conclude that:
+    \[
+    x a x^{-1} = y a y^{-1},
+    \]
+    which proves that \( f \) is injective.\\
+    As for surjectivity, note that for any \( x \in G \), \( x a x^{-1} \) is in \( \text{Cl}(a) \).\\
+    However, we also need to show the map is well-defined. That is, we need to show that if \( x a x^{-1} \) and \( y a y^{-1} \) are two descriptions of the same element in \( \text{Cl}(a) \), then \( f(x) = f(y) \). The calculation which shows this is simply the reversal of the steps above. To be precise:
+    \[
+    x a x^{-1} = y a y^{-1} \quad \Rightarrow \quad a x^{-1} y = x^{-1} y a \quad \Rightarrow \quad x^{-1} y \in H \quad \Rightarrow \quad xH = yH.
+    \]
+    Thus, the map is well-defined and bijective, so : $|\text{Cl}(a)| = [G : C_G(a)]$.
+\end{proof}
+\begin{lemma}
+    If $x \in Z(G)$, then Cl($x) = \{x\}$.
+\end{lemma}
+\begin{theorem}[Class Equation]
+    Given a finite group $G$ with center $Z(G)$ and representatives $g_1, g_2, ..., g_n$ of the distinct conjugacy classes not contained in $Z(G)$, then 
+    \begin{align*}
+        |G| &= |Z(G)| + \sum_{i=1}^{n}[G:C_G(g_i)]\\
+            &= |Z(G)| + \sum_{i=1}^{n}\frac{|G|}{|C_G(g_i)|}.
+    \end{align*} 
+\end{theorem}
+\begin{proof}
+    $\{x\}$ is a conjugacy class of size $1$ if and only if $x \in Z(G)$. Let $Z(G) = \{1, z_1, z_2, ..., z_{k-1}\}$. Since conjugacy classes partition $G$, 
+    \[G = (\text{Cl}(z_1) \cup \text{Cl}(z_2) \cup \cdots \cup \text{Cl}(z_k)) \cup (\text{Cl}(g_1) \cup \text{Cl}(g_2) \cup \cdots \cup \text{Cl}(g_n)).\]
+    Hence,
+    \begin{align*}
+        |G| &= |Z(G)| \cdot 1 + \sum_{i=1}^{n}|\text{Cl}(g_i)|\\
+            &= |Z(G)| + \sum_{i=1}^{n}[G:C_G(g_i)]\\
+            &= |Z(G)| + \sum_{i=1}^{n}\frac{|G|}{|C_G(g_i)|}.
+    \end{align*}
+\end{proof}
+\section{Rings and Fields}
+\begin{definition}[Ring]
+    A ring $R$ is a set together with two binary operations $+$ and $\times$ (called addition and multiplication respectively) satisfying the following axioms:
+    \begin{enumerate}
+        \item $(R, +)$ is an abelian group.
+        \item $\times$ is associative: $(a \times b) \times c = a \times (b \times c)$ for all $a, b \in R$.
+        \item Distributive laws hold: $(a + b) \times c = (a \times c) + (b 
+        \times c)$ and $a \times (b + c) = (a \times b) + (a 
+        \times c)$ for all $a, b, c \in R$.
+    \end{enumerate}
+\end{definition}
+\begin{remark}[Why we need $(R, +)$ to be abelian group?]
+    We need $(R, +)$ to be abelian because otherwise distributive laws will not hold. For instance,
+    \[(1+1) \times (a+b) = 1 \times a + 1 \times b + 1 \times a + 1 \times b\]
+    But also \[(1+1) \times (a+b) = 1\times a + 1\times a +1 \times b +1 \times b\]
+\end{remark}
+\begin{definition}[Commutative Ring]
+    A ring is said to be \textit{commutative} if multiplication $\times$ is commutative.
+\end{definition}
+\begin{definition}
+    A ring is said to \textit{have an identity} if there is an element $1$ such that 
+    \[ 1 \times a = a \times 1 = a \text{, for all } a \in R.\]
+\end{definition}
+\begin{definition}[Division Ring]
+    A ring with identity $1$, where $1 \neq 0$, is called a \textit{division ring}, if every element $a \neq 0 \in R$ has a multiplicative inverse, that is, there exists $b \in G$ such that
+    \[a \times b = b \times a = 1.\] 
+\end{definition}
+\begin{definition}[Field]
+    A commutative division ring is called \textit{field}.
+\end{definition}
+\section{Examples of Ring}
+\begin{eg}
+    $\Z, \Q, \C, \R$ are all examples of ring and commutative ring. Excluding $\Z$, all of them are division ring, so are fields.
+\end{eg}
+\begin{eg}[Trivial Ring]
+    $\{0\}$ is a \textit{trivial ring}.
+\end{eg}
+\begin{eg}[Trivial Example]
+    For any abelian group R, if we define $a \times b := 0$, then $R$ is a ring.
+\end{eg}

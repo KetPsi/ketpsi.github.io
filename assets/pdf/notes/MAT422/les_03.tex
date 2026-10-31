@@ -1,0 +1,205 @@
+\section{Groups}
+\begin{definition}[Binary Operation]
+    A binary operation $*$ on a set $G$ is a function $*:G \times G \longrightarrow G$. For any $a, b \in G,$ we will write $a * b$ for $*(a, b)$.
+\end{definition}
+\begin{definition}[Group]
+    A group is an ordered pair $(G,*)$, where $G$ is a set and $*$ is a binary operation on $G$ satisfying the following axioms:
+    \begin{itemize}
+        \item \textbf{Associativity:} $(a * b) * c = a * (b * c);$ for all $a, b, c \in G.$
+        \item \textbf{Identity:} There exists an element $e \in G$, called identity of $G$, such that for all $a \in G, a * e = e * a = a.$
+        \item \textbf{Inverse:} For all $a \in G$, there exists $b\in G$ such that $a * b = b * a = e.$ We call $b$ is the inverse of $a$ and write $b = a^{-1}.$ 
+    \end{itemize}
+\end{definition}
+
+Informally, we say \textit{$G$ is a group under $*$}, if $(G, *)$ is a group, or just \textit{$G$ is a group} when the operation $*$ is clear from the context.
+\begin{eg}
+    $(\mathbb{Q}, +), (\mathbb{Z}, +), (\mathbb{R}, +), (\mathbb{Q}\setminus\{0\}, \times)$.
+\end{eg}
+\begin{eg}
+    Define
+    \[
+        M_{2\times 2}(\R) = \left\{\begin{pmatrix}a & b\\c & d\end{pmatrix}: a,b,c,d\in\R\right\}.
+    \]
+    Then with usual matrix addition $+$, $(M_{2\times 2}(\R), +)$ forms a group.
+\end{eg}
+\begin{proof}
+    We check the group axioms:
+    \begin{enumerate}
+        \item \textbf{Closure:} Let $A = \begin{pmatrix}a & b\\c & d\end{pmatrix}$ and $B = \begin{pmatrix}e & f\\g & h\end{pmatrix}$ be two elements of $M_{2\times 2}(\R)$. Then, $A + B = \begin{pmatrix}a+e & b+f\\c+g & d+h\end{pmatrix}$ is also an element of $M_{2\times 2}(\R)$. So, $M_{2\times 2}(\R)$ is closed under addition.
+        \item \textbf{Associativity:} Matrix addition is associative.
+        \item \textbf{Identity:} The zero matrix $\begin{pmatrix}0 & 0\\0 & 0\end{pmatrix}$ is the identity element.
+        \item \textbf{Inverses:} For any $A = \begin{pmatrix}a & b\\c & d\end{pmatrix}$, the inverse is $-A = \begin{pmatrix}-a & -b\\-c & -d\end{pmatrix}$. So, inverses exist.
+    \end{enumerate}
+    Hence, $(M_{2\times 2}(\R), +)$ is a group.
+\end{proof}
+\begin{noneg}
+    Define
+    \[
+        M_{2\times 2}(\N) = \left\{\begin{pmatrix}a & b\\c & d\end{pmatrix}: a,b,c,d\in\N\right\}.
+    \]
+    Then, $(M_{2\times 2}(\N), +)$ is not a group because inverses do not exist.
+\end{noneg}
+\begin{definition}
+A group $G$ is called \textit{abelian} (or \textit{commutative}) if $a * b = b * a,$ for all $a, b \in G$. Otherwise, it is called \textit{non-abelian} (or \textit{non-commutative}).
+\end{definition}
+\begin{eg}
+    $(R, +), (M_{2\times 2}(\R), +)$ are abelian groups.
+\end{eg}
+
+\begin{definition}[Cycilc Group \& Generators]\label{def:cyclic}
+    A group $G$ is called \textit{cyclic} if there exists an element $g \in G$ such that $G = \{g^n: n \in \Z\}$. Moreover, $g$ is called a \textit{generator} of $G$.
+\end{definition}
+
+\section{Rings}
+We add additional structure on abelian groups and define rings.
+\begin{definition}[Ring]
+    A set $R$ together with two binary operations $+$ and $\times$ (called addition and multiplication respectively) is a ring denoted by $(R, +, \times)$ if the following axioms are satisfied:
+    \begin{enumerate}
+        \item $(R, +)$ is an abelian group.
+        \item \textbf{$\times$ is associative:} $(a \times b) \times c = a \times (b \times c)$ for all $a, b \in R$.
+        \item \textbf{Distributive Law:} $(a + b) \times c = (a \times c) + (b 
+        \times c)$ and $a \times (b + c) = (a \times b) + (a 
+        \times c)$ for all $a, b, c \in R$.
+    \end{enumerate}
+\end{definition}
+\begin{eg}
+    We can easily check that $(\Z, +, \times), (\Q, +, \times), (\R, +, \times)$ are all rings.
+\end{eg}
+\begin{eg}
+    Define $M_{2\times 2}(\R)$ as before. Then, $(M_{2\times 2}(\R), +, \times)$ is a ring.
+\end{eg}
+\begin{proof}
+    We have seen earlier, ($M_{2\times 2}(\R), +$) is an abelian group. So we left to check the closure, associative and distributive law (over addition) of $\times$.
+    
+    \textbf{2. Closure:} Let $A, B, C \in M_{2\times 2}(\R)$.
+
+    The $(i,j)$-th entry of $AB$ is given by:
+    \[
+    (ab)_{ij} = \sum_{m=1}^{2} a_{im} b_{mj} \in \R; 1 \leq i,j \leq 2.
+    \]
+    Both $i, j$ runs from $1$ to $2$, so we again get a $2\times 2$ matrix and hence, multiplication is closed.
+
+    Now we prove that
+    \[ (AB)C = A(BC). \]
+    The $(i,j)$-th entry of $(AB)C$ is given by:
+    \[
+    [(ab)c]_{ij} = \sum_{m=1}^{2} (ab)_{im} C_{mj}.
+    \]
+    Expanding $(ab)_{im}$:
+    \[
+    (ab)_{im} = \sum_{k=1}^{2} a_{ik} b_{km},
+    \]
+    substituting it back:
+    \[
+    [(ab)c]_{ij} = \sum_{m=1}^{2} \left( \sum_{k=1}^{2} a_{ik} b_{km} \right) c_{mj}
+    \]
+    \[
+    = \sum_{k=1}^{2} a_{ik} \left( \sum_{m=1}^{2} b_{km} c_{mj} \right) = \sum_{k=1}^{2} a_{ik} (bc)_{kj} = [a(bc)]_{ij}.
+    \]
+    Thus, $(AB)C = A(BC)$, proving associativity.
+
+    \textbf{2. Distributive Law:} 
+    The $(i,j)$-th entry of $A(B+C)$ is:
+    \[
+    [a(b+c)]_{ij} = \sum_{k=1}^{2} a_{ik} (b+c)_{kj}.
+    \]
+    By definition of matrix addition:
+    \[
+    (b+c)_{kj} = b_{kj} + c_{kj},
+    \]
+    substituting:
+    \[
+    [a(b+c)]_{ij} = \sum_{k=1}^{2} a_{ik} (b_{kj} + c_{kj}) = \sum_{k=1}^{2} a_{ik} b_{kj} + \sum_{k=1}^{2} a_{ik} c_{kj} = (ab)_{ij} + (ac)_{ij},
+    \]
+    which proves
+    \[
+    A(B+C) = AB + AC.
+    \]
+    Similarly, we can prove $(B+C)A = BA + CA$.
+
+    Matrix multiplication is closed, associative and distributes over addition, therefore the proof is complete.
+
+\end{proof}
+
+A ring not necessarily has a multiplicative identity.
+\begin{eg}
+    $(2\Z, +, \times)$ is a ring (an easy check!) but does not have a multiplicative identity.
+\end{eg}
+However, when it does have a multiplicative identity, we call it a \textit{ring with identity}.
+\begin{definition}[Ring with Identity]
+    A ring is said to \textit{have an identity} if there is an element $1 \neq 0$ such that 
+    \[ 1 \times a = a \times 1 = a \text{, for all } a \in R.\]
+    We call $R$ a \textit{ring with identity}.
+\end{definition}
+\begin{definition}[Commutative Ring]
+    A ring is said to be \textit{commutative} if multiplication $\times$ is commutative.
+\end{definition}
+
+Examples given earlier include rings with identity and commutative rings.
+
+\begin{eg}[Direct Product of Rings]\label{eg:directprod}
+    Let $R_1$ and $R_2$ be rings. Then, the set $R_1 \times R_2$ with component-wise addition and multiplication is a ring.
+\end{eg}
+\begin{proof}
+    We check the ring axioms:
+    \begin{enumerate}
+        \item \textbf{Closure:} Let $(a_1, a_2), (b_1, b_2) \in R_1 \times R_2$. Then, $(a_1 + b_1, a_2 + b_2) \in R_1 \times R_2$.
+        \item \textbf{Associativity:} Component-wise multiplication is associative.
+        \item \textbf{Distributive Law:} Distributive law holds for component-wise addition and multiplication.
+    \end{enumerate}
+    Hence, $R_1 \times R_2$ is a ring.
+\end{proof}
+
+\begin{definition}[Polynomial Ring]\label{def:polyring}
+    Let $R$ be a ring, $x$ be an indeterminate and define $R[x]$ be the set of all formal sums
+    \begin{align*}
+        R[x] := a_nx^n + a_{n-1}x^{n-1} + \cdots + a_1x + a_0 = \sum a_ix^i.
+    \end{align*}
+    Given two polynomials $f = \sum a_ix^i$ and $g = \sum b_ix^i$ in $R[x]$, the sum of $f$ and $g$ is defined as
+        \[f + g = \sum (a_i + b_i)x^i,\]
+    (where we have implicitly assumed that $m \leq n$ and we set $b_i = 0$ for $i > m$).
+    And the product of $f$ and $g$ as
+    \[f \cdot g = \sum_{i}^{}(\sum_{j}^{}a_jb_{i-j})x^i.\]
+    With this rule of addition and multiplication, $R[x]$ becomes a ring, called \textit{polynomial ring}. 
+\end{definition}
+In the definition above, each $a_i \in R$ is called the coefficients of the polynomial; $a_i$ is the coefficient of $x^i$ and the zero element given as the polynomial with zero coefficients.
+
+\section{Ring Homomorphism}
+\begin{definition}[Ring Homomorphisms]
+    Let $R$ and $S$ be two rings. A \textit{ring homomorphism} $\varphi: R \rightarrow S$ is a map satisfying the following:
+    \begin{enumerate}
+        \item $\varphi(a + b)  = \varphi(a)+ \varphi(b)$ for all $a, b \in R$,
+        \item $\varphi(a b)  = \varphi(a)\varphi(b)$ for all $a, b \in R$.
+    \end{enumerate}
+\end{definition}
+\begin{definition}[Isomorphism]
+    A bijective ring homomorphism is called an \textit{isomorphism}.
+\end{definition}
+
+\begin{definition}[Kernel and Image of Ring]
+    For rings, the \textit{kernel} is the set of all elements in $R$ that get mapped to $0 \in S$. In symbols,
+    \[\ker \varphi = \{r \in R: \varphi(r) = 0\}.\]
+    The \textit{image} of $\varphi$ is the set of all elements in $S$ that are mapped from $R$. In symbols,
+    \[\im \varphi = \{s \in S: s=\varphi(r) \text{ for some } r \in R\}.\]
+\end{definition}
+
+\begin{theorem}\label{thm:ringinjker}
+    Let $R$ and $S$ be rings and let $\varphi: R \rightarrow S$ be a ring homomorphism. Then $\varphi$ is injective if and only if $ker \ \varphi = \{0\}$.
+\end{theorem}
+\begin{proof}
+    $(\implies)$ Suppose $\varphi$ is injective. Let $r \in \ker \varphi$. Then, $\varphi(r) = 0 = \varphi(0)$. Since $\varphi$ is injective, $r = 0$. Hence, $\ker \varphi = \{0\}$.
+
+    $(\Leftarrow)$ Suppose $\ker \varphi = \{0\}$. Let $r_1, r_2 \in R$ such that $\varphi(r_1) = \varphi(r_2)$. Then, $\varphi(r_1 - r_2) = 0$. Since $\ker \varphi = \{0\}$, $r_1 - r_2 = 0 \implies r_1 = r_2$. Hence, $\varphi$ is injective.
+\end{proof}
+
+\section{Fields}
+\begin{definition}[Division Ring]
+    A ring with identity $1$, where $1 \neq 0$, is called a \textit{division ring}, if every element $a \neq 0 \in R$ has a multiplicative inverse, that is, there exists $b \in G$ such that
+    \[a \times b = b \times a = 1.\] 
+\end{definition}
+\begin{definition}[Field]
+    A commutative division ring is called \textit{field}.
+\end{definition}
+\begin{eg}
+    $\Z, \Q, \C, \R$ are all examples of ring and commutative ring. Excluding $\Z$, all of them are division ring, so are fields.
+\end{eg}

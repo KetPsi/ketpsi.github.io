@@ -1,0 +1,54 @@
+\section{$\Z/n\Z$: The Integers Modulo $n$}
+$\mathbb{Z} =$ Set of integers.\\
+Define a relation on $\mathbb{Z}$ by -
+$$
+a \sim b \text{ if } n \mid (a - b).
+$$
+Properties of this relation:
+\begin{itemize}
+    \item $a \sim a$ (Reflexivity)
+    \item $a \sim b \implies b \sim a$ (Symmetry)
+    \item $a \sim b, b \sim c \implies a \sim c$ (Transitivity)
+\end{itemize}
+Hence, this is an equivalence relation.\\
+If $a \sim b$, we say $b$ is congruent to $a$ modulo $n$ and denote as $a \equiv b \text{ (mod }n)$.\\
+Let $\overline{a} :=$ The set of all integers congruent to $a$ mod $n$, then $\overline{a} = \{a + kn: k \in \mathbb{Z}\}$ is called equivalence class / congruence class / residue class of $a$ mod $n$.\\
+There are precisely $n$ distinct equivalence classes mod $n$, namely
+$$\overline{0}, \overline{1}, \overline{2}, ..., \overline{n-1}.$$
+\begin{eg}
+    $\mathbb{Z}/4\mathbb{Z} = \{\overline{0}, \overline{1}, \overline{2}, \overline{3}\}.$
+\end{eg}
+Define an addition on $\mathbb{Z}/n\mathbb{Z}$ via -
+$$\overline{a} \oplus \overline{b} = \overline{a+b}$$
+\begin{eg}
+    $\mathbb{Z}/3\mathbb{Z} = \{\overline{0}, \overline{1}, \overline{2}\}.$
+    \[
+    \begin{array}{c|ccc}
+        \oplus       & \overline{0} & \overline{1} & \overline{2}\\
+        \hline
+        \overline{0} & \overline{0} & \overline{1} & \overline{2}\\
+        \overline{1} & \overline{1} & \overline{2} & \overline{0}\\
+        \overline{2} & \overline{2} & \overline{0} & \overline{1}\\
+    \end{array}
+    \]
+\end{eg}
+Notice that for all $a, b \in \mathbb{Z}/3\mathbb{Z}$ the following properties hold:
+\begin{itemize}
+    \item $(a \oplus b) \in \mathbb{Z}/3\mathbb{Z}$ (\textbf{Closure}).
+    \item $(a \oplus b) \oplus c = a \oplus (b \oplus c)$ (\textbf{Associativity}).
+    \item $a \oplus \overline{0} = \overline{0} \oplus a = a$ (\textbf{Identity element}).
+    \item For all $a \in \mathbb{Z}/3\mathbb{Z}$, there exists $b \in \mathbb{Z}/3\mathbb{Z}$ such that $a \oplus b = b \oplus a = \overline{0}$ (\textbf{Inverse element}).
+\end{itemize}
+These properties hold for $\mathbb{Z}/n\mathbb{Z}$ in general.\\
+Now let's move on to a totally different kind of set.
+\section{Rotational Symmetries of an Equilateral Triangle}
+Consider the set of all roational symmetries of an equilateral triangle.
+\begin{figure}[H]
+    \centering
+    \incfig{symmetries-of-triangle}
+    \caption{Symmetries of Triangle}
+    \label{fig:symmetries-of-triangle}
+\end{figure}
+A symmetry is something we do to an object that leaves the object intact. In case of the equilateral triangle we have three roational symmetires: roatation by $0^{\circ}, 120^{\circ}$ and $240^{\circ}$. The operation here is to compose two symmetries, meaning apply one after another. Notice, composition of two symmetries is again a symmetry \textbf{(Closure)}. Composition of three symmetries is associative, because we really applying symmetries from the left to right \textbf{(Associativity)}. We consider rotation by $0^{\circ}$ or 'do nothing' is also a symmetry. When we compose  this with another symmetry, the other symmetry is unchanged \textbf{(Identity)}. Finally, given any symmetry, we can undo the symmetry \textbf{(Inverse elemnet)}.\\
+Although, our earlier example of $\Z/3\Z$ and the Symmetries of a triangle is totally different set, both share four common properties.\\
+A set equipped with an operation that follows these four properties is called a \textit{Group}.

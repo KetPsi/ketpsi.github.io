@@ -1,0 +1,180 @@
+\epigraph{"If mathematics is the queen of sciences and number theory the queen of mathematics as Gauss said, then we may add that the \textit{Disquisitiones Arithmeticae} is the Magna Charta of number theory"}{--- \textup{Moritz Cantor}}
+Theory of Congruences is another approach to the divisibility problems. The concept and the notation that makes it such a powerful tool, was first introduced by Carl Friedrich Gauss in his book \textit{Disquisitiones Arithmeticae}.
+\begin{definition}[Congruence modulo $m$]
+    If $a, b \in \Z$ and $m \in \N$, we say \textit{$a$ is congruent to $b$ modulo $m$} if $m \mid (a-b)$ and write it as \[a \equiv b \pmod{m}.\]
+\end{definition}
+\begin{eg}
+    Let $m=5$. Then $2$ and $7$ are congruent modulo $5$ because $5 \mid (7-2)$.
+\end{eg}
+\begin{eg}[Why congruence is a useful tool]
+    Prove that the following equation has no integral solution:
+\[
+    x^2 - 3y^3 - 2 = 0.
+\]
+\end{eg}
+\begin{proof}
+    A useful technique to prove non-existence of integral solution is to consider the equation modulo some well-chosen integer $n$; because if there are no solution modulo $n$, then there are no solution over the integers. Let's consider the equation modulo $3$.
+
+    Taking both sides modulo $3$, we get
+    \[
+    x^2 - 2 \equiv 0 \pmod{3}.
+    \]
+    The possible remainders when divided by $3$ are $0, 1, 2$. But
+    \[0^2 - 2 \not\equiv 0 \pmod{3}, \ 1^2 - 2 \not\equiv 0 \pmod{3}, \ 2^2 - 2 \not\equiv 0 \pmod{3}.\]
+    Hence, this equation has no solution modulo $3$ implying there's no integral solution either.
+\end{proof}
+\newpage
+\section{Basic Properties of Congruences}
+\begin{prop}
+    Let $a, b, c, d \in \Z$ and fix $m \in \N$. Then the following are true:
+    \begin{enumerate}
+        \item \textbf{Reflexivity:} $a \equiv a \pmod{m}$.
+        \item \textbf{Symmetry:} If $a \equiv b \pmod{m}$, then $b \equiv a \pmod{m}$.
+        \item \textbf{Transitivity:} If $a \equiv b \pmod{m}$ and $b \equiv c \pmod{m}$, then $a \equiv c \pmod{m}$.
+    \end{enumerate}
+\end{prop}
+\begin{proof}
+    \begin{enumerate}
+        \item $a \equiv a \pmod{m}$ because $m \mid (a-a)$.
+        \item If $a \equiv b \pmod{m}$, then $m \mid (a-b)$ implies $m \mid (b-a)$, so $b \equiv a \pmod{m}$.
+        \item If $a \equiv b \pmod{m}$ and $b \equiv c \pmod{m}$, then $m \mid (a-b)$ and $m \mid (b-c)$ implies $m \mid (a - b + b - c) = (a-c)$, so $a \equiv c \pmod{m}$.
+    \end{enumerate}
+\end{proof}
+Furthermore,
+\begin{prop}[Operations with Congruences]\label{prop:cong}
+    Congruences are preserved under addition, multiplication, and exponentiation, i.e., given that \( a \equiv b \pmod{m} \) and \( c \equiv d \pmod{m} \), the following also hold:  
+    \begin{enumerate}  
+        \item $ a + c \equiv b + d \pmod{m}, \quad ac \equiv bd \pmod{m}. $  
+        \item $ a + c \equiv b + c \pmod{m}, \quad ac \equiv bc \pmod{m}. $  
+        \item $ a^n \equiv b^n \pmod{m} \quad \text{for all } n \in \mathbb{N}. $  
+    \end{enumerate}  
+\end{prop}
+\begin{proof}
+    Using basic divisibility properties and division algorithm, these properties are easy to verify.
+\end{proof}
+
+Congruence makes certain types of computations easier to carry out.
+\begin{eg}\label{eg:fermatsmotiv}
+    Show that $41$ divides  $2^{20} - 1$.
+\end{eg}
+\begin{proof}
+    We begin by \[2^5 \equiv -9 \pmod{41}.\] Using Proposition~\ref{prop:cong} we have \[(2^5)^4 \equiv (-9)^4 \pmod{41} \implies 2^{20} \equiv 81^2 \pmod{41}.\] But \[81 \equiv -1 \pmod{41} \implies 81^2 \equiv 1 \pmod{9}.\]
+    Therefore, we have \[2^{20} \equiv 81^2 \equiv 1 \pmod{41}.\]
+
+    Which means $41 \mid 2^{20} -1$.
+\end{proof}
+
+\begin{theorem}
+    If $ac \equiv bc \pmod{m}$ then $a \equiv b \left(\frac{m}{\gcd(m,c)}\right)$. The converse also holds.
+\end{theorem}
+\begin{proof}
+    Let $d = \gcd(m,c)$. Then there exist  $m',c'$ such that $m = dm'$ and $c = dc'$ with $\gcd(m',c') = 1$.
+
+    From $ac \equiv bc \pmod{m}$, we have $m \mid (ac-bc)$ which implies $m \mid c(a-b)$ which is $dm' \mid dc'(a-b)$ which implies $m' \mid c'(a-b)$. Since $\gcd(m',c') = 1$, we have $m' \mid (a-b)$ which is equivalent to
+    \[
+     a \equiv b \left(\frac{m}{gcd(m,c)}\right),
+    \]
+    since $m' = \frac{m}{d} = \frac{m}{gcd(m,c)}.$ This completes the proof of the first part.
+
+    For the converse, if $a \equiv b \left(\frac{m}{\gcd(m,c)}\right)$, then for some $k, (a-b)=k \frac{m}{gcd(m,c)} \implies ac - bc = m \left(k\frac{c}{gcd(m,c)}\right) = m \times l$ for some $l \in \Z$ which is $ac \equiv bc \pmod{m}$. This completes the proof.
+\end{proof}
+\begin{corollary}[Cancellation Law]
+    If $ac \equiv bc \pmod{m}$ and $\gcd(c,m) = 1$, then $a \equiv b \pmod{m}$.
+\end{corollary}
+
+\section{\texorpdfstring{\boldmath $\Z/m\Z$}{Z/mZ} \& Its Algebraic Structure}
+\begin{definition}[Congruence modulo $m$]
+    Fix $m \in \Z$. Define a relation $\sim$ on $\Z$ called \textit{congruence modulo $m$}. For $a, b \in \Z$ we say
+    \[a \sim b \text{ if } a \equiv b \pmod{m}\]
+\end{definition}
+\begin{lemma}
+    Congruence modulo $m$ defines an equivalence relation on $\Z$. Furthermore, it partitions $\Z$ into $m$ equivalence classes we will call them \textit{residue classes}.
+\end{lemma}
+\begin{proof}
+    As proven in proposition $4.1$ congruence modulo $m$ satisfies reflexive, symmetric and transitive property. Hence it is an equivalence relation.
+
+    We know an equivalence relation partitions a set into disjoint equivalence classes.
+
+    $a, b \in \Z$ are in the same equivalence class if and only if $m \mid (a-b)$ which is equivalent to saying $a$ and $b$ have the same remainder when divided by $m$.
+
+    Since there are $m$ possible remainders when divided by $m$ and remainder is unique, hence there are exactly $m$ equivalence classes.
+\end{proof}
+\begin{definition}[$\Z/m\Z$]
+    Define the equivalence class of $a$ modulo $m$ as \[[a]_m = \{a + km : k \in Z\}.\]
+
+    The set of all equivalence classes modulo $m$ is denoted by $\Z/m\Z$.
+
+    Furthermore, define two operations addition (denoted by $+$) and multiplication (denoted by $\cdot$) on $\Z/m\Z$ as follows:
+
+    For $a, b \in \Z/m\Z$, \[[a] + [b] = [a+b],\] \[[a] \cdot [b] = [ab].\]
+\end{definition}
+\begin{notation}
+    $[a]_m$ is simply written as $[a]$ or $\overline{a}$ when $m$ is clear from the context.
+\end{notation}
+
+\begin{prop}
+    $(\Z/m\Z, +, \times)$ forms a commutative ring with identity.
+\end{prop}
+\begin{proof}
+    Firstly, we will prove $(\Z/m\Z, +)$ is an abelian group.
+    \begin{enumerate}
+        \item \textbf{Closure:} By definition, for all $[a], [b] \in \Z/m\Z, [a+b] \in \Z/m\Z$.
+        \item \textbf{Associativity:} Let $[a], [b], [c] \in \Z/m\Z$. Then \[([a] + [b]) + [c] = [a+b] + [c] = [(a+b) + c].\]
+        Since, addition is associative in $\Z$, we have
+        \[[(a+b) + c] = [a+(b+c)] = [a] + [b+c] = [a] + ([b] + [c]).\]
+        \item \textbf{Additive Identity:} For all $[a] \in \Z/m\Z$, we have $[0] \in \Z/m\Z$ such that
+        \[[a] + [0] = [a + 0] = [a].\]
+        And Similarly,
+        \[[0] + [a] = [0 + a] = [a].\]
+        \item \textbf{Inverse:} For all $[a] \in \Z/m\Z$, we have $[m - a] \in \Z/m\Z$ such that
+        \[[a] + [m - a] = [a + m - a] = [m] = [0].\]
+        Similarly, \[[m - a] + [a] = [0].\]
+        \item \textbf{Commutativity:} Since addition in integer is commutative, for all $[a], [b] \in \Z/m\Z$, \[[a] + [b] = [a + b] = [b + a] = [b] + [a].\]
+    \end{enumerate}
+    Hence, $(\Z/m\Z, +)$ is indeed an abelian group.
+
+    Using similar arguments, we can show multiplication in $\Z/m\Z$ is \textbf{closed, associative, commutative} and \textbf{multiplicative identity} exists.
+
+    \begin{enumerate}
+        \setcounter{enumi}{5}
+        \item \textbf{Distributive Law:} From distributive law in $\Z$ it follows that for all $[a], [b], [c] \in \Z/m\Z,$
+        \[[a]([b]+[c]) = [a] \times [b+c] = [a(b+c)] = [ab + ac] = [ab] + [ac] = [a][b] + [a][c].\]
+        Similarly, \[([b]+[c])[a] = [b][a] + [c][a].\]
+    \end{enumerate}
+    Hence, $(\Z/m\Z, +, \times)$ forms a commutative ring with identity.
+\end{proof}
+\begin{definition}[Unit in $\Z/m\Z$]
+An element $ a \in \Z/m\Z$ is called a \textit{unit} if there exists $ b \in \Z/m\Z $ such that  
+\[
+a \cdot b = 1.
+\]  
+\end{definition}  
+\begin{definition}[Group of Units of $\Z/m\Z$]
+    The set of all units of $\Z/m\Z$ is called the \textit{Group of Units of $\Z/m\Z$}. In symbol, group of units of $\Z/m\Z$
+    \[U(\Z/m\Z) = \{a \in \Z/m\Z: gcd(a,m)=1\}.\]
+\end{definition}
+\begin{lemma}
+    $U(\Z/m\Z)$ forms a group under multiplication modulo $m$.
+\end{lemma}
+\begin{eg}[Not every element of $\Z/m\Z$ is a unit]  
+Consider $ \Z/6\Z $.  
+    The element $[5]$ is a unit because  
+    \[
+    [5] \cdot [5] = [25] = [1].
+    \]  
+
+    However, $[2]$ is not a unit. To see this, we check its products with all elements in $ \Z/6\Z $:  
+    \[
+    [2] \cdot [0] = [0], \quad [2] \cdot [1] = [2], \quad [2] \cdot [2] = [4],
+    \]
+    \[
+    [2] \cdot [3] = [0], \quad [2] \cdot [4] = [2], \quad [2] \cdot [5] = [4].
+    \]  
+    Hence, $[2]$ is not a unit in $ \Z/m\Z $.  
+\end{eg}  
+
+This example shows that not every element in $ \Z/m\Z $ is a unit. But, an element $ a \in \Z/m\Z $ is a unit if and only if the equation  
+\[
+a \cdot x \equiv 1 \pmod{m}
+\]  
+has a solution. Equations of this form are called \textit{linear congruences}, and we will study them in the next section and prove results that will tell when equations of this form has a solution.

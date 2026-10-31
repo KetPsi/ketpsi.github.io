@@ -1,0 +1,246 @@
+\section{Multiplicative Functions}
+\begin{definition}[Multiplicative Function]
+    An arithmetic function $f$ is called \textit{multiplicative} if for all $m, n \in \N$ with $\gcd(m, n) = 1$, \[f(mn) = f(m)f(n).\]
+\end{definition}
+Some examples of multiplicative functions are below (that are not necessarily arithmetic):
+
+\begin{eg}
+    \begin{enumerate}
+        \item $det: \GL_n(\R) \to \R$ is multiplicative since for all $A, B \in \GL_n(\R)$, \[det(AB) = det(A)det(B).\]
+        \item Identity function $Id(x) = x$ is multiplicative since for all $x, y$, \[Id(xy) = xy = Id(x)Id(y).\]
+        \item Among previously discussed arithmetic functions, $\tau(n), \sigma(n), \phi(n), \epsilon(n), \iota(n)$ are multiplicative.
+    \end{enumerate}
+\end{eg}
+\begin{noneg}
+    \begin{enumerate}
+        \item Constant functions $f(n) = c$ are not multiplicative in general.
+        \item Arithmetic function $\omega(n)$ is not multiplicative.
+    \end{enumerate}
+\end{noneg}
+
+Using the fact that $\sigma(n)$ is a multiplicative function, we can provide a different proof of proposition~\ref{prop:sigmamul}.
+\begin{proof}
+    \begin{align*}
+        \sigma(n) &= \sigma(p_1^{\alpha_1} p_2^{\alpha_2} \cdots p_r^{\alpha_r})\\
+        &= \sigma(p_1^{\alpha_1}) \sigma(p_2^{\alpha_2}) \cdots \sigma(p_r^{\alpha_r}) \text{ (since $\sigma$ is multiplicative)}\\
+        &= (1 + p_1 + p_1^2 + \cdots + p_1^{\alpha_1})(1 + p_2 + p_2^2 + \cdots + p_2^{\alpha_2}) \\&\cdots (1 + p_r + p_r^2 + \cdots + p_r^{\alpha_r})\\
+        &= \frac{p_1^{\alpha_1 + 1} - 1}{p_1 - 1} \cdot \frac{p_2^{\alpha_2 + 1} - 1}{p_2 - 1} \cdots \frac{p_r^{\alpha_r + 1} - 1}{p_r - 1} \text{ (sum of geometric series)}\\
+        &= \prod_{i=1}^r \frac{p_i^{\alpha_i + 1} - 1}{p_i - 1}.
+    \end{align*}
+\end{proof}
+
+\begin{lemma}\label{lem:multiplicativeone}
+    For every multiplicative function $f$ except zero function, \[f(1) = 1.\]
+\end{lemma}
+\begin{proof}
+    Since $(1,1) = 1$, we have \[f(1) = f(1 \cdot 1) = f(1)f(1).\]
+    \[\implies f(1)^2 = f(1).\]
+    \[\implies f(1)^2 - f(1) = 0.\]
+    \[\implies f(1)(f(1) - 1) = 0.\]
+    \[\implies f(1) = 0 \text{ or } f(1) = 1.\]
+    But if $f(1) = 0$, then for all $n \in \N, f(n) = 0$, i.e., $f$ is the zero function. But we are assuming $f$ is not the zero function. So, \[f(1) = 1.\]
+\end{proof}
+
+\begin{theorem}\label{thm:muldriprod}
+    The Dirichlet product of two multiplicative functions is also multiplicative.
+\end{theorem}
+\begin{proof}
+    Let $f, g$ be two arithmetic functions and their Dirichlet product is $f \ast g$. 
+
+    Let $m, n \in \N$ with $gcd(m,n)=1$.
+
+    Then, \begin{align*}
+        (f \ast g)(m) (f \ast g)(n) &= \left(\sum_{l \mid m} f(l)g\left(\frac{m}{l}\right)\right) \left(\sum_{k \mid n} f(k)g\left(\frac{n}{k}\right)\right)\\
+        &= \sum_{l \mid m} \sum_{k \mid n} \left(f(l) g\left(\frac{m}{l}\right) f(k) g\left(\frac{n}{k}\right)\right)\\
+        &= \sum_{l \mid m} \sum_{k \mid n} \left(f(l) f(k) g\left(\frac{m}{l}\right) g\left(\frac{n}{k}\right)\right)\\
+        &= \sum_{l \mid m} \sum_{k \mid n} \left(f(lk) g\left(\frac{mn}{lk}\right)\right)\\
+        &= \sum_{d \mid mn} \left(f(d) g\left(\frac{mn}{d}\right)\right)\\
+        &= (f \ast g)(mn).
+    \end{align*}
+\end{proof}
+
+\begin{corollary}\label{cor:sumofmul}
+    If $f$ is multiplicative, then so is the function defined by \[g(n) = \sum_{d \mid n} f(d), n \in \N.\]
+\end{corollary}
+\begin{proof}
+    \[g(n) = \sum_{d \mid n} f(d) \epsilon\left(\frac{n}{d}\right) = (f \ast \epsilon)(n).\]
+    Since $f$ and $\epsilon$ are multiplicative, $g$ is also multiplicative by the previous theorem.
+\end{proof}
+\begin{remark}
+    $\tau(n)$ and $\sigma(n)$ are multiplicative functions, because \[\tau(n) = \sum_{d \mid n} 1 \text{ and } \sigma(n) = \sum_{d \mid n} Id(d),\] but $f(1) = 1$ and $Id(n) = n$ are multiplicative.
+\end{remark}
+
+\begin{theorem}
+    \begin{enumerate}
+        \item If $f$ is multiplicative, then \[f(n) = \prod_{i=1}^r f(p_i^{\alpha_i}).\]
+        \item Two multiplicative functions $f$ and $g$ are equal if and only if \[f(p^k) = g(p^k)\] for all primes $p$ and $k \in \N$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \begin{enumerate}
+        \item We have \[n = p_1^{\alpha_1} p_2^{\alpha_2} \cdots p_r^{\alpha_r}.\] Then, \[f(n) = f(p_1^{\alpha_1} p_2^{\alpha_2} \cdots p_r^{\alpha_r}).\] Since $f$ is multiplicative and \[\gcd(p_i^{\alpha_i}, p_j^{\alpha_j}) = 1,\] for $i \neq j$, we have \[f(n) = f(p_1^{\alpha_1}) f(p_2^{\alpha_2}) \cdots f(p_r^{\alpha_r}) = \prod_{i=1}^r f(p_i^{\alpha_i}).\]
+        \item ($\Rightarrow$) Let $f(n) = g(n)$, for all $n \in \N$. Then, for all primes $p$ and $k \in \N$, we have \[f(p^k) = g(p^k).\]
+
+        ($\Leftarrow$) Let $f(p^k) = g(p^k)$ for all primes $p$ and $k \in \N$. Then, for any $n = p_1^{\alpha_1} p_2^{\alpha_2} \cdots p_r^{\alpha_r}$, we have \[f(n) = f(p_1^{\alpha_1}) f(p_2^{\alpha_2}) \cdots f(p_r^{\alpha_r}) = g(p_1^{\alpha_1}) g(p_2^{\alpha_2}) \cdots g(p_r^{\alpha_r}) = g(n).\]
+    \end{enumerate}
+\end{proof}
+
+\begin{pb}
+    Prove that, \[\sum_{d \mid n} \{\tau(d)\}^3 = \left\{\sum_{d \mid n} \tau(d)\right\}^2.\]
+\end{pb}
+\begin{proof}
+    Using theorem~\ref{cor:sumofmul} and the fact that $\tau(n)$ is multiplicative, we assert that \[\sum_{d \mid n} \{\tau(d)\}^3 \text{ and } \left\{\sum_{d \mid n} \tau(d)\right\}^2\] are multiplicative. So, with the light of previous theorem, it is enough to prove the given statement only for $n = p^k$, where $p$ is a prime and $k \in \N$.
+
+    One the one hand we have,
+    \begin{align*}
+        \sum_{d \mid p^k} \{\tau(d)\}^3 &= {\tau(1)}^3 + {\tau(p)}^3 + {\tau(p^2)}^3 + \cdots + {\tau(p^k)}^3\\
+        &= 1^3 + 2^3 + 3^3 + \cdots + (k+1)^3\\
+        &= \left(\frac{(k+1)(k+2)}{2}\right)^2;
+    \end{align*}
+    On the other hand, we have,
+    \begin{align*}
+        \left\{\sum_{d \mid p^k} \tau(d)\right\}^2 &= \left(\tau(1) + \tau(p) + \tau(p^2) + \cdots + \tau(p^k)\right)^2\\
+        &= \left(1 + 2 + 3 + \cdots + (k+1)\right)^2\\
+        &= \left(\frac{(k+1)(k+2)}{2}\right)^2.
+    \end{align*}
+    Hence, we have \[\sum_{d \mid n} \{\tau(d)\}^3 = \left\{\sum_{d \mid n} \tau(d)\right\}^2,\] for all $n \in \N$, completing the proof.
+\end{proof}
+
+\begin{theorem}\label{thm:dirinvmul}
+    The Dirichlet inverse of a multiplicative function is also multiplicative.
+\end{theorem}
+\begin{proof}
+    Let $f$ be a multiplicative inverse. From theorem~\ref{thm:dirprodinv}, $f$ has a unique Dirichlet inverse $h$. We want to show that $h$ is also multiplicative, i.e., \[h(mn) = h(m)h(n), \text{ whenever } gcd(m,n)=1.\]
+
+    We use strong induction. 
+    
+    \textbf{Base case.} Let $mn = 1$. Then $m = n = 1$. So, \[h(1)h(1) = \frac{1}{f(1)} \cdot \frac{1}{f(1)} = \frac{1}{f(1\cdot1)} = \frac{1}{f(1 \cdot 1)} = h(1\cdot 1).\]
+
+    \textbf{Induction hypothesis.} Assume $(m,n)=1, mn > 1$ and $h(lk) = h(l)h(k)$ holds for all coprime pairs $l, k$ such that $lk < mn$.
+
+    \textbf{Induction step.} For induction step we want to show that $h(mn) = h(m)h(n)$ holds.
+    \begin{align*}
+        0 &= \iota(m)\iota(n)\\
+          &= (h \ast f)(m)(h \ast f)(n)\\
+          &= \left(\sum_{l \mid m} h(l)f\left(\frac{m}{l}\right)\right)\left(\sum_{k \mid n} h(k)f\left(\frac{n}{k}\right)\right)\\
+          &= \sum_{l \mid m} \sum_{k \mid n} \left(h(l)h(k)f\left(\frac{m}{l}\right) f\left(\frac{n}{k}\right)\right)\\
+          &= \sum_{lk \mid mn} \left(h(l)h(k)f\left(\frac{m}{l}\right) f\left(\frac{n}{k}\right)\right)\\
+          &= \sum_{\substack{lk \mid mn \\ lk < mn}} \left(h(lk) f\left(\frac{mn}{lk}\right)\right) + h(m)h(n)f(1)f(1)\\
+          &= \sum_{\substack{lk \mid mn}} \left(h(lk) f\left(\frac{mn}{lk}\right)\right) - h(mn)f(1) + h(m)h(n)\\
+          &= (h \ast f)(mn) - h(mn) + h(m)h(n)\\
+          &= 0 - h(mn) + h(m)h(n)\\
+        \implies h(mn) &= h(m)h(n).
+    \end{align*}
+    Hence, by strong induction, we have shown that $h$ is multiplicative.
+\end{proof}
+
+\begin{remark}
+    Let $\mathcal{M}$ be the set of all multiplicative functions except zero function. Then $\mathcal{M}$ forms an abelian group under Dirichlet product by theorem~\ref{thm:muldriprod}, proposition~\ref{prop:dirprod}, lemma~\ref{lem:multiplicativeone}, theorem~\ref{thm:dirprodinv} \& \ref{thm:dirinvmul}.
+\end{remark}
+
+\section{Möbius Function}
+\begin{definition}[Möbius Function]
+    The Möbius function $\mu(n)$ is the Dirichlet inverse of the function $\epsilon$ defined by \[\epsilon(n) = 1 \text{ for all } n \in \N.\]
+\end{definition}
+
+\[\sum_{d \mid n} \mu(d) = \begin{cases}
+    1 & \text{if } n = 1\\
+    0 & \text{if } n > 1,
+\end{cases}\]
+because by definition \[\sum_{d \mid n} \mu(d) = \sum_{d \mid n}\mu(d) \epsilon(\frac{n}{d})= (\mu \ast \epsilon)(n) = \iota(n),\] which is exactly the right hand side of the equation.
+
+\begin{theorem}
+    $\mu(n)$ is determined by the formula \[\mu(n) = \begin{cases}
+        1 & \text{when } n = 1\\
+        (-1)^r & \text{when $n$ is product of $r$ distinct primes}\\
+        0 & \text{when $p^2 \mid n$ for some prime $p$}
+    \end{cases}\]
+\end{theorem}
+\begin{proof}
+    From proof of the theorem~\ref{thm:dirinvmul}, we know that \[\mu(1) = \frac{1}{\epsilon(1)} = 1.\]
+    For any prime $p$, we have \[0 = \iota(p) = \sum_{d \mid p} \mu(d) \epsilon(\frac{p}{d}) = \sum_{d \mid p} \mu(d) = \mu(1) + \mu(p) = 1 + \mu(p).\]
+    \[\therefore \mu(p) = -1.\]
+    If $n$ is a product of $r$ distinct primes, i.e., $n = p_1p_2 \cdots p_r$, then by multiplicative property of $\mu$, we have \[\mu(n) = \mu(p_1)\mu(p_2)\cdots\mu(p_r) = (-1)^r.\]
+
+    We now claim that $\mu(p^k) = 0$ for all prime $p$ and $k \ge 2$. We use induction on $k$ to prove this.
+
+    Fix prime $p$. 
+
+    \textbf{Base case.} For $k = 2$, we have \[\mu(p^2) = \sum_{d \mid p^2} \mu(d) \epsilon(\frac{p^2}{d}) = \mu(1) + \mu(p) + \mu(p^2) = 1 - 1 + \mu(p^2).\]
+    \[\implies \mu(p^2) = 0.\]
+
+    \textbf{Induction hypothesis.} Assume $\mu(p^i) = 0$ for all $i$ upto some $k \ge 2$. 
+    
+    \textbf{Inductive Step.} Then we have \[\mu(p^{k+1}) = \mu(1) + \mu(p) + \cdots + \mu(p^k) + \mu(p^{k+1}) = 1 - 1 + 0 + \mu(p^{k+1}).\]
+    \[\implies \mu(p^{k+1}) = 0.\]
+    Hence, by induction, we have shown that \[\mu(p^k) = 0\] for all prime $p$ and $k \ge 2$.
+
+    Suppose $n = p^km$, where $k$ is the order of $p$ and $m \in \N$. Then \[\mu(n) = \mu(p^km) = \mu(p^k)\mu(m) = 0 \cdot \mu(m) = 0.\]
+\end{proof}
+
+\begin{theorem}[Möbius Inversion Theorem]
+    Two arithmetic functions $f$ and $g$ are connected by the relation \[g(n) = \sum_{d \mid n} f(d), \ \forall n \in \N,\] if and only if \[f(n) = \sum_{d \mid n} g(d) \mu\left(\frac{n}{d}\right), \ \forall n \in \N.\]
+
+    Moreover, in this case, $g$ is multiplicative if and only if $f$ is multiplicative.
+\end{theorem}
+\begin{proof}
+The first and the second equation are same as \[g = f \ast \epsilon \text{ and } f = g \ast \mu,\] respectively.
+
+If $g = f \ast \epsilon$, then $g \ast \mu = (f \ast \epsilon) \ast \mu = f \ast (\epsilon \ast \mu) = f \ast \iota = f$.
+
+Conversely, if $f = g \ast \mu$, then $f \ast \epsilon = (g \ast \mu) \ast \epsilon = g \ast (\mu \ast \epsilon) = g \ast \iota = g$.
+
+Moreover, if $f$ is multiplicative and $g = f \ast \epsilon$, then $g$ is multiplicative. Conversely, if $g$ is multiplicative and $f = g \ast \mu$, then $f$ is multiplicative.
+\end{proof}
+
+An application of Möbius inversion theorem is the following:
+\begin{replacementproof}[Alternative derivation of Euler's Formula for $\phi(n)$]
+    To be written...
+\end{replacementproof}
+
+\begin{definition}[Von Mangoldt Function]
+    \[\Lambda(n) = \begin{cases}
+        \log p & \text{if } n = p^k \text{ for some prime } p \text{ and } k \in \N,\\
+        0 & \text{otherwise.}\end{cases}\]
+    
+    Here $log$ is the natural logarithm.
+\end{definition}
+
+For clarity, $\Lambda(1) = 0$ and so $\Lambda(n)$ has no Dirichlet inverse.
+
+\begin{theorem}
+    \begin{enumerate}
+        \item $\sum_{d \mid n} \Lambda(d) = log \ n$.
+        \item $\Lambda(n) = -\sum_{d \mid n} \mu(d) log \ d$.
+        \item $\sum_{d \mid n} \mu(\frac{n}{d}) \Lambda(d) = - \mu(n) log \ n$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \begin{enumerate}
+        \item Let \[n = p_1^{\alpha_1} p_2^{\alpha_2} \cdots p_r^{\alpha_r}.\]
+        Then only nonzero values of $\Lambda(d)$ are when $d = p_i^{\beta_i}$ for some $i$ and $1 \le \beta_i \le \alpha_i$. Hence, we have 
+        \begin{align*}
+        \sum_{d \mid n} \Lambda(d)
+        &= \sum_{i=1}^r \sum_{\beta_i=1}^{\alpha_i} \Lambda(p_i^{\beta_i})\\
+        &= \sum_{i=1}^r \sum_{\beta_i=1}^{\alpha_i} log \ p_i\\
+        &= \sum_{i=1}^r \alpha_i \ log \ p_i\\
+        &= log \left(\prod_{i=1}^{r} p_i^{\alpha_i}\right)\\
+        &= log \ n.
+        \end{align*}
+
+        \item By applying Möbius inversion formula to \[\sum_{d \mid n} \Lambda(d) = log \ n,\] we get
+        
+        \begin{align*}
+            \Lambda(n) &= \sum_{d \mid n} log \ d \cdot \mu\left(\frac{n}{d}\right)\\
+            &= \sum_{d \mid n} \mu(d) \cdot log\left(\frac{n}{d}\right)\\
+            &= \sum_{d \mid n}  \mu(d) \cdot log \ n - \sum_{d \mid n} \mu(d) \cdot log \ d\\
+            &= - \sum_{d \mid n}  \mu(d) \cdot log \ d,
+        \end{align*}
+        since $\sum_{d \mid n} \mu(d) = \begin{cases}
+            1 & \text{if } n = 1\\
+            0 & \text{if } n > 1.
+        \end{cases}$ And so $\sum_{d \mid n} \mu(d) \cdot log \ n = 0$, for all $n \in \N$.
+
+        \item The third formula is obtained by applying Möbius inversion formula to the previous formula.
+    \end{enumerate}
+\end{proof}

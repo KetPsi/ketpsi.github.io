@@ -1,0 +1,164 @@
+\begin{definition}[Arithmetic Function]
+    An \textit{arithmetic function} (also known as \textit{number-theoretic function}) is a function $f: \N \to S$, where $S = \Z$ or $S$ is a subset of $\C$ that is closed under addition and multiplication. 
+\end{definition}
+
+\section{Important Arithmetic Functions}
+Unless stated otherwise, let prime factorization of $n \in \N$ be given by \[n = p_1^{\alpha_1} p_2^{\alpha_2} \cdots p_r^{\alpha_r},\] (where $p_i$ are distinct primes and $\alpha_i$ are positive integers) for the rest of this chapter. Some common arithmetic functions are:
+\begin{enumerate}
+    \item $\tau(n)$:  The function $\tau: \N \to \Z$ given by \[\tau(n) = \#\{d \in \N: d|n\}.\] is an arithmetic function, which basically counts the number of divisors of a given integer $n$. For example, $\tau(12) = 6$ because the divisors of $12$ are $1, 2, 3, 4, 6, 12$.
+
+    \begin{prop}
+        $\tau(n) = \prod_{i=1}^r (\alpha_i + 1)$.
+    \end{prop}
+    \begin{proof}
+        Let $d = p_1^{\beta_1} p_2^{\beta_2} \cdots p_r^{\beta_r}$ be a divisor of $n$. Then, $0 \leq \beta_i \leq \alpha_i$ for all $i$. The number of choices for $\beta_i$ is $\alpha_i + 1$. Thus, the total number of divisors is given by the product of the number of choices for each prime factor, which is \[\prod_{i=1}^r (\alpha_i + 1).\]
+    \end{proof}
+
+    \item $\sigma(n)$: The function $\sigma: \N \to \Z$ given by \[\sigma(n) = \sum_{d|n} d\] is an arithmetic function, which basically sums the divisors of a given integer $n$. For example, $\sigma(12) = 1 + 2 + 3 + 4 + 6 + 12 = 28$.
+    
+    \begin{prop}\label{prop:sigmamul}
+        $\sigma(n) = \prod_{i=1}^r \frac{p_i^{\alpha_i + 1} - 1}{p_i - 1}$.
+    \end{prop}
+    \begin{proof} 
+        In order to evaluate $\sigma(n)$, consider the product \[(1 + p_1 + p_1^2 + \cdots + p_1^{\alpha_1})(1 + p_2 + p_2^2 + \cdots + p_2^{\alpha_2}) \cdots (1 + p_r + p_r^2 + \cdots + p_r^{\alpha_r}).\] The expansion of this product will yield all possible terms of the form $p_1^{\beta_1} p_2^{\beta_2} \cdots p_r^{\beta_r}$, where $0 \leq \beta_i \leq \alpha_i$. Each such term corresponds to a divisor of $n$ and all the divisors of $n$ can be obtained by varying the $\beta_i$'s. Hence, 
+        \begin{align*}
+            \sigma(n) &= (1 + p_1 + p_1^2 + \cdots + p_1^{\alpha_1})(1 + p_2 + p_2^2 + \cdots + p_2^{\alpha_2}) \\ &\cdots (1 + p_r + p_r^2 + \cdots + p_r^{\alpha_r})\\
+            &= \frac{p_1^{\alpha_1 + 1} - 1}{p_1 - 1} \cdot \frac{p_2^{\alpha_2 + 1} - 1}{p_2 - 1} \cdots \frac{p_r^{\alpha_r + 1} - 1}{p_r - 1}\\
+            &= \prod_{i=1}^r \frac{p_i^{\alpha_i + 1} - 1}{p_i - 1}.
+        \end{align*}
+    \end{proof}
+
+    \item \textbf{Euler's Totient Function:} The function $\phi: \N \to \Z$ given by \[\phi(n) = \#\{k \in \N: 1 \leq k < n, \gcd(k, n) = 1\}\] is an arithmetic function, which counts the number of integers less than $n$ that are coprime to $n$. For example, $\phi(12) = 4$ because the integers less than $12$ that are coprime to $12$ are $1, 5, 7, 11$.
+    
+    Recall Corollary~\ref{cor:phi_form} which states \[\phi(n) = n \prod_{i=1}^r\left(1-\frac{1}{p_i}\right).\]
+
+    \item $\epsilon(n)$: The function $\epsilon: \N \to \Z$ given by \[\epsilon(n) =1\] is also an arithmetic function.
+    
+    \item $\omega(n)$: The function $\omega: \N \to \Z$ given by \[\omega(n) = \#\{p_i\}\] is an arithmetic function, which counts the number of distinct prime factors of $n$. For example, $\omega(12) = 2$ because the prime factors of $12$ are $2$ and $3$.
+\end{enumerate}
+
+\section{Properties Arithmetic Functions}
+Let $f$ be an arithmetic function and $n \in \N$, then \[\sum_{d \mid n}f(d) = \sum_{\frac{n}{d} \mid n}f(d) = \sum_{d \mid n}f\left(\frac{n}{d}\right).\]
+
+Given arithmetic functions $f$ and $g$, we can define addition and multiplication pointwise, that is, for all $n \in \N$:
+\begin{align*}
+    (f + g)(n) &= f(n) + g(n), \\
+    (f \cdot g)(n) &= f(n) \cdot g(n).
+\end{align*}
+\begin{prop}\label{prop:addarthfunc}
+    The set of all arithmetic functions forms an abelian group under pointwise addition.
+\end{prop}
+\begin{proof}
+    Let $f, g, h$ be any arithmetic functions. Then
+    \begin{enumerate}
+        \item \textbf{Closure under addition:} For all $n \in \N$, $(f + g)(n) = f(n) + g(n)$ is an integer, hence $f + g$ is an arithmetic function.
+        \item \textbf{Identity element:} The function $\mathbf{0}(n) = 0$ is the identity element for addition, since \[(f + \mathbf{0})(n) = f(n) + \mathbf{0}(0) = f(n) + 0 = f(n).\] 
+        \item \textbf{Inverse element:} For all $f$, the function $-f$ is the inverse element for addition, since \[(f + (-f))(n) = f(n) + (-f(n)) = 0.\]
+        \item \textbf{Associativity:} For all $n \in \N$,
+        \[((f+g)+h)(n) = (f+g)(n) + h(n)= f(n) + g(n) + h(n) \]\[= f(n) + (g+h)(n) = (f+(g+h))(n).\]
+        \item \textbf{Commutativity:} For all $n \in \N$, \[(f + g)(n) = f(n) + g(n) = g(n) + f(n) = (g + f)(n).\]
+    \end{enumerate}
+    Hence, the set of all arithmetic functions forms an abelian group under addition.
+\end{proof}
+\begin{prop}
+    The set of all arithmetic functions forms a ring under pointwise addition and multiplication.
+\end{prop}
+\begin{proof}
+    We have already shown that the set of all arithmetic functions forms an abelian group under pointwise addition.
+    We need to show that the set of all arithmetic functions is closed under multiplication and satisfies other ring axioms.
+    Now, 
+    \begin{enumerate}
+        \item \textbf{Closure under multiplication:} For all $n \in \N$, $(f \cdot g)(n) = f(n) \cdot g(n)$ is an integer, hence $f \cdot g$ is an arithmetic function.
+        \item \textbf{Associativity:} For all $n \in \N$,
+        \[((f \cdot g) \cdot h)(n) = (f \cdot g)(n) \cdot h(n) = f(n) \cdot g(n) \cdot h(n)\]\[= f(n) \cdot (g \cdot h)(n) = (f \cdot (g \cdot h))(n).\]
+        \item \textbf{Distributive Law:} For all $n \in \N$,
+        \[(f \cdot (g + h))(n) = f(n) \cdot (g(n) + h(n)) \]\[= f(n) \cdot g(n) + f(n) \cdot h(n) = (f \cdot g + f \cdot h)(n).\]
+        Similarly, we can show that \[((f + g) \cdot h)(n) = (f \cdot h + g \cdot h)(n).\]    
+    \end{enumerate}
+    Hence, the set of all arithmetic functions forms a ring under pointwise addition and multiplication.
+\end{proof}
+
+\section{Dirichlet Product and Its Properties}
+There is another way of defining multiplication on arithmetic functions called \textit{Dirichlet product}. 
+\begin{definition}[Dirichlet Product]
+    Given arithmetic functions $f$ and $g$, the \textit{Dirichlet product} $\ast$ of $f$ and $g$ is defined as \[(f \ast g)(n) = \sum_{d\mid n} f(d) g\left(\frac{n}{d}\right).\]
+\end{definition}
+
+\begin{prop}\label{prop:dirprod}
+    Given arithmetic functions $f$ and $g$, $h$, the Dirichlet product satisfies the following properties:
+    \begin{enumerate}
+        \item \textbf{Commutativity:} $f \ast g = g \ast f$.
+        \item \textbf{Associativity:} $(f \ast g) \ast h = f \ast (g \ast h)$.
+        \item \textbf{Identity element:} The function $\iota$ defined by \[\iota(n) = \begin{cases}
+            1 & \text{if } n = 1 \\
+            0 & \text{if } n > 1
+        \end{cases}\] is the identity element for Dirichlet product.
+        \item \textbf{Distributive Law:} $f \ast (g + h) = f \ast g + f \ast h$ and $(g + h) \ast f = g \ast f + h \ast f$.
+    \end{enumerate}
+\end{prop}
+\begin{proof}
+    \begin{enumerate}
+        \item \begin{align*}
+            (f \ast g)(n) &= \sum_{d\mid n} f(d) g\left(\frac{n}{d}\right) \\
+            &= \sum_{d\mid n} g\left(\frac{n}{d}\right) f(d) \\
+            &= \sum_{d\mid n} g(d) f\left(\frac{n}{d}\right) \\
+            &= (g \ast f)(n).
+        \end{align*}
+    
+    \item Writing \( d' = \frac{n}{d} \), we have
+    \[
+    (f * g)(n) = \sum_{dd' = n} f(d)g(d').
+\]
+Therefore
+\begin{align*}
+    ((f * g) * h)(n)
+    &= \sum_{dd' = n} (f * g)(d) h(d') \\
+    &= \sum_{dd' = n} \left( \sum_{d_1 d_2 = d} f(d_1)g(d_2) \right) h(d') \\
+    &= \sum_{d_1 d_2 d' = n} f(d_1)g(d_2)h(d').
+\end{align*}
+\noindent
+On the other hand,
+\begin{align*}
+    (f * (g * h))(n)
+    &= \sum_{d'd = n} f(d') (g * h)(d) \\
+    &= \sum_{d'd = n} f(d') \left( \sum_{d_1 d_2 = d} g(d_1) h(d_2) \right) \\
+    &= \sum_{d' d_1 d_2 = n} f(d') g(d_1) h(d_2).
+\end{align*}
+Hence, \[((f \ast g) \ast h)(n) = (f \ast (g \ast h))(n).\]
+
+\item \[(\iota \ast f)(n) = \sum_{d\mid n} \iota(d) f\left(\frac{n}{d}\right) = \iota(1) = 1,\]
+since $\iota(d) = 0$ for all $d > 1$.
+
+\item \begin{align*}
+    (f \ast (g + h))(n) &= \sum_{d\mid n} f(d) (g + h)\left(\frac{n}{d}\right) \\
+    &= \sum_{d\mid n} f(d) \left(g\left(\frac{n}{d}\right) + h\left(\frac{n}{d}\right)\right) \\
+    &= \sum_{d\mid n} f(d) g\left(\frac{n}{d}\right) + \sum_{d\mid n} f(d) h\left(\frac{n}{d}\right) \\
+    &= (f \ast g)(n) + (f \ast h)(n).
+\end{align*}
+Similarly, we can show that \[(g + h) \ast f = g \ast f + h \ast f.\]
+\end{enumerate}
+\end{proof}
+
+\begin{remark}
+    From proposition~\ref{prop:addarthfunc} and \ref{prop:dirprod}, it follows that the set of all arithmetic functions forms a Commutative ring (with zero divisors) under pointwise addition and Dirichlet product.  
+\end{remark}
+
+In a ring, not all elements have multiplicative inverses. However, for this particular ring, the following theorem states when an element has a multiplicative inverse.
+
+\begin{theorem}\label{thm:dirprodinv}
+    If $f(1) \neq 0$, then there exists a unique arithmetic function $h$ such that $f \ast h = \iota$.
+\end{theorem}
+\begin{proof}
+    We will construct $h(n)$ for all $n \in \N$ recursively.
+
+    For $n = 1$, we want \[(f \ast h)(1) = \iota(1) \Leftrightarrow  f(1)h(1) = 1 \Leftrightarrow h(1) = \frac{1}{f(1)}.\]
+
+    Let $h(m) = \iota(m) = 0$ has been defined for all $m < n$. Then $h(n)$ is determined from the relation \[0 = \iota(n) = (f\ast h)(n) = f(1)h(n) + \sum_{\substack{d\mid n \\ d < n}} f\left(\frac{n}{d}\right)h(d)\]
+
+    \[\implies h(n) = -\frac{1}{f(1)} \sum_{\substack{d\mid n \\ d < n}} f\left(\frac{n}{d}\right)h(d).\]
+
+    Also the derivation determines $h(n)$ uniquely, completing the proof.
+\end{proof}
+\begin{remark}
+    Using proposition~\ref{prop:dirprod} and theorem~\ref{thm:dirprodinv}, we conclude the set of all arithmetic functions satisfying the condition $f(1) \neq 0$ forms an abelian group under Dirichlet product.
+\end{remark}

@@ -1,0 +1,44 @@
+When does \[x^m \equiv b \pmod{n},\] have a solution? From Theorem~\ref{prop:dp-1}, we know when $n$ is prime, $m \mid n-1$ and $b=1$, we have exactly $m$ solutions. But that is a special case. In this section, we will resolve when the congruence \[x^2 \equiv a \pmod{p}\] has a solution. This answer is provided by the law of Quadratic Reciprocity, which was first conjectured by Euler and Legendre and later proved by Gauss. Gauss was extremely proud of this result that he called it the \textbf{Theorema Aureum}, the golden theorem. This is probably his most favorite theorem as he provided 6 different proofs for it in his lifetime.
+
+\section{Quadratic Residues}
+\begin{definition}[Quadratic Residue]
+    Let $p$ be an odd prime and $a \in \Z$ with $gcd(a,p)=1$. We call $a$ a \textit{quadratic residue} if \[x^2 \equiv a \pmod{p}\] has a solution. Otherwise, we call $a$ a \textit{quadratic non-residue}.
+\end{definition}
+
+\begin{eg}
+    Let $p=3$. Then $1$ is a quadratic residue modulo $3$ as $1^2 \equiv 1 \pmod{3}$. But $2$ is a quadratic non-residue modulo $3$ as $x^2 \equiv 2 \pmod{3}$ has no solutions.
+
+    Explicitly, we can check that $0^2 \equiv 0 \pmod{3}$, $1^2 \equiv 1 \pmod{3}$, and $2^2 \equiv 1 \pmod{3}$.
+\end{eg}
+
+\begin{eg}
+    Let $p=5$. Then quadratic residues are: $1, 4$ as $1^2 \equiv 1 \pmod{5}$ and $2^2 \equiv 4 \pmod{5}$.
+
+    And quadratic non-residues are: $2, 3$.
+\end{eg}
+
+\begin{eg}
+    Let $p=7$. Then quadratic residues are: $1, 2, 4$.
+
+    And quadratic non-residues are: $3, 5, 6$.
+\end{eg}
+
+\begin{eg}
+    Let $p=11$. Then quadratic residues are: $1, 3, 4, 5, 9$.
+
+    And quadratic non-residues are: $2, 6, 7, 8, 10$.
+\end{eg}
+
+So we state the following proposition.
+\begin{prop}[\# of QR/QNR]
+    There are exactly $\frac{p-1}{2}$ quadratic residues and $\frac{p-1}{2}$ quadratic non-residues modulo $p$.
+\end{prop}
+\begin{proof}
+    The quadratic residues modulo $p$ are the numbers $a^2 \pmod{p}$ where $a \in \{1, 2, \cdots p-1\}$. Since \[a^2 \equiv (p-a)^2 \pmod{p},\] we have at most $\frac{p-1}{2}$ distinct quadratic residues, namely $1^2, 2^2, ..., \left(\frac{p-1}{2}\right)^2$.
+
+    But in order to show that there are exactly $\frac{p-1}{2}$ quadratic residues, we need to show that the number $1^2, 2^2, ..., \left(\frac{p-1}{2}\right)^2$ are all distinct modulo $p$. Let $a, b \in \{1, 2, \cdots, \frac{p-1}{2}\}$ such that $a^2 \equiv b^2 \pmod{p}$. Then \[a^2 - b^2 \equiv 0 \pmod{p} \implies (a-b)(a+b) \equiv 0 \pmod{p}.\]
+
+    Which implies $p \mid (a-b)(a+b) \implies p \mid (a-b)$ or $p \mid (a+b)$. But $1 \le a, b \le \frac{p-1}{2}$, so $2 \le a+b \le p-1$. Hence, $p \nmid (a+b)$. So, $p \mid (a-b) \implies a \equiv b \pmod{p}$. Hence, the numbers $1^2, 2^2, ..., \left(\frac{p-1}{2}\right)^2$ are all distinct modulo $p$. Therefore, there are exactly $\frac{p-1}{2}$ quadratic residues modulo $p$.
+
+    Since there are $p-1$ nonzero numbers in $\Z/p\Z$ and exactly $\frac{p-1}{2}$ of them are quadratic residues, the remaining $\frac{p-1}{2}$ numbers are quadratic non-residues.
+\end{proof}

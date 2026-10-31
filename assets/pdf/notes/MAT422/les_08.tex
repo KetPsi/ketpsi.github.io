@@ -1,0 +1,69 @@
+If $n = p_1^{a_1}p_2^{a_2}\cdots p_k^{a_k}$, then as was shown in the previous chapter, \[U(\Z/n\Z) \cong U(\Z/p_1^{a_1}\Z) \times U(\Z/p_2^{a_2}\Z) \times \cdots \times U(\Z/p_k^{a_k}\Z).\] Thus to determine the structure of $U(\Z/n\Z)$, it is enough to determine the structure of $U(\Z/p^{a_k}\Z)$ for $p$ prime and $a \in \N$. We will study simplest case $U(\Z/p\Z)$.
+
+\section{Polynomial ring $\mathbf{\Z/p\Z[x]}$}
+\begin{lemma}
+    Let $K[x]$ be a \hyperref[def:polyring]{polynomial ring} over the field $K$. If $p(x) \in K[x]$ is a non-zero polynomial of degree $n$, then $p(x)$ has at most $n$ distinct roots in $K$.
+\end{lemma}
+\begin{proof}
+    We use induction. For $n=1, p(x) = a_0 + a_1x$ has at most one root given by $x = -a_0a_1^{-1}$.
+
+    Assume the lemma is true for degree $(n-1)$. If $p(x)$ has no roots in $K$, we are done. 
+    
+    Otherwise, let $a$ be a root of $p(x)$. Then, we can write \[p(x) = (x-a)q(x) + r(x),\] where $q(x)$ is a polynomial of degree $(n-1)$ and $deg \ r(x) < deg \ (x-a)$.
+    
+    Furthermore, $r(x) = r_0$, for some $r_0 \in K$. Then we have $r_0 = p(a) - (a-a)q(a) = 0$, since $a$ is a root of $p(x)$. Rewriting $p(x)$ we have, \[p(x) = (x-a)q(x).\]
+
+    By the induction hypothesis, the polynomial $q(x)$ has at most $(n-1)$ roots.
+
+    Clearly, any root of $q(x)$ is a root of $p(x)$. And if $b \neq a$ is a root of $p(x)$ then \[(b-a)q(b) = p(b) = 0 \implies q(b) = 0,\] meaning $b$ is also a root of $q(x)$. Thus, $p(x)$ has at most $1 + (n-1) = n$ roots, which completes the proof of the lemma.
+\end{proof}
+
+\begin{corollary}
+    Let $f(x), g(x) \in K[x]$ be two polynomials of degree $n$. If $f(\alpha_i) = g(\alpha_i)$ for $(n+1)$ distinct $\alpha_1, \alpha_2, ..., \alpha_{n+1} \in K$, then $f = g$.
+\end{corollary}
+\begin{proof}
+    Define $h(x) = f(x) - g(x)$. Then $h(\alpha_i) = 0$ for $(n+1)$ distinct $\alpha_i$. Since $h(x)$ is a polynomial of degree at most $n$, it has at most $n$ roots. But we have $(n+1)$ roots. Hence, it must be the case that $h(x) = 0$ which implies $f = g$.
+\end{proof}
+\begin{theorem}\label{thm:rootsFLT}
+    If $p$ is prime, then \[x^{p-1} - 1 \equiv (x - 1)(x - 2) \cdots (x - (p-1)) \pmod{p}.\]
+\end{theorem}
+
+\begin{proof}
+    Let $K = \Z/p\Z$. Then we know $K$ is a field. Let $f(x) \in K[x]$ be given by \[f(x) = x^{p-1} - 1 - (x-1)(x-2) \cdots (x-(p-1)).\]
+
+    $f(x)$ has degree less than $(p-1)$.
+
+    But according to Fermat's Little Theorem, $x^{p-1} - 1 =0$ for all $x \in \{1, 2, ..., p-1\}$ and hence $f(x) = 0$ for all $x \in \{1, 2, ..., p-1\}$.
+
+    Since $f(x)$ has degree less than $(p-1)$ but has $(p-1)$ roots, it must be the zero polynomial. Hence, \[0 = x^{p-1} - 1 - (x - 1)(x - 2) \cdots (x - (p-1)).\]
+
+    Rewriting this in terms of congruence, we have \[x^{p-1} - 1 \equiv (x - 1)(x - 2) \cdots (x - (p-1)) \pmod{p}.\]
+\end{proof}
+
+\begin{corollary}[Wilson's Theorem Fowards Direction]
+    $p$ is prime and set $x = 0$ in the above theorem to get \[(p-1)! \equiv -1 \pmod{p}.\]
+\end{corollary}
+\begin{prop}\label{prop:dp-1}
+    If $d \mid p-1$, then $x^d \equiv 1 \pmod{p}$ has exactly $d$ solutions in $\Z/p\Z$.
+\end{prop}
+\begin{proof}
+    Let $dd' = p-1$. Then \[\frac{x^{p-1}-1}{x^d-1} = \frac{(x^d)^{d'}-1}{x^d-1}.\]
+
+    Let $y = x^d$. Then we have \begin{align*}
+        \frac{y^{d'}-1}{y-1} &= \frac{(y-1)(1 + y + y^2 + \cdots + y^{d'-1})}{y-1}\\
+                             &= 1 + y + y^2 + \cdots + y^{d'-1}\\
+                             &= 1 + x^d + (x^d)^2 + \cdots + (x^d)^{d'-1}\\
+                             &= g(x).
+    \end{align*}
+    
+    Let $f(x) = x^{p-1}-1 = g(x)(x^d-1)$. Reducing this modulo $p$, we get 
+    \[f(x) \equiv g(x)(x^d-1) \pmod{p}.\]
+
+    From Theorem~\ref{thm:rootsFLT} We know that $f(x) = x^{p-1} - 1$ has $(p-1)$ roots modulo $p$, which means $g(x)(x^d-1)$ has $(p-1)$ roots modulo $p$.
+
+    Now, $g(x)$ is a polynomial of degree $d(d'-1) = dd' - d = (p -1 - d)$. So, it has at most $(p-1-d)$ roots. Since $f(x)$ has $(p-1)$ roots, so does $g(x)(x^d-1)$, hence $x^d-1$ must have at least $d$ roots modulo $p$. But we know that $x^d-1$ has at most $d$ roots in $\Z/p\Z$. Hence, it must have exactly $d$ roots in $\Z/p\Z$, which completes the proof.
+\end{proof}
+
+
+
+

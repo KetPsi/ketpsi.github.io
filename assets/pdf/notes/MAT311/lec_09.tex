@@ -1,0 +1,75 @@
+\section{Normal Subgroup}
+\begin{definition}[Normal Subgroup]
+    Let $G$ be a group. A subgroup $N$ of $G$ is a normal subgroup if $gN = Ng$, for all $g \in G$. Equivalently, a subgroup $N$ is normal in the group $G$ if $gNg^{-1} = N$, for all $g \in G$. We denote $N\lhd G$.
+\end{definition}
+\begin{eg}
+    $A_3$ is normal in $S_3$. Because, $A_3$ has index 2 in $S_3$, meaning $A_3$ has exactly two cosets: $A_3$ and its complement in $S_3$. Hence, left and right cosets coincide.
+\end{eg}
+In general, $A_n$ is normal in $S_n$. Furthermore, a subgroup of index 2 is always normal because the left and right cosets coincide.
+\begin{eg}[Trivial Examples]
+    $\{e\} \in G$ and the group $G$ itself is normal in $G$. 
+\end{eg}
+\begin{eg}[Center of $G$]
+    \hyperref[def:center]{Center} of the group $G$ is a normal subgroup.
+\end{eg}
+\begin{remark}
+    Is every abelian subgroup normal? No.\\
+    \textbf{Counter example:} $\{e, s\} \in D_3$ is abelian subgroup. But not normal, since, for instance, $r\{e, s\} \neq \{e, s\}r$.
+\end{remark}
+\section{Quotient Group}
+\begin{theorem}
+    Let $N\lhd G$. If $g_1N = g_1'N$ and $g_2N = g_2'N$, then $g_1g_2N = g_1'g_2'N$.
+\end{theorem}
+\begin{proof}
+Let $x \in g_1g_2N$, then $x = g_1g_2n$, for some $n \in N$. Since, $g_2N = g_2'N = Ng_2'$, $g_2n = g_2'n_1 = n_2g_2'$ for some $n_1, n_2 \in N$. So, $x = g_1g_2'n_1 = g_1n_2g_2'$. $g_1n_2 = g_1'n_3$, for some $n_3 \in N$. Hence, $x = g_1'n_3g_2' = g_1'g_2'n'$, for some $n' \in N$. Hence, $x \in g_1'g_2'N$, which implies $g_1g_2N \subseteq g_1'g_2'N$.\\
+Using similar argument, $g_1'g_2'N \subseteq g_1g_2N$. Hence, $g_1g_2N = g_1'g_2'N$.
+\end{proof}
+Cosets of a subgroup $N$ in a group $G$ naturally partition $G$. However, not all subgroups allow these cosets to have a meaningful group structure. When $N$ is a normal subgroup ($gN=Ng$ for all $g \in G$), we can define an operation on cosets that mimics the group operation in $G$. Specifically: $$(gN) \cdot (hN)=(gh)N.$$
+This operation is well-defined only if $N$ is normal, ensuring that the choice of representatives $g$ and $h$ does not affect the result as the previous theorem asserts.
+\begin{definition}[Coset Multiplication]
+    \label{def:quotientop}
+    Let $N \lhd G$. Then define a multiplication $\cdot$ on two cosets of $N$ via-
+    $$g_1N \cdot g_2N:=g_1g_2N$$
+\end{definition}
+\begin{theorem}[Quotient Group]
+    Under the multiplication operation \hyperref[def:quotientop]{above}, the set of all cosets of the normal subgroup $N$ forms a group, called the \textit{quotient group of $G$ modulo $N$} and denoted as $G/N$.
+\end{theorem}
+\begin{proof}
+    To show that \( G/N \) forms a group under coset multiplication, we verify the group axioms: closure, associativity, identity, and inverses.
+    
+    \begin{enumerate}
+        \item \textbf{Closure:}  
+        Let \( g_1N, g_2N \in G/N \). Then their product is defined as:
+        \[
+        (g_1N)(g_2N) = g_1g_2N.
+        \]
+        Since \( g_1g_2 \in G \), it follows that \( g_1g_2N \in G/N \). Thus, \( G/N \) is closed under this operation.
+    
+        \item \textbf{Associativity:}  
+        Let \( g_1N, g_2N, g_3N \in G/N \). Then:
+        \[
+        \big((g_1N)(g_2N)\big)(g_3N) = (g_1g_2N)(g_3N) = (g_1g_2g_3)N.
+        \]
+        Similarly:
+        \[
+        (g_1N)\big((g_2N)(g_3N)\big) = (g_1N)(g_2g_3N) = (g_1g_2g_3)N.
+        \]
+        Therefore, coset multiplication is associative.
+    
+        \item \textbf{Identity:}  
+        The coset \( eN \), where \( e \) is the identity element of \( G \), acts as the identity in \( G/N \). For any \( gN \in G/N \):
+        \[
+        (eN)(gN) = egN = gN, \quad \text{and} \quad (gN)(eN) = geN = gN.
+        \]
+        Thus, \( eN \) is the identity element in \( G/N \).
+    
+        \item \textbf{Inverses:}  
+        For any \( gN \in G/N \), the coset \( g^{-1}N \) serves as its inverse. We verify:
+        \[
+        (gN)(g^{-1}N) = g(g^{-1})N = eN, \quad \text{and} \quad (g^{-1}N)(gN) = g^{-1}gN = eN.
+        \]
+        Hence, every element in \( G/N \) has an inverse.
+    \end{enumerate}
+    
+    Since \( G/N \) satisfies the group axioms, it forms a group under the given multiplication operation.
+    \end{proof}

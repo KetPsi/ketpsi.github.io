@@ -1,0 +1,142 @@
+\section{Ideals}
+Let $R$ be a ring, let $I$ be a subset of $R$ and let $r \in R$. We have two subsets 
+\[rI = \{ra: a \in I\}\]
+and
+\[Ir = \{ar: a \in I\}.\]
+\begin{definition}[Left Ideal]
+    A subset $I$ of $R$ is a left ideal of $R$ if $I$ is a subring of $R$ and $I$ is closed under left multiplication by elements of $R$, that is, $rI \subseteq I$ for all $r \in R$.
+\end{definition}
+Similarly we can define,
+\begin{definition}[Right Ideal]
+    A subset $I$ of $R$ is a right ideal of $R$ if $I$ is a subring of $R$ and $I$ is closed under right multiplication by elements of $R$, that is, $Ir \subseteq I$ for all $r \in R$.
+\end{definition}
+We say we have a \textit{two-sided ideal} or simply an \textit{ideal} when $I$ is both a left and right ideal. A left idea is not necessarily a right ideal. But in commutative rings, a left ideal is also a right ideal.
+\begin{lemma}[Ideal Criterion(?)]
+    A subset $I$ of ring $R$ is an ideal if-
+    \begin{itemize}
+        \item $I$ is non-empty and closed under subtraction.
+        \item $I$ is closed under multiplication by any element of $R$.
+    \end{itemize}
+\end{lemma}
+\section{Examples of Ideal}
+\begin{eg}
+    The kernel of any ring homomorphism is an ideal.
+\end{eg}
+\begin{explanation}
+    Was done in this \hyperref[def:kernelisideal]{proposition}.
+\end{explanation}
+\begin{eg}
+    $n\Z$ is an ideal of $\Z$.
+\end{eg}
+\begin{explanation}
+    $n\Z$ is a subring of $\Z$, which can be easily checked. For any element $x \in n\Z$ and $y \in \Z$, we have \[yx = y \cdot (kn) = yk \cdot n\]
+    for some $k \in \Z$. So $yx \in n\Z$, and $n\Z$ is a left ideal. $\Z$ is commutative, so $n\Z$ is also a right ideal.
+\end{explanation}
+\begin{eg}
+    Let $R = \Z[x]$ be the ring of polynomials in $x$ with integer coefficients and $I$ be the set of polynomials whose terms are of degree at least $2$ (i.e., having no terms of degree $0$ and $1$) together with zero polynomial. Then $I$ is an ideal of $R$.
+\end{eg}
+\begin{explanation}
+If \( f, g \in I \), then \( f + g \in I \) since adding polynomials with no terms of degree \( 0 \) or \( 1 \) results in another polynomial with the same property.\\
+Then, if \( f \in I \) and \( r \in R \), then \( r \cdot f \in I \) because multiplying any polynomial \( f \) by \( r \) does not introduce terms of degree \( 0 \) or \( 1 \) into \( r \cdot f \).\\
+Thus, \( I \) is closed under addition and closed under multiplication by any element of $R$. As \( 0 \in I \), it is non-empty. Therefore, \( I \) is an ideal of \( R \).
+\end{explanation}
+\begin{eg}
+    Let $M_{n \times n}(R)$ be the matrix ring over some ring $R$. If $J$ is an ideal of $R$, $M_{n\times n}(J)$ is an ideal of $M_{n \times n}(R)$.
+\end{eg}
+\begin{explanation}
+    \textbf{Non-empty:} Since \( J \) is an ideal of \( R \), it contains the zero element, i.e., \( 0 \in J \). Therefore, the zero matrix belongs to \( M_{n \times n}(J) \). Hence, \( M_{n \times n}(J) \) is non-empty.\\
+Let \( A = (a_{ij}) \) and \( B = (b_{ij}) \) be matrices in \( M_{n \times n}(J) \), where each entry \( a_{ij} \in J \) and \( b_{ij} \in J \).\\
+\textbf{Closure under subtraction:} Consider the matrix \( A - B \):
+\[
+A - B = (a_{ij} - b_{ij}).
+\]
+Since \( J \) is an ideal of \( R \), it is closed under subtraction, so \( a_{ij} - b_{ij} \in J \) for all \( i, j \). Therefore, \( A - B \in M_{n \times n}(J) \).\\
+\textbf{Closure under multiplication by any matrix in \( M_{n \times n}(R) \)}
+We need to show that both \( AB \in M_{n \times n}(J) \) and \( BA \in M_{n \times n}(J) \).\\
+\textbf{Left multiplication by \( B \):}\\
+Let \( C = AB \), where the entry \( c_{ij} \) in the matrix \( C \) is given by
+\[
+c_{ij} = \sum_{k=1}^{n} a_{ik} b_{kj}.
+\]
+Since \( a_{ik} \in J \) (because \( A \in M_{n \times n}(J) \)) and \( J \) is an ideal of \( R \), and \( b_{kj} \in R \), the product \( a_{ik} b_{kj} \in J \) because \( J \) is closed under multiplication by any element of \( R \). Hence, each entry \( c_{ij} \in J \), implying \( C = AB \in M_{n \times n}(J) \).\\
+\textbf{Right multiplication by \( A \):} Similarly, \( BA \in M_{n \times n}(J) \).\\
+Since \( M_{n \times n}(J) \) is non-empty, closed under subtraction, and closed under multiplication by any element of \( M_{n \times n}(R) \), it follows that \( M_{n \times n}(J) \) is an ideal of \( M_{n \times n}(R) \).
+\end{explanation}
+\begin{eg}[All ideals are not two-sided]
+    Consider the ring $M_{2\times 2}(R)$, where $R$ is an commutative ring with identity. Let $L_1$ be the set of all matrices in $M_{2 \times 2}(R)$ with only entries in the first column, i.e., 
+    \[
+    L_1 = \left\{\begin{pmatrix}
+    a & 0\\
+    b & 0
+    \end{pmatrix}: a, b \in R\right\}.
+    \]
+    Then, $L_1$ is a left ideal, but not right ideal.\\
+    We can similarly define $R_1$ which is a right ideal but not a left ideal. We can also define $L_2, R_2$. In general, we can define $L_1, L_2, \cdots, L_n, R_1, R_2, \cdots, R_n$ for $n \times n$ matrices.
+\end{eg}
+\begin{eg}[Sum of Ideals]
+    If $I$ and $J$ are two ideals of $R$, we can take the set $I + J$ defined by
+    \[
+    I + J = \{a + b: a \in I, b \in J\},
+    \]
+    which also happens to be an ideal of $R$. This is called the \textit{sum of two} ideals $I$ and $J$.
+\end{eg}
+\begin{eg}[Product of Two Ideals]
+    The \textit{product of two ideals} \(I\) and \(J\) in a ring \(R\), denoted as \(IJ\), is defined as the ideal of $R$ generated by all finite sums of products of elements from \(I\) and \(J\). That is,
+
+    \[
+    IJ = \left\langle \sum_{k=1}^n a_k b_k \mid a_k \in I, b_k \in J, n \in \mathbb{N} \right\rangle.
+    \]
+\end{eg}
+\begin{eg}[n-fold Ideal]
+    For an ideal \(I\) in a ring \(R\), the \(n\)-fold ideal \(I^n\) is the ideal of $R$ generated by all finite sums of products of \(n\) elements, where each element is taken from \(I\). That is,
+    \[
+    I^n = \left\langle \sum_{k=1}^m a_1 a_2 \cdots a_n \mid a_1, a_2, \dots, a_n \in I, m \in \mathbb{N} \right\rangle.
+    \]
+\end{eg}
+\section{Quotient Rings}
+Just like we defined quotient groups where we mod out by a normal subgroup, for rings we can define quotient rings by \textit{mod}-ing out by an appropriate ideal.
+\begin{definition}[Quotient Ring]
+    Let $R$ be a ring and let $I$ be an ideal of $R$. Then the (additive) quotient group $R/I$ is a ring under the binary operations:
+    \[(r + I) + (r + I) := (r + s) + I\]
+    \[(r + I) (s + I) := rs + I,\]
+    where $r, s \in R$. $R/I$ is called quotient ring of $R$ modulo $I$.
+\end{definition}
+\begin{eg}
+    Let $R = \Z$ and $I = n\Z$. Then we have $R/I = \Z/n\Z$, the quotient ring of $\Z$ modulo $n\Z$.\\
+    We saw earlier that $\Z/n\Z$ is a ring, in particular, is a field when $n$ is prime. 
+\end{eg}
+\begin{eg}
+    Let $R = \Z[x]$ and $I$ be the collection of polynomials whose terms are of degree at least $2$ with the zero polynomial. Two polynomial $p(x), q(x)$ are in the same coset of $I$ if and only if they differ by a polynomial whose terms are of degree at least $2$, i.e., $p(x)$ and $q(x)$ have the same constant and first degree term. Hence, $R/I = \{a + bx: a, b \in R\}$. Furthermore, we add and multiply in this quotient ring as usual and taking $x^2 = 0$ in this ring.\\
+    It is interesting to note that $R/I$ has zero divisors though $R$ does not.
+\end{eg}
+\section{Canonical Projection Map}
+If $I$ is any ideal, then $R/I$ is a ring and the canonical map 
+\[\pi : r \rightarrow r + I,\]
+is a ring homomorphism with kernel $I$.\\
+We already know $\pi$ is a group homomorphism, it remains to check that $\pi$ is also ring homomorphism. This is immediate from the definition of multiplication in $R/I$:
+\[\pi(rs) = rs + I = (r + I)(s + I) = \pi(r)\pi(s).\]
+Hence,
+\begin{theorem}
+    We can realize every ideal as the kernel of some ring homomorphism.
+\end{theorem}
+\section{Isomorphism Theorems for Rings}
+\begin{theorem}[First Isomorphism Theorem]
+    If $\phi: R \rightarrow S$ is a homomorphism of rings, then $R /ker \ \phi$ is isomorphic as a ring to $\phi(R)$.
+\end{theorem}
+\begin{proof}
+    The proof goes same as first Isomorphism theorem proof that we did previously. Here we just have to consider extra ring multiplication operation. If $I = \ker \ \phi$, then the correspondence $r + I \rightarrow \phi(r)$ is a bijection between the rings $R/I$ and $\phi(R)$ which respects addition, in this case, also multiplication, hence is a ring isomorphism. Therefore, $R /ker \ \phi \cong \phi(R)$.
+\end{proof}
+\begin{eg}
+    Let $R = \Z[x]$ and consider the homomorphism $\phi : \Z[x] \rightarrow \Z/2\Z$ such that \[\phi(p(x)) = p(0) \mod \ 2.\] Then $R/ \ker \ \phi \cong \Z/2\Z$.
+\end{eg}
+\begin{explanation}
+    Firstly, $\ker \ \phi = \{p(x) \in \Z[x]: p(0) \in 2\Z\}$ is mapped to $\overline{0} \in \Z/2\Z$. And the set of all polynomials whose constant term is odd mapped to $\overline{1}$. Hence, the homomorphism is surjective. According to the first isomorphism theorem,
+    \[R /ker \ \phi \cong \Z/2\Z\]
+\end{explanation}
+\begin{theorem}[Second Isomorphism Theorem]
+    Let $A$ be a subring and let $B$ be an ideal of $R$. Then $A + B = \{a + b : a \in A, b \in B\}$ is a subring of $R$, $A \cap B$ is an ideal of $A$ and $(A + B)/B \cong A/(A \cap B)$.
+\end{theorem}
+\begin{theorem}[Third Isomorphism Theorem]
+    Let $I$ and $J$ be ideals of $R$ with $I \subseteq J$. Then $J/I$ is an ideal of $R/I$ and $(R/I)/(J/I) \cong R/J$. 
+\end{theorem}
+One can prove both theorems using similar arguments (that were used to prove isomorphism theorems for groups).

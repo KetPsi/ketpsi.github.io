@@ -1,0 +1,60 @@
+\section{Kernel and Image of Group Homomorphism}
+Let $G$ and $H$ be groups and let $f$ be a group Homomorphism from $G$ to $H$ (Next few lectures will be assuming this statement). Then,
+\begin{definition}[Kernel]
+    If $e_H$ is the identity element of $H$, then we define \textit{kernel} of $f$ is the preimage of the singleton set $\{e_H\}$. In symbols:
+    \[\ker f := \{g \in G: f(g) =e_H\}.\]
+\end{definition}
+and
+\begin{definition}[Image]
+    We define \textit{image} of $f$ to be all elements of $H$ which are image of some element of $G$.
+    \[\im f := f(G) = \{h \in H: f(g) = h; \text{ for some } g \in G\}\]
+\end{definition}
+\begin{lemma}
+    ker $f$ and Im $f$ are subgroups of $G$ and $H$ respectively.
+\end{lemma}
+\begin{lemmaproof}
+    $f(e_G) = e_H$, hence $e_G \in \ker f$.\\
+    Let $x, y \in \ker f$. Then, $f(xy^{-1}) = f(x) f(y^{-1}) = f(x)f(y)^{-1} = e_He_H^{-1} = e_H$.
+    According to subgroup criterion, ker $f$ is a subgroup of $G$.\\
+    We will prove second part shortly.
+\end{lemmaproof}
+\begin{lemma}
+    ker $f$ is a normal subgroup of $G$.
+\end{lemma}
+\begin{lemmaproof}
+    For all $x \in \ker f$.
+    \begin{align*}
+        f(g x g^{-1}) &= f(g) f(x) f(g^{-1})\\
+                    &= f(g) e_H f(g)^{-1}\\
+                    &= f(g) f(g)^{-1}\\
+                    &= e_H.
+\end{align*}
+\end{lemmaproof}
+\begin{lemma}
+    \label{def:injectivehomo}
+    $f$ is injective if and only if ker $f = \{e_G\}$.
+\end{lemma}
+\begin{lemmaproof}
+    ($\implies$)\\
+    If $f$ is injective, then, image of every elements of $G$ is unique. Hence, $f(x) = e_H$ if and only if $x = e_G$. Hence, ker $f = \{e_G\}$.\\
+    ($\Leftarrow$)\\
+    Assume \begin{align*}
+        &f(x) = f(y)\\
+        \implies & f(x) f(y)^{-1} = e_H\\
+        \implies & f(x) f(y^{-1}) = e_H\\
+        \implies & f(xy^{-1}) = e_H
+    \end{align*}
+    Since, ker $f = \{e_G\}$, it must be that $xy^{-1} = e_H$ which implies $x=y$.\\
+    Hence, $f$ is injective.
+\end{lemmaproof}
+\begin{lemma}
+    Let $N \lhd G$, then the canonical map $\pi_N: G \rightarrow G/N$ such that $\pi_N(a) = aN$ is a surjective homomorphism with ker $\pi_N = N$.
+\end{lemma}
+\begin{lemmaproof}
+    The map $\pi_N$ is well-defined because for any $a \in G$, the coset $aN$ is uniquely determined. There is no ambiguity in assigning $\pi_N(a) = aN$.\\
+    Let $a, b \in G$. Since $N$ is normal in $G$, then $\pi_N(ab) = abN = aN bN = \pi_N(a)\pi_N(b)$. Hence, $\pi_N$ is a homomorphism.\\
+    Lastly, identity of $G/N$ is $N$. We know $nN = N$ iff $n\in N$. Hence, ker $f = N$.
+\end{lemmaproof}
+\begin{corollary}
+    A subgroup $N$ is normal if and only if it is the kernel of a group homomorphism.
+\end{corollary}

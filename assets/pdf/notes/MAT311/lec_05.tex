@@ -1,0 +1,48 @@
+\section{Congruence Modulo Subgroup $H$}
+\begin{definition}
+    Let $G$ be a group, $H$ a subgroup of $G$; for $a, b \in G$ we say $a$ \textit{is congruent to} $b$ (mod $H$), written as $a \equiv b$ mod $H$ if $ab^{-1} \in H$.
+\end{definition}
+\begin{lemma}
+    The relation $a \equiv b$ (mod $H$) is an equivalence relation.
+\end{lemma}
+\begin{lemmaproof}
+    1. Since $H$ is a subgroup, for all $a \in H, aa^{-1} = e \in H$. Hence, $a \equiv a$ (mod $H$) \textbf{(reflexivity)}.\\
+    2. Let $a \equiv b$ (mod $H$), equivalently, $ab^{-1} \in H$. So, $(ab^{-1})^{-1} \in H$. But $(ab^{-1})^{-1} = (b^{-1})^{-1} a^{-1} = ba^{-1}$. Hence, $ba^{-1} \in H$ equivalently, $b \equiv a$ (mod $H$) \textbf{(symmetry)}.\\
+    3. Let $a \equiv b$ (mod $H$) and $b \equiv c$ (mod $H$), which are equivalent to $ab^{-1} \in H$ and $bc^{-1} \in H$ respectively. But together they imply $(ab^{-1})(bc^{-1})\in H$. $(ab^{-1})(bc^{-1}) = ac^{-1} \in H$. From which it follows $a \equiv c$ (mod $H$). \textbf{(Transitivity)}.\\
+    Hence, $a \equiv b$ (mod $H$) is an equivalence relation.
+\end{lemmaproof}
+\begin{remark}
+    The \( a \equiv b \pmod{H} \) is a generalization of the "mod" we see in integers. Recall that \( (\mathbb{Z}, +) \) is a group. So \( ab^{-1} \) is the generalization of \( a - b = a + (-b) \). Now, \( a \equiv b \pmod{n} \) means \( n \mid a - b \). This can be interpreted as \( a - b \in n\mathbb{Z} \), where \( n\mathbb{Z} = \{ nk \mid k \in \mathbb{Z} \} \). Observe that all subgroups of \( \mathbb{Z} \) are of the form \( n\mathbb{Z} \). So to generalize this for any group \( G \) and any subgroup \( H \), we interpret \( a \equiv b \pmod{H} \) as \( ab^{-1} \in H \).
+\end{remark}
+\section{Cosets}
+\begin{definition}[Cosets]
+    If $H$ is a subgroup of $G, a \in G$, then $Ha = \{ha : h \in H\}$. $Ha$ is called a right coset of $H$ in $G$. Similarly, $aH = \{ah: h\in H\}$ is a left coset in $G$.
+\end{definition}
+Is $Ha$ a subgroup of $G$? Not in general. Let $a \not\in Ha$. Then identity $e \not \in H$. Because otherwise $e * a= a \in Ha$ (contradiction).\\
+\begin{lemma}
+    For all $a \in G$, $Ha = \{x \in G: a \equiv x \text{ (mod } H$)\}.
+\end{lemma}
+\begin{lemmaproof}
+    Let $[a] = \{x \in G: a \equiv x \text{ (mod } H)\}$\\
+    For all $c \in Ha \implies c = h_1a \text{ (for some $h_1 \in H$)}$. $a(h_1a)^{-1} = a a^{-1}h_1^{-1}  = h_1^{-1} \in H$ from which it follows $h_1a = c \in [a]$. Hence, $Ha \subseteq [a]$.\\
+    Conversely, for all $x \in [a], ax^{-1} \in H \implies (ax^{-1})^{-1} = xa^{-1} \in H.$ Therefore, $(xa^{-1}) a = x \in Ha$. Hence, $[a] \subseteq Ha$.\\
+    Therefore, $Ha = [a] = \{x \in G: a \equiv x \text{ (mod } H)\}$.
+\end{lemmaproof}
+Equivalence classes yield a decomposition of $G$ into disjoint subsets. Thus, \textit{any two right cosets of $H$ in $G$ either are identical or have no element in common}.
+\begin{lemma}
+    There is a one-to-one correspondence between any two right cosets of $H$ in $G$.
+\end{lemma}
+\begin{lemmaproof}
+    Let $f: Ha \rightarrow Hb$ be a map where $f(ha) = hb$. Trivially, $f$ is a bijective map.
+\end{lemmaproof}
+$|H| = |He| = |Hx|$ for all $x \in G$.\\
+\textit{All right cosets / left cosets have the same cardinality}.\\
+Since any $a \in G$ is in a unique right coset $Ha$, the right cosets fill out $G$. Thus if $k$ represents the number of distinct right cosets of $H$ in G we must have that $k |H| = |G|$. Which proves the famous \textit{Lagrange's Theorem}, namely,
+\begin{theorem}[Lagrange's Theorem]
+    If $G$ is a finite group and $H$ is a subgroup of $G$, then order of $H$ is a divisor of order of $G$.
+\end{theorem}
+\begin{definition}[Index of $H$ in $G$]
+    If $H \le G$ then the index of $H$ in $G$ is the number of distinct right cosets of $H$ in $G$. We denote it by $[G:H]$.
+\end{definition}
+Notice,  $$[G:H] = \frac{|G|}{|H|}.$$
+And if $K < H < G$, then $$[G : K] = [G: H] [H : K].$$

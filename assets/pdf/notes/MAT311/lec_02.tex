@@ -1,0 +1,67 @@
+\section{Group Propositions}
+\begin{prop}
+    If $(G, *)$ is a group, then
+    \begin{enumerate}
+        \item The identitiy $e$ is unique.
+        \item For all $a \in G, a^{-1}$ is unique.
+        \item For all $a \in G, (a^{-1})^{-1} = a$.
+        \item For all $a, b \in G, (a * b)^{-1} = b^{-1} a^{-1}.$
+        \item For all $a_1, a_2, ... a_n \in G$, the value of $a_1 * a_2 * ... * a_n$ is independent of how the expression is bracketed \textbf{(Generalized associative law)}.
+    \end{enumerate}
+\end{prop}
+\begin{propproof}
+    1. If there were two distinct identity say $e'$ and $e''$, then for all $a \in G$, $$a * e' = e' * a = a$$
+    also \begin{gather*}
+        a * e'' = e'' * a = a\\
+        \implies a * e'' = a * e'\\
+        \implies a^{-1} * a * e'' = a^{-1} * a * e'\\
+        \implies e'' = e' \text{ (Contradiction!)}
+    \end{gather*}
+    Hence, indentity is unique.\\
+    2. Let for all $a \in G$, there exists two distinct inverse $b, c$, $$a * b = b * a = e$$
+    also $$a * c = c * a = e$$
+    Now, $b = b * e = b * (a*c) = (b * a) * c = e * c = c$ (Contradiction!)\\
+    Hence, inverse is unique for each element of a group.\\
+    3. According to the defintion, $a * a^{-1} =  a^{-1} * a = e$. By mentally interchanging the roles of $a$ and $a^{-1}$, we can see that $a$ satisfies the defining property for the inverse of $a^{-1},$ hence, $(a^{-1})^{-1}=a$.\\
+    4. $(a * b) * (b^{-1} * a^{-1}) = a * (b * b^{-1}) * a^{-1} = a * e * a^{-1} = a * a^{-1} = e.$\\
+    Since, $G$ is a group, only inverse can have such property.
+    Hence, $(a * b)^{-1} = b^{-1} * a^{-1}.$\\
+    5. \textbf{Left as exercise}.
+\end{propproof}
+\begin{lemma}[Cancellation Lemma]
+    For all $a, u, w$
+    \begin{itemize}
+        \item $a * u = a * w \implies u = w$ 
+        \item $u * a = w * a \implies u = w$
+    \end{itemize}
+\end{lemma}
+\section{Subgroups}
+\begin{definition}[Subgroup]
+    A subset of $H$ of $G$ is a subgroup if $H$ is non-empty and is closed under products and inverses. We write $H \le G$.
+\end{definition}
+\begin{eg}
+    $(\Z, +) \le (Q, +) \le (\R, +) \le (\C, +).$\\
+    For an equilateral triangle, the group of rotational symmetries is a subgroup of the group of all symmetries (rotaion and reflection).
+\end{eg}
+Any group $G$ has at least two subgroups: trivial group $\{e\}$ and the group itself (aka. improper subgroup).\\
+When we say that $H$ is a subgroup of $G$ we shall always mean that the operation for the group $H$ is the operation on $G$ restricted to $H$. In general, it is possible that the subset $H$ has the structure of a group with respect to some operation other than the operation on $G$ restricted to $H$.
+\begin{eg}
+    $\Q \setminus {0}$ under multiplication is not a subgroup of $\R$ under addition even though both are groups and $\Q \setminus {0}$ is indeed a subset of $\R$.
+\end{eg}
+\begin{lemma}[The Subgroup Criterion]
+    $H \le G$ is a subgroup if and only if $H \neq \varnothing$ and for all $x, y \in H, xy^{-1} \in H.$
+\end{lemma}
+\begin{lemmaproof}
+    The forward direction is trivial.\\
+    For backward direction,\\
+    Since, $H \neq \varnothing$, there exists $x, x \in H$, which means $xx^{-1} = e \in H$ \textbf{(Identity)}.\\
+    For all $x \in H, ex^{-1} = x^{-1} \in H$ \textbf{(Inverse)}.\\
+    Associativity holds inherently \textbf{(Associativity)}.\\
+    For all $x, y \in H, y^{-1} \in H$, and so is $x(y^{-1})^{-1} = x  y \in H$ \textbf{(Closure)}.
+\end{lemmaproof}
+\begin{lemma}
+    If $H$ is a nonempty finite subset of of a group $G$ and $H$ is closed under multiplication, then $H$ is a subgroup of $G$.
+\end{lemma}
+\begin{lemmaproof}
+    Here, we just have to prove \textbf{inverse} property. Suppose $a \in H$. Since is $H$ is closed under multiplication, the infinte collection of elements $a, a^2, a^3, ..., a^m, ...$ must all fit into $H$, which is a finite subset of $G$. Thus there must be repetations in this collection of elements; that is, for some integers $r, s$ with $r > s > 0, a^r = a^s \implies a^{r-s} = e$. Since, $r - s - 1 \ge 0, a^{r-s-1} \in H$ and since $aa^{r-s-1} = a^{r-s} = e, a^{-1} = a^{r-s-1}$. Thus, $a^{-1} \in H$, completes the proof of the lemma.
+\end{lemmaproof}

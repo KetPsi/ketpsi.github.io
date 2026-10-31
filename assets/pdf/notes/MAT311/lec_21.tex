@@ -1,0 +1,41 @@
+\section{Norm on Gaussian Integers}
+\begin{eg}
+    The Gaussian integers $\Z[i]$ is an Euclidean domain with $\nu(a + bi) = a^2 + b^2$.
+\end{eg}
+\begin{explanation}
+    It is easy to check $\nu$ is a norm. We want check if $nu$ is also an Euclidean norm.\\
+    To begin with, if $\alpha = a + ib$ then \[\nu(\alpha) = \alpha \overline{\alpha} \text{ where } \overline{\alpha} = a - ib\]
+    It follows that for every $\alpha, \beta \in \Z[i]$,
+    \[\nu(\alpha\beta) = \alpha\beta\overline{\alpha\beta} = \alpha\overline{\alpha}\beta\overline{\beta} = \nu(\alpha)\nu(\beta).\]
+    So if $\beta = 0$, then $\nu(\beta) \ge 1$ and $\nu(\alpha\beta) = \nu(\alpha)\nu(\beta) \ge \nu(\alpha)$.
+
+    To show that $\nu$ satisfies Division Algorithm, let $\alpha, \beta \in \Z[i]$ with $\beta \neq 0$. By rationalizing the denominator we get, \[\frac{\alpha}{\beta} = r + is, \text{ where } r, s \in \Q.\]
+    We can choose integers $a, b$ such that $|r -a| \le \frac{1}{2}$ and $|s - b| \le \frac{1}{2}$. Then,
+    \begin{align*}
+        \alpha &= \beta(r + is)\\
+               &= \beta(a + ib) + \beta((r-a) + i(s-b))\\
+               &= \beta \gamma + \delta,
+    \end{align*}
+    where $\gamma = a + ib$ and $\delta = \beta((r-a) + i(s-b))$. Since $a,b \in \Z$, so $\gamma \in \Z[i]$ and $\delta = \alpha - \beta\delta \in \Z[i]$. And we have
+    \[\nu(\delta) = \nu(\beta)((r-a)^2 + i(s-b)^2) = \nu(\beta)\frac{1}{2} < \nu(\beta),\]
+    which completes the proof.
+\end{explanation}
+
+\section{Irreducible \& Prime Elements}
+\begin{definition}
+    Let $R$ be a commutative ring with identity. We say $a$ divides $b$, if there exists $c$ such that $b = ac$.
+\end{definition}
+\begin{definition}
+    Two elements $a$ and $b$ are called associates if there exits a unit $u$ such that $a = ub$.
+\end{definition}
+Let $R$ be an integral domain. Then
+\begin{definition}[Irreducible]
+    A non-zero non-unit element $a \in R$ is called \textit{irreducible element} if for all $b,c \in R$, $a = bc$ implies that either $b$ or $c$ is a unit.\\
+    $a$ is called \textit{reducible} if $a$ is not irreducible.
+\end{definition}
+and
+\begin{definition}[Prime]
+    A non-zero non-unit element $p \in R$ is called \textit{prime} if for every $a, b \in R$, $p | ab$ implies that either $p | a$ or $p | b$.
+\end{definition}
+
+ 
